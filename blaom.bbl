@@ -152,10 +152,21 @@ R.~W. Sharpe.
   Erlangen program}}, volume 166 of {\em Graduate Texts in Mathematics}.
 \newblock Springer, 1997.
 
+\bibitem{Tanaka_79}
+Noboru Tanaka.
+\newblock On the equivalence problems associated with simple graded {L}ie
+  algebras.
+\newblock {\em Hokkaido Math. J.}, 8(1):23--84, 1979.
+
 \bibitem{Trentinaglia_15}
 Giorgio Trentinaglia.
 \newblock Reduced smooth stacks?
 \newblock {\em Theory Appl. Categ.}, 30:Paper No. 31, 1032--1066, 2015.
+
+\bibitem{Cap_Schichl_00}
+Andreas \v{C}ap and Hermann Schichl.
+\newblock Parabolic geometries and canonical {C}artan connections.
+\newblock {\em Hokkaido Math. J.}, 29(3):453--505, 2000.
 
 \bibitem{Cap_etal_01}
 Andreas \v{C}ap, Jan Slov\'{a}k, and Vladim\'{\i}r Sou\v{c}ek.
@@ -172,5 +183,12 @@ Andreas \v{C}ap and Vladim\'{\i}r Sou\v{c}ek.
 Andreas \v{C}ap and Vladim\'{\i}r Sou\v{c}ek.
 \newblock Subcomplexes in curved {BGG}-sequences.
 \newblock {\em Math. Ann.}, 354(1):111--136, 2012.
+
+\bibitem{Warner_83}
+Frank~W. Warner.
+\newblock {\em Foundations of differentiable manifolds and {L}ie groups},
+  volume~94 of {\em Graduate Texts in Mathematics}.
+\newblock Springer-Verlag, New York-Berlin, 1983.
+\newblock Corrected reprint of the 1971 edition.
 
 \end{thebibliography}
