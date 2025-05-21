@@ -1165,10 +1165,10 @@ Model data $\tau $ in a parabolic geometry is {\df normal} if $\partial^\tau \ka
 Our proof of the following is an adaption of that of \cite[Propositions 3.1.10,
 3.1.13]{Cap_Slovak_09}:
 
-\begin{theorem}[Theorem \ref{normalization_}] Let $({\mathcal G}, \tau)$ be a regular
-  parabolic geometry. Then there exists normal model data $\tau'$ such that
-  $({\mathcal G} , \tau')$ is a regular parabolic geometry with the same Levi reduction as
-  $({\mathcal G}, \tau)$.
+\begin{theorem}[Theorem \ref{normalization_}]
+  Let $({\mathcal G}, \tau)$ be a regular parabolic
+  geometry. Then there exists {\bfseries normal}, model data $\tau'$ such that
+  $({\mathcal G} , \tau')$ is a regular parabolic geometry with the same Levi reduction.
 \end{theorem}
 
 \subsection{Harmonic curvature}\label{harmonic}
@@ -3289,7 +3289,7 @@ $l+1$. Induction on $l$ shows $\psi = 0$. This completes the proof of Propositio
 
 \subsection{Levi reductions are unchanged by $\psi $-deformations}\label{same_levi}
 Conclusion \eqrefs{deformations}{saturn5} follows fairly easily from the definitions and
-the statement preceding Lemma \ref{deformations} and is left to the reader.
+Lemma \ref{deformations}, applied to $q=\Adjoint_\psi $, and is left to the reader.
 
 \subsection{Weyl gauge transformations and $\psi$-deformations}\label{gauge_transforms}
 
@@ -3474,26 +3474,28 @@ algebra model for $\tau $.
 \end{proof}
 
 \subsection{Model curvature under automorphisms}\label{transform}
-Let $\tau $ be model data on a transitive filtered Lie algebroid $A$, $\nabla $ a
-compatible Cartan connection on $A$. Let $f \colon M \rightarrow M'$ be a diffeomorphism
-and $q \colon A \rightarrow A'$ some filtration-preserving Lie algebroid isomorphism,
-covering $f$, into some second filtered Lie algebroid $A'$. Supposing $A^0$ is the anchor
-kernel of $A$, the push-forward $q_*\tau$ defined by
-$$(q_*\tau)(X, Y) = q \tau(q^{-1}X, q^{-1}Y)$$ will be model data on $A'$. The isomorphism
+Let $A$ be a transitive filtered Lie algebroid, $\tau $ model data compatible with the
+filtration, and $\nabla$ a $\tau$-compatible Cartan connection.  Let
+$f \colon M \rightarrow M'$ be a diffeomorphism and $q \colon A \rightarrow A'$ some
+filtration-preserving Lie algebroid isomorphism, covering $f$, into some second filtered
+Lie algebroid $A'$. Supposing $A^0$ is the anchor kernel of $A$, the push-forward
+$q_*\tau$, defined by
+$$(q_*\tau)(X, Y) = q \tau(q^{-1}X, q^{-1}Y),$$ will be model data on $A'$. The isomorphism
 $Tf \colon TM \rightarrow TM'$ will be filtration-preserving. In particular, $\tau $ is
-regular if and only if $q_*\tau$ is regular.
+regular if and only if $q_*\tau$ is regular. According to our next results, under $q$,
+model curvature transforms in a natural way.
 
 \begin{proposition}
   The equation 
   \begin{equation}
     \label{tarragon1}
-      \bar\nabla'_XY = q_*\nabla_{q^*X} (q^*Y); \qquad X, Y \in \Gamma(A')
+    \bar\nabla'_XY = q_*\bar\nabla_{q^*X} (q^*Y); \qquad X, Y \in \Gamma(A'),
   \end{equation}
   implicitly defines a Cartan connection $\nabla' $ compatible with the push-forward
-  $\tau'=q_*\tau $. Here $(q_*W)(m)=qW(f^{-1}(m))$ and $(q^*X)(m) = q^{-1}X(f(m))$. If
-  ${\mathcal G}$ a Lie groupoid integrating $A$, 
-  ${\mathcal G}'$ is a firmly filtered Lie groupoid integrating $A'$, $\nabla $ the
-  infinitesimalization of a Cartan connection $D$ on ${\mathcal G} $, and
+  $\tau'=q_*\tau $. Here $(q_*X)(m)=qX(f^{-1}(m))$ and $(q^*X)(m) = q^{-1}X(f(m))$, for
+  $X \in \Gamma(A)$. If ${\mathcal G}$ a Lie groupoid integrating $A$, ${\mathcal G}'$ is
+  a firmly filtered Lie groupoid integrating $A'$, $\nabla $ the infinitesimalization of a
+  Cartan connection $D$ on ${\mathcal G} $, and
   $Q \colon {\mathcal G} \rightarrow {\mathcal G}' $ a Lie groupoid isomorphism with
   infinitesimalization $q$, then
   \begin{equation}
@@ -3507,7 +3509,7 @@ regular if and only if $q_*\tau$ is regular.
   $\wedge^2 T^*\!M' \otimes {\mathcal A}'$, then
   \begin{equation}
     \label{tarragon5}
-    \kappa'(V_1, V_2) = q \kappa (Tf^{-1} \cdot V_1, Tf^{-1}\cdot V_2); \qquad V_1, V_2 \in \Gamma(TM).
+    \kappa'(V_1, V_2) = q \kappa (Tf^{-1} \cdot V_1, Tf^{-1}\cdot V_2); \qquad V_1, V_2 \in TM.
   \end{equation}
   If $({\mathcal G}, \tau, D)$ (resp., $(A, \tau, \nabla)$) is an (infinitesimal) filtered
   Cartan geometry, then $({\mathcal G}, \tau', D')$ (resp., $(A, \tau', \nabla')$) is an
@@ -3844,7 +3846,7 @@ which we prove below.
     \kappa(\# \tau(X_1, X_2), \#X_3) + \tau(\kappa(\#X_1, \#X_2), X_3) +
     \text{terms cyclic in 1-2-3} \equiv 0 \modulo A^{m + l + 1}.
   \end{equation*}
-  Evidently, both the terms on the right-hand have degree $m + l$, and from this the
+  Evidently, both the terms on the left-hand have degree $m + l$, and from this the
   proposition now follows easily, noting that under our identification
   $\graded(A)_{-}\cong \graded(TM)$, $\graded_0(\#)$ is the just the projection
   $\graded(TM) \oplus \graded(A^0) \rightarrow \graded(TM)$.
@@ -4119,9 +4121,10 @@ semisimple Lie algebras.
 Suppose $\tau $ is the model data associated with a parabolic geometry (global or
 infinitesimal). Then, according to Lemma \ref{parabolics_from_filtrations},
 $T = \graded_0(\tau)$ is a semisimple Lie algebra bundle structure on $\graded(A)$, where
-$A$ is the underlying filtered Lie algebroid. We accordingly have a {\em unique} section
-$E$ of $\graded(A)_0$ that is a fibre-wise grading section of $(\graded(A), T)$, what we
-shall call the {\df canonical grading section}.
+$A$ is the underlying filtered Lie algebroid. By Lemma \ref{grading_elements}, we
+accordingly have a {\em unique} section $E$ of $\graded(A)_0$ that is a fibre-wise grading
+section of $(\graded(A), T)$, what we shall call the {\df canonical grading section}. We
+prove the following after stating some consequences:
 \begin{proposition}
   For any global or infinitesimal parabolic geometry, any lift $\epsilon$ of the canonical
   grading section $E$ is a Weyl gauge compatible with the model data $\tau $, and all Weyl
@@ -4165,11 +4168,11 @@ semi-direct products, now gives:
   denoting $\bar D $ (see \ref{reduction_}). In particular, for any arrow
   $g \in {\mathcal G} $ beginning at some $m \in M$, $\bar D_g$ must map grading elements
   of $\graded(A)|_m$ to grading elements of $\graded(A)|_{gm}$, which, by the
-  aforementioned uniqueness, means $\bar D_gE(m) = E(gm)$, i.e., $E$ is $\bar D$-invariant,
-  which is the same as $\Adjoint$-invariance, since ${\bar D}$ restricts to the canonical
-  representation on $A^0$. It follows that any lift $\epsilon$ of $E$ through
-  $A^0 \rightarrow A^0/A^1$ will be a Weyl gauge for ${\mathcal G} $. It is not hard to
-  see that every Weyl connection is of this form.
+  aforementioned uniqueness, means $\bar D_gE(m) = E(gm)$, i.e., $E$ is
+  $\bar D$-invariant, which is the same as $\Adjoint$-invariance, since ${\bar D}$
+  restricts to the canonical representation on $A^0$. It follows that any lift $\epsilon$
+  of $E$ through $A^0 \rightarrow A^0/A^1$ will be a Weyl gauge for ${\mathcal G} $. It is
+  not hard to see that every Weyl gauge is of this form.
 
   Turning to the infinitesimal case, let $(A, \tau)$ be an infinitesimal parabolic
   geometry and $\nabla$ a Cartan connection compatible with $\tau $ and the filtration of
@@ -4195,7 +4198,7 @@ semi-direct products, now gives:
   Weyl connection is of this form.
 \end{proof}
 
-\subsection{Checking P3 at a point suffices}\label{parabolic}
+\subsection{Axiom P3 holds everywhere if it holds at a point}\label{parabolic}
 
 \begin{proposition}
   If $M$ is connected then, in the global groupoid case, and in the case of an integrable
@@ -4317,10 +4320,10 @@ transforms naturally under automorphisms:
 
 We turn now to the proof of the following central result:
 
-\begin{theorem}[Normalization] Let $({\mathcal G}, \tau)$ be a regular
-  parabolic geometry. Then there exists normal model data $\tau'$ such that
-  $({\mathcal G} , \tau')$ is a regular parabolic geometry with the same Levi
-  reduction.
+\begin{theorem}[Normalization]
+  Let $({\mathcal G}, \tau)$ be a regular parabolic
+  geometry. Then there exists {\bfseries normal}, model data $\tau'$ such that
+  $({\mathcal G} , \tau')$ is a regular parabolic geometry with the same Levi reduction.
 \end{theorem}
 
 Let $A$ be the Lie algebroid of ${\mathcal G} $.
@@ -4333,19 +4336,22 @@ Let $A$ be the Lie algebroid of ${\mathcal G} $.
 \begin{proof}
   Any lift $\epsilon $ of the canonical grading section $E$ of $\graded(A)$ defines a
   splitting $A = \oplus_{j \in {\mathbb Z}}A_j$ for the filtration of $A$, which in turn
-  gives us a splitting of $C^n := \wedge^n A^1 \otimes A$, which is filtered, namely
-  $C^n=\oplus_{m \in {\mathbb Z}}C^n_m$, where
-  $C^n_m=\oplus_{j\ge 1;j+k=m}\wedge^n A_j \otimes A_k$. In particular, writing
+  gives us a grading of $C^n := \wedge^n A^1 \otimes A$, which is naturally filtered;
+  specifically, $C^n_m$ is all finite sums of expressions of the form
+  $Z_1\wedge \ldots \wedge Z_n \otimes  X$, where $Z_{i_j} \in A_j$ ($i_j \ge 1$), $X \in A_k$
+  ($k \in {\mathbb Z}$), and $i_1+ \cdots + i_n + k = m$. In particular, writing
   $\sigma = \sum_m \sigma_m$ (finite sum) for some $\sigma_m \in C^n_m$, we have
   $\sum_m\partial^\tau \sigma_m \in (C^{n-1})^l$, by hypothesis. But from this is follows
   that $\partial^\tau \sigma_j=0$ for all $j< l$, because $\partial^\tau $ maps $C^n_m$ to
   $C^{n-1}_m$, for all $m$. We may therefore take
   $\tilde \sigma = \sum_{j\ge l} \sigma_j$.
 \end{proof}
+\begin{notation}
+  If $\tau'$ is also model data on $A$, and if $\tau'=(\Adjoint_\psi)_*\tau $, for some
+  $\psi \in \Gamma(T^*\!M \otimes A)$, homogeneous of degree $l$, then we will write
+  $\tau\equivalent{l} \tau' $.
+\end{notation}
 
-If $\tau'$ is also model data on $A$, and if $\tau'=(\Adjoint_\psi)_*\tau $, for some
-$\psi \in T^*\!M \otimes A$ homogeneous of degree $l\ge 1$, then we will write
-$\tau\equivalent{l} \tau' $.
 \begin{lemmaB}
   If $\sigma \in \Gamma(\wedge^nA^1 \otimes A)$ and $\tau'\equivalent{l}\tau $, then
   $\partial^{\tau'} \sigma -\partial^\tau \sigma $ is homogeneous of degree $l + 1$
@@ -4458,13 +4464,13 @@ vanishes (Corollary \ref{harmonic}). The proof of the this result rested on Theo
 \begin{proof}
   Write $\tau_1 := \tau$. We will construct a sequence of infinitesimal Weyl gauge
   transformations $q_1, q_2, q_3, \ldots$, such that for any $l > 1$,
-  $\tau' \equivalent{l} \tau_l$, where $\tau_l = (q_{l-1})_*\tau_{l-1}$. Then, for
-  sufficiently large $k$, we will have $\tau' = \tau_k$, because any
-  $\psi \in \Gamma(T^*\!M \otimes A)$ of sufficiently high a degree of homogeneity
-  vanishes, making $\Adjoint_\psi $ the identity. In that case, we will have
-  $\tau' = q_* \tau$, where $q = q_{k-1} \circ q_{k-2} \circ \cdots \circ q_1$, and the
-  theorem will be proven, because normality is preserved by Weyl gauge transformations
-  (Theorem \ref{transform_}), as is regularity, because we will have
+  $\tau' \equivalent{l} \tau_l$ (see Notation \ref{normalization_}}) where
+  $\tau_l := (q_{l-1})_*\tau_{l-1}$. Then, for sufficiently large $k$, we will have
+  $\tau' = \tau_k$, because any $\psi \in \Gamma(T^*\!M \otimes A)$ of sufficiently high a
+  degree of homogeneity vanishes, making $\Adjoint_\psi $ the identity. In that case, we
+  will have $\tau' = q_* \tau$, where $q = q_{k-1} \circ q_{k-2} \circ \cdots \circ q_1$,
+  and the theorem will be proven, because normality is preserved by Weyl gauge
+  transformations (Theorem \ref{transform_}), as is regularity, because we will have
   $\graded_0(\tau')=\graded_0(\tau)$, by Lemma \ref{deformations}.
 
   So, for an induction, suppose $\tau_l$ is model data such that
@@ -4524,13 +4530,13 @@ vanishes (Corollary \ref{harmonic}). The proof of the this result rested on Theo
 
 
 \subsection{Prolongation as functor}\label{functor}
-Morphisms of filtered Lie algebroids and groupoids have been described in \ref{morphisms}
-(where morphisms of abstract Levi structures were also defined). As it suffices for
-current purposes, we only define morphisms of (non-abstract) Levi structures that cover
-the identity on $M$. So, a {\df morphism} of infinitesimal Levi structures $(B, R, T)$ and
-$(\tilde B, \tilde R, \tilde T)$ consists of a morphism $q \colon B \rightarrow \tilde B$
-of filtered Lie algebroids covering the identity such that the induced morphims of graded
-vector bundles
+Morphisms of filtered Lie algebroids and Lie groupoids have been described in
+\ref{morphisms} (where morphisms of abstract Levi structures were also defined). As it
+suffices for current purposes, we only define morphisms of (non-abstract) Levi structures
+that cover the identity on $M$. So, a {\df morphism} of infinitesimal Levi structures
+$(B, R, T)$ and $(\tilde B, \tilde R, \tilde T)$ consists of a morphism
+$q \colon B \rightarrow \tilde B$ of filtered Lie algebroids covering the identity such
+that the induced morphims of graded vector bundles
 \begin{gather*}
   q_* \colon \graded(TM)\oplus B^0 \oplus \graded(T^*\!M)
      \rightarrow \graded(TM)\oplus \tilde B^0 \oplus \graded(T^*\!M)\\
@@ -4678,7 +4684,7 @@ Part \eqref{lqq_} is proven in \ref{parabolics_from_filtrations}.
 \subsection{Grading elements}\label{grading_elements}
 Grading elements have been defined in \ref{intro_prolong}.
 \begin{lemma}
-  Every graded semisimple Lie algebra has a grading element.
+  Every graded semisimple Lie algebra has a unique grading element.
 \end{lemma}
 \begin{proof}
   Define $D \colon {\mathfrak g} \rightarrow {\mathfrak g} $ by $DX = jX$ whenever
