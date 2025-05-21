@@ -11,7 +11,7 @@
 \usepackage{hyperref}
 % to increase height of rows in tables:
 \renewcommand{\arraystretch}{1.2}
-\newcommand\disclaimer{{\tiny\sffamily Incomplete notes prepared \today}}
+\newcommand\disclaimer{{\tiny\sffamily --- Incomplete notes prepared \today ---}}
 %
 \usepackage{rotating}
 
@@ -22,7 +22,7 @@
   \renewcommand{\showlabelfont}{\footnotesize\color{cyan}}
   \renewcommand{\showlabelsetlabel}[1]
   {\begin{turn}{20}\showlabelfont #1\end{turn}}
-  \newcommand\refreshpage{\newpage}
+  \newcommand\refreshpage{\newpage} 
 %  \showlabels{cite}
 \fi
 \iftrue % make false for drafts
@@ -100,8 +100,8 @@ systematic derivation of invariant differential operators
 
 These notes are an outgrowth of our attempts to tame some of the theory's more technical
 aspects by approaching it from new points of view.  We prove the basic existence,
-normalization and uniqueness theorems, culminating in a solution to the Equivalence
-Problem for a large subclass of parabolic geometries. This treatment is suitable for
+normalization and uniqueness theorems, culminating in a solution to the equivalence
+problem for a large subclass of parabolic geometries. This treatment is suitable for
 non-experts well versed in Lie groupoids and Lie algebroids, but we also flag points of
 difference and novelty for parabolic geometry experts. Our results on firmly filtered Lie
 groupoids/algebroids and our version of prolongation are new.
@@ -152,8 +152,8 @@ a special case, we can show that the action groupoid of any generalized flag man
 semi-direct product (\ref{all}, Corollary C), a fact that does not seem to have
 been noticed before. Weyl gauges are discussed further in \ref{intro_prolong} below.
 
-Various algebraic prolongation techniques leading to the solution of the Equivalence
-Problem for parabolic geometries, which have a long and complicated history \cite[Appendix
+Various algebraic prolongation techniques leading to the solution of the equivalence
+problem for parabolic geometries, which have a long and complicated history \cite[Appendix
 A]{Cap_Slovak_09}, were discovered by Tanaka \cite{Tanaka_79}, Morimoto \cite{Morimoto_93}
 and Cap and Schichl \cite{Cap_Schichl_00}. The conceptually simple approach sketched above
 is probably the most noteworthy novelty of the present exposition. The idea, in the
@@ -204,7 +204,7 @@ encode basic invariants about the underlying geometry. The second fundamental pr
 how to reconstruct an abstract Cartan geometry from the underlying geometric structure.
 Where this is possible one obtains a one-to-one correspondence between (isomorphism
 classes) of normalized Cartan geometries and the concrete geometries of interest, solving
-the Equivalence Problem for those structures. The technical tool for making this
+the equivalence problem for those structures. The technical tool for making this
 reconstruction is known as {\df prolongation}, because of its roots in the procedure in
 the theory of PDE's of the same name.
 
@@ -217,14 +217,14 @@ example. Morimoto also demonstrates the usefulness of separating the notions of 
   connection} and {\df model data}, a theme of our own work cited shortly, and the present
 exposition, but not emphasized more generally.
 
-The present notes revisit the construction and normalization of Cartan connections in
-parabolic geometry in the light of a new analysis of ``firmly'' filtered Lie algebroids, a
-natural generalization of Morimoto's filtered manifolds.  In this recounting, Lie
-groupoids, whose corresponding infinitesimalization are filtered Lie algebroids, replace
-the principal bundles of the conventional approach, along the lines intimated in
-\ref{firstfirst}. Previous work of ours, reviewed in Section \ref{cartan_section}, shows
-how to view Lie algebroids or Lie groupoids as (possibly intransitive) ``symmetries
-deformed by curvature'', by equipping them with connections {\em without} model data
+Rather than pursuing Morimito's original strategy, however, we synthesize an approach
+based on a new analysis of ``firmly'' filtered Lie algebroids, a natural generalization of
+Morimoto's filtered manifolds. In this recounting, Lie groupoids, whose corresponding
+infinitesimalization are filtered Lie algebroids, replace the principal bundles of the
+conventional approach, along the lines intimated in \ref{firstfirst}. Previous work of
+ours, reviewed in Section \ref{cartan_section}, shows how to view Lie algebroids or Lie
+groupoids as (possibly intransitive) ``symmetries deformed by curvature'', by equipping
+them with connections {\em without} model data
 \cite{Blaom_06,Blaom_12,Blaom_13,Blaom_16,Blaom_16b} (but nevertheless called {\df Cartan
   connections}). In the groupoid case, the connection is a multiplicatively closed
 horizontal $n$-plane field, $D$, and in the infinitesimal case, it is a Koszul connection,
@@ -232,7 +232,7 @@ $\nabla $, suitably compatible with the Lie algebroid structure. The type of sym
 it exists, is not specified {\em a priori}, and the natural definition of curvature (the
 usual one for $\nabla $) does not depend on a notion of model data. Here we introduce, for
 the first time in the ``oid'' context, a notion of compatible model data, and of model
-curvature, in which the model is specified ahead of time, as in the standard
+curvature, in which the model {\em is} specified ahead of time, as in the standard
 approach. With these basic ingredients we can imitate the standard theory, with some
 further novelties discussed below,
 
@@ -1281,7 +1281,7 @@ Here
 $H^1({\mathfrak g}_-, {\mathfrak g})^1=\oplus_{l \ge 1}H^1({\mathfrak g}_-, {\mathfrak
   g})_l$.
 
-\subsection{The Equivalence Problem}\label{equivalence}
+\subsection{The equivalence problem}\label{equivalence}
 The parabolic geometries over $M$ form a category if we define a morphism of parabolic
 geometries $({\mathcal G}, \tau)$ and $(\tilde {\mathcal G} , \tilde \tau)$ over $M$ to be
 a Lie groupoid morphism $Q \colon {\mathcal G} \rightarrow \tilde {\mathcal G} $ covering
@@ -1302,7 +1302,7 @@ same is true for Levi structures.
 
 Combining Theorems \ref{existence}, \ref{normalization} and \ref{un}, and appealing to the
 fact that prolongation is a functor (Theorem \ref{functor}), we establish the following
-solution to the Equivalence Problem for certain Levi structures:
+solution to the equivalence problem for certain Levi structures:
 
 \begin{theorem}[Theorem \ref{equivalence_}]
   The map that sends a regular normal parabolic geometry over $M$
@@ -4572,7 +4572,7 @@ With these definitions, one readily establishes the following facts:
   corresponding prolongations.
 \end{corollary}
 
-\subsection{The Equivalence Problem}\label{equivalence_}
+\subsection{The equivalence problem}\label{equivalence_}
 
 Recall that we can associate a graded semisimple Lie algebra model ${\mathfrak g} $ with
 any parabolic geometry or Levi structure, and that vanishing of
