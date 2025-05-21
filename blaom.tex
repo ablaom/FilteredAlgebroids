@@ -2,9 +2,9 @@
 % \documentclass[leqno]{amsart}
 % AMS packages:
 \usepackage{amscd}
-\usepackage{tikz}
+%\usepackage{tikz}
 %\usepackage{tikz-cd}
-\usepackage{booktabs}
+%\usepackage{booktabs}
 \usepackage[T1]{fontenc}
 % Author's extra math macros and changes to existing macros:
 \usepackage{blaom}
@@ -440,8 +440,7 @@ of the adjoint action to Lie groupoids, may be helpful.
 
 With the assistance of \cite{Burstall_10}, we streamline most of what we need about
 semisimple Lie algebras and their parabolic subalgebras. What is ultimately needed in
-applications is non-trivial and deep, but also comprehensively summarized in
-\cite{Cap_Slovak_09}.
+applications is non-trivial, but also comprehensively summarized in \cite{Cap_Slovak_09}.
 
 \subsection*{Blanket assumptions}
 All manifolds are smooth, which means $C^\infty$ or real-analytic, and have connected
@@ -3159,15 +3158,11 @@ homogeneous of degree one.
 
 \subsection{The kernel of $J^1 {\mathcal G} \rightarrow {\mathcal G} $}\label{kernel}
 
-% Indeed, as the proof will make clear, the sections of $T^*\!M \otimes A$ form a group (a
-% subgroup of all bisections of $\model$) and this group acts transitively and freely on the
-% space of model data $\tau $ with the stated compatibility requirements, and which satisfy $\graded(\tau) = T$ for some fixed $T$.
-
-Let $A$ be any Lie algebroid. The sections $\psi$ of $T^*\!M \otimes A$ for which
-$\psi_{TM}$ are invertible are sections of an open neighborhood of the zero section of
-$T^*\!M \otimes A$ that we denote $\model$. The proposition below shows that this set is a
-model for the kernel of the projection $J^1 {\mathcal G} \rightarrow {\mathcal G} $ for
-{\em any} Lie groupoid ${\mathcal G} $ integrating $A$. In particular, it is a totally
+Let $A$ be any integrable Lie algebroid. The sections $\psi$ of $T^*\!M \otimes A$ for
+which $\psi_{TM}$ are invertible are sections of an open neighborhood of the zero section
+of $T^*\!M \otimes A$ that we denote $\model$. The proposition below shows that this set
+is a model for the kernel of the projection $J^1 {\mathcal G} \rightarrow {\mathcal G} $
+for {\em any} Lie groupoid ${\mathcal G} $ integrating $A$. In particular, it is a totally
 intransitive Lie groupoid (a bundle of Lie groups). We now describe the corresponding
 groupoid structure directly.
 
@@ -4464,7 +4459,7 @@ vanishes (Corollary \ref{harmonic}). The proof of the this result rested on Theo
 \begin{proof}
   Write $\tau_1 := \tau$. We will construct a sequence of infinitesimal Weyl gauge
   transformations $q_1, q_2, q_3, \ldots$, such that for any $l > 1$,
-  $\tau' \equivalent{l} \tau_l$ (see Notation \ref{normalization_}}) where
+  $\tau' \equivalent{l} \tau_l$ (see Notation \ref{normalization_}) where
   $\tau_l := (q_{l-1})_*\tau_{l-1}$. Then, for sufficiently large $k$, we will have
   $\tau' = \tau_k$, because any $\psi \in \Gamma(T^*\!M \otimes A)$ of sufficiently high a
   degree of homogeneity vanishes, making $\Adjoint_\psi $ the identity. In that case, we
