@@ -2526,8 +2526,9 @@ Motivated by the above, an {\df abstract infinitesimal Levi structure} will be a
 $(B, \oplus_{j>0} {\mathfrak a}_j, R, T)$, where:
 \begin{conditions}
   \item $B$ is a transitive, filtered Lie algebroid over $M$ with $B \le 0$ and with $B^0$
-  as its anchor kernel.
-  \item $\oplus_{j>0}{\mathfrak a}_j$ is a graded vector bundle over $M$.
+    as its anchor kernel.
+  \item $\oplus_{j>0}{\mathfrak a}_j$ is a graded vector bundle over $M$, with
+    ${\mathfrak a}_j=0$ for all sufficiently large $j$.
   \item $R$ is a a grading-preserving representation of $B$ on C0 that extends
     the canonical action of $B$ on $B^0$
   \item\label{chh0} $T$ is an $R$-invariant Lie algebra bundle structure on C0
@@ -2559,7 +2560,8 @@ $({\mathcal H}, \oplus_{j>0}{\mathfrak a}_j, R, T)$ where:
 \begin{conditions}
   \item ${\mathcal H} $ is a transitive, filtered Lie groupoid over $M$ with Lie algebroid
     $B$, whose anchor kernel is $B^0$, and with $B \le 0$.
-  \item  $\oplus_{j>0}{\mathfrak a}_j$ is a vector bundle over $M$.
+  \item $\oplus_{j>0}{\mathfrak a}_j$ is a graded vector bundle over $M$, with
+    ${\mathfrak a}_j=0$ for all sufficiently large $j$.
   \item $R$ is a grading-preserving representation of ${\mathcal H}$ on
     C0 that extends the canonical action of ${\mathcal H}$ on $B^0$.
    \item\label{chh00} $T$ an $R$-invariant Lie algebra bundle structure on
@@ -2597,16 +2599,20 @@ of a filtered Lie groupoid (resp., Lie algebroid). We obtain the category of {\e
 filtered Lie algebroids or Lie groupoids by simply restricting the class of morphisms to
 those whose source and target are firmly filtered objects.
 
-A {\df morphism} of infinitesimal filtered Cartan geometries
-$$(A, \tau, \nabla) \rightarrow (\tilde A, \tilde \tau, \tilde \nabla)$$ is a morphism of
-underlying filtered Lie algebroids that pushes $\tau $ and $\nabla $ to $\tilde \tau$ and
-$\tilde \nabla $.  A {\df morphism} of global filtered Cartan geometries
-$({\mathcal G}, \tau, D)$ and $(\tilde {\mathcal G}, \tilde \tau, \tilde D)$ is a morphism
-of underlying filtered Lie groupoids that pushes $\tau $ and $D $ to $\tilde \tau$ and
-$\tilde D $.
+For simplicity, and as it will suffice for current purposes, we only define morphisms for
+filter Cartan geometries that are isomorphisms. A {\df morphism} of infinitesimal filtered
+Cartan geometries
+$$(A, \tau, \nabla) \rightarrow (\tilde A, \tilde \tau, \tilde \nabla)$$ is an isomorphism of
+underlying filtered Lie algebroids such that $\tau$ and $\nabla $ push forward to
+$\tilde \tau $ and $\tilde \nabla $; since $q$ is an isomorphism, pushing forward makes
+sense.  A {\df morphism} of global filtered Cartan geometries $({\mathcal G}, \tau, D)$
+and $(\tilde {\mathcal G}, \tilde \tau, \tilde D)$ is an isomorphism of underlying
+filtered Lie groupoids that pushes $\tau $ and $D $ to $\tilde \tau$
+and $\tilde D $.
 
 A morphism of abstract infinitesimal Levi structures
-$$(B, \oplus_{j>0} {\mathfrak a}_j, R, T) \rightarrow (\tilde B, \oplus_{j>0} \tilde{\mathfrak a}_j, \tilde R, \tilde T)$$
+$$(B, \oplus_{j>0} {\mathfrak a}_j, R, T) \rightarrow
+(\tilde B, \oplus_{j>0} \tilde{\mathfrak a}_j, \tilde R, \tilde T)$$
 consists of a pair $(q, \omega)$, where $q \colon B \rightarrow \tilde B$ is morphism of
 filtered Lie algebroids, covering some smooth map $f \colon M \rightarrow \tilde M$, and
 $\omega \colon \oplus_{j>0}{\mathfrak a}_j \rightarrow \oplus_{j>0}\tilde{\mathfrak a}_j$
