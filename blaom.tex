@@ -90,7 +90,8 @@
 
 \section{Introduction}
 Parabolic geometry is an abstract framework that unifies a rich collection of finite-type
-geometric structures, such as conformal, projective, contact projective, CR, almost
+geometric structures, such as conformal, projective, contact projective,
+CR,\footnote{non-degenerate and partially integrable \cite[p.414]{Cap_Slovak_09}.} almost
 Grassmannian, almost quaternionic, conformal Lorenzian, almost Lagrangean, Lagrangean
 contact, Lie contact structures, finite-type $n$-plane fields, and many others
 \cite[Chapter 4]{Cap_Slovak_09}. In the first place, it provides for a unified treatment
@@ -111,12 +112,12 @@ According to Cartan's generalization of Klein's Elrangen program \cite{Sharpe_97
 geometric structures of finite type are viewed as ``symmetries deformed by curvature''. In
 the contemporary formulation, the object deformed is the principal bundle associated with
 some homogeneous space, $G/H$, as we describe further in \ref{contemporary} below.  The
-{\df parabolic} geometries arise when one chooses $G$ to be semisimple, and $H \subset G$
-to be a parabolic subgroup, objects in rich supply, in which case $G/H $ is a {\df
-  generalized flag manifold}. The alternative approach promoted here is to consider
+parabolic geometries arise when one chooses $G$ to be semisimple, and $H \subset G$ to be
+a parabolic subgroup, objects in rich supply, in which case $G/H $ is known as a
+generalized flag manifold. The alternative approach promoted here is to consider
 deformations of action groupoids, which in the transitive case have the form $G \times M$,
-$M \cong G/H$. In this approach, as we now outline, the key concept of {\df prolongation}
-appears rather naturally.
+$M \cong G/H$. In this approach, as we now outline, the key concept of {\em prolongation}
+appears most naturally.
 
 For the sake of concreteness, consider the conformal sphere $S^n$, a generalized flag
 manifold with action groupoid $\SO(n + 1, n) \times S^n$. Now, differentiating conformal
@@ -127,11 +128,11 @@ this morphism is a Lie group bundle with commutative, simply-connected fibres. B
 arguments recalled later, it has a canonical identification with $T^*\!S^n$. A fundamental
 observation, not immediately obvious, but following from the general results presented
 here, is that the morphism above splits (non-canonically), delivering an identification of
-$\SO(n + 1, n) \times S^n$ with the semi-direct product $\CO[TS^n] \times T^*\!S^n$. This
-is significant, for in the ``curved'' case of an arbitrary conformal manifold $M$, where
-the action groupoid is gone, {\em a proxy for the action groupoid persists}, namely the
-semi-direct product $\CO[TM] \times T^*\!M$. This is what we call the {\df prolongation}
-of the conformal structure.
+$\SO(n + 1, n) \times S^n$ with the Lie groupoid semi-direct product
+$\CO[TS^n] \times T^*\!S^n$. This is significant, for in the ``curved'' case of an
+arbitrary conformal manifold $M$, where the action groupoid is gone, {\em a proxy for the
+  action groupoid persists}, namely the semi-direct product $\CO[TM] \times T^*\!M$. This
+is what we call the {\df prolongation} of the conformal structure.
 
 In the flat case, we can give the kernel $T^*\!S^n$ the interpretation of all $2$-jets of
 conformal automorphisms vanishing to first order. Relevant arguments can be found in
@@ -140,14 +141,14 @@ introducing derivatives as new variables.
 
 Prolongation allows us to recover, in the typical case, an abstract parabolic geometry
 from it's ``underlying geometric structure'', such as the conformal structure above, which
-manifests in the standard theory as an {\df infinitesimal flag structure} \cite[Definition
+manifests in the standard theory as an ``infinitesimal flag structure'' \cite[Definition
 3.1.6, p.~248]{Cap_Slovak_09}. For reasons explained at the end of \ref{levi_}, we prefer
-to call the Lie groupoid version of these objects {\df Levi structures}.
+to call the Lie groupoid version of these objects Levi structures.
 
 Our version of prolongation is anticipated by the observation that natural candidates for
 parabolic geometries are certain Lie groupoids that {\em always} admit a semi-direct
 product structure. Indeed, splittings like the one above exist for a large class of Lie
-groupoids, even intransitive ones, provided they admit what we call a {\df Weyl gauge}. As
+groupoids, even intransitive ones, provided they admit what we call a Weyl gauge. As
 a special case, we can show that the action groupoid of any generalized flag manifold is a
 semi-direct product (\ref{all}, Corollary C), a fact that does not seem to have
 been noticed before. Weyl gauges are discussed further in \ref{intro_prolong} below.
@@ -174,8 +175,8 @@ required to be suitably compatible with the principal bundle structure; and (ii)
 compatible identification of the vector space $V$ with the infinitesimalization
 ${\mathfrak g}$ of $G$ (the {\df model data}). Combining (i) and (ii), we can view
 $\omega $ as ${\mathfrak g} $-valued one-form, which is the object commonly known as a
-{\df Cartan connection}. See, for example, \cite{Cap_Slovak_09,Blaom_16b} for definitions
-(which will not be needed here).
+{\df Cartan connection}. See, for example, \cite{Cap_Slovak_09,Blaom_16b} for the detailed
+definitions (which will not be needed here).
 
 In the case of a principal $H$-bundle $G \rightarrow G/H$, the Maurer-Cartan form provides
 a Cartan connection, and in the general case there is a notion of curvature,
@@ -194,8 +195,8 @@ latter constitutes the ``underlying geometric structure'' of the Cartan geometry
 parabolic case, the Lie algebra ${\mathfrak h} $ of $H$ defines a filtration of
 ${\mathfrak g} $ which, among other things, implies that $TM$ is non-trivially filtered in
 the typical case. A simple example is CR-geometry, where this filtration is defined by the
-contact structure ${\mathcal H} $:
-$0=T^0M \subset T^{-1}M:={\mathcal H} \subset T^{-2}M=TM$.
+contact structure ${\mathcal H} $, namely
+$0=:T^0M \subset T^{-1}M:={\mathcal H} \subset T^{-2}M:=TM$.
 
 Different choices of $\omega $ may lead to the same underlying geometric structure, which
 leads to the first fundamental problem of the theory, how to choose $\omega $ so as to
@@ -205,17 +206,17 @@ how to reconstruct an abstract Cartan geometry from the underlying geometric str
 Where this is possible one obtains a one-to-one correspondence between (isomorphism
 classes) of normalized Cartan geometries and the concrete geometries of interest, solving
 the equivalence problem for those structures. The technical tool for making this
-reconstruction is known as {\df prolongation}, because of its roots in the procedure in
-the theory of PDE's of the same name.
+reconstruction is known as prolongation, because of its roots in the procedure in the
+theory of PDE's of the same name.
 
 \subsection{The new approach}
 In \cite{Morimoto_93} Tohru Morimoto introduced a novel prolongation technique to prove
 existence and normalization results for Cartan connections in parabolic geometry. In it he
-formulates the notion of {\df filtered manifolds}, now a part of the contemporary
-formalism \cite{Cap_Slovak_09}. The filtration of $TM$ for CR-geometry above is a simple
-example. Morimoto also demonstrates the usefulness of separating the notions of {\df
-  connection} and {\df model data}, a theme of our own work cited shortly, and the present
-exposition, but not emphasized more generally.
+formulates the notion of filtered manifolds, now a part of the contemporary formalism
+\cite{Cap_Slovak_09}. The filtration of $TM$ for CR-geometry above is a simple
+example. Morimoto also demonstrates the usefulness of separating the notions of connection
+and model data, a theme of our own work cited shortly, and the present exposition, but not
+emphasized more generally.
 
 Rather than pursuing Morimito's original strategy, however, we synthesize an approach
 based on a new analysis of ``firmly'' filtered Lie algebroids, a natural generalization of
@@ -225,8 +226,8 @@ conventional approach, along the lines intimated in \ref{firstfirst}. Previous w
 ours, reviewed in Section \ref{cartan_section}, shows how to view Lie algebroids or Lie
 groupoids as (possibly intransitive) ``symmetries deformed by curvature'', by equipping
 them with connections {\em without} model data
-\cite{Blaom_06,Blaom_12,Blaom_13,Blaom_16,Blaom_16b} (but nevertheless called {\df Cartan
-  connections}). In the groupoid case, the connection is a multiplicatively closed
+\cite{Blaom_06,Blaom_12,Blaom_13,Blaom_16,Blaom_16b} (but nevertheless called Cartan
+  connections). In the groupoid case, the connection is a multiplicatively closed
 horizontal $n$-plane field, $D$, and in the infinitesimal case, it is a Koszul connection,
 $\nabla $, suitably compatible with the Lie algebroid structure. The type of symmetry, if
 it exists, is not specified {\em a priori}, and the natural definition of curvature (the
@@ -237,9 +238,9 @@ approach. With these basic ingredients we can imitate the standard theory, with 
 further novelties discussed below,
 
 \subsection{Weyl gauges and semi-direct products}\label{intro_prolong}
-The general considerations leading to the Lie groupoid splittings alluded to above can be
-previewed here by considering the special Lie {\em algebra} case of our Theorem
-\ref{weyl}:
+The general considerations leading to the Lie groupoid splittings alluded to in
+\ref{firstfirst} can be previewed here by considering the special Lie {\em algebra} case
+of our Theorem \ref{weyl}:
 \begin{theorem}
   Let
   $\cdots \supset {\mathfrak a}^{-1} \supset {\mathfrak a}^0 \supset {\mathfrak a}^1
@@ -277,16 +278,16 @@ corollary:
 \end{aside}
 
 The above theorem does {\em not} apply to the canonical filtrations associated with the
-parabolic subalgebras of a semisimple Lie algebra, as these cannot be firmly filtered. The
-point is, rather, that Weyl gauges have generalizations to filtered Lie algebroids and Lie
-groupoids (even intransitive ones), including the action algebroids/groupoids of
-generalized flag manifolds. For us, a parabolic geometry is a firmly filtered transitive
-Lie groupoid, together with suitably compatible model data (Definition
-\ref{parabolic_defined}). The semisimplicity of the model data is enough to guarantee the
-existence of Weyl gauges, by a generalization of the italicized statement above. In the
-above super-simplification of the general scenario, ${\mathfrak a}/{\mathfrak a}^1$,
-together with its representation $\graded({\mathfrak a}^1)$, play the role of the
-corresponding Levi structure.
+parabolic subalgebras of a semisimple Lie algebra (see \ref{canonical_filtrations_}), as
+these cannot be firmly filtered. The point is, rather, that Weyl gauges have
+generalizations to filtered Lie algebroids and Lie groupoids (even intransitive ones),
+including the action algebroids/groupoids of generalized flag manifolds. For us, a
+parabolic geometry is a firmly filtered, transitive Lie groupoid, together with suitably
+compatible model data (Definition \ref{parabolic_defined}). The semisimplicity of the
+model data is enough to guarantee the existence of Weyl gauges, by a generalization of the
+italicized statement above. In the above super-simplification of the general scenario,
+${\mathfrak a}/{\mathfrak a}^1$, together with its representation
+$\graded({\mathfrak a}^1)$, play the role of the corresponding Levi structure.
 
 % An immediate application of our results in the general setting (specifically, our Theorems
 % \ref{weyl2} and \ref{all}) is the following:
@@ -326,8 +327,8 @@ Lie I and Lie II \cite{Crainic_Fernandes_11}, provided one is happy to ignore ce
 topological distinctions between geometries blurred by restricting to the case of
 source-simply-connected Lie groupoids.
 
-In the principal bundle approach, it is conventional to view something called the the {\df
-  adjoint tractor bundle} ${\mathcal A}$, as the corresponding infinitesimal object. For
+In the principal bundle approach, it is conventional to view something called the the 
+  adjoint tractor bundle ${\mathcal A}$, as the corresponding infinitesimal object. For
 example, the (model) curvature of a parabolic geometry is there understood as an
 ${\mathcal A}$-valued two-form. This seems natural because tractor bundles are associated
 bundles. In the Lie groupoid point-of-view the analogue of associated bundles are Lie
@@ -384,7 +385,7 @@ remaining sections.
 
 Section \ref{semi-direct} generalizes the notion of Weyl gauges and the the semi-direct
 product structure theorem stated in \ref{intro_prolong} above. Ambiguities in the choice of
-gauge leads to the notion of {\df Weyl gauge transformations}, relevant to the uniqueness
+gauge leads to the notion of Weyl gauge transformations, relevant to the uniqueness
 theorem for parabolic geometry, but these transformations are introduced in Section
 \ref{parabolic_summary} under the guise of Lie groupoid conjugations, which are more
 concrete. So Section \ref{semi-direct} concludes with a proof that these amount to same
@@ -402,10 +403,10 @@ Section \ref{filtered_cartan} applies the semi-direct product theorems of Sectio
 certain generalization of parabolic geometries: All such geometries are obtained by
 prolongation (semi-direct products) using a Levi structure and the following additional
 data: a splitting of the underlying filtered manifold, a splitting of the anchor of the
-Levi structure's Lie algebroid, and a {\df Rho tensor}, which will be familiar from the
+Levi structure's Lie algebroid, and a Rho tensor, which will be familiar from the
 standard theory.
 
-Section \ref{deform} introduces {\df $\psi$-deformations}, which are a natural collection
+Section \ref{deform} introduces $\psi$-deformations, which are a natural collection
 of transformations of a Lie groupoid or Lie algebroid which we can use to relate different
 choices of model data, via push-forward. Unlike Weyl gauge transformations, these are
 necessarily {\em not} morphisms. They are defined by objects $\psi$ which we view as
@@ -458,7 +459,7 @@ vertex bundle, or adjoint bundle, is here called the {\df anchor kernel}.
 \refreshpage
 \section{Filtered Lie algebroids}\label{introduction}
 In this section we introduce filtered Lie algebroids and the important special case of
-{\df firmly} filtered Lie algebroids, and give examples which include observations
+{\em firmly} filtered Lie algebroids, and give examples which include observations
 foreshadowing aspects of parabolic geometry to be presented in Section
 \ref{parabolic_summary}.
 
@@ -485,9 +486,9 @@ $\Gamma(A^j) \subset \Gamma(A)$ is an ideal for all $j \ge 0$.
   \begin{conditions}
   \item The associated graded vector bundle $\graded(A)$ is a bundle of graded Lie
     algebras (a smooth field of graded Lie brackets). \label{b1}
-  \item If $A$ is firmly filtered, then $\graded(A)$ is the Lie algebra fibre-wise direct
-    sum of its negative and non-negative parts, i.e., $\oplus_{i<0}\graded(A)_i$ and
-    $\oplus_{i\ge 0}\graded(A)_i$ are fibre-wise ideals of $\graded(A)$. \label{rt2}
+  \item If $A$ is firmly filtered, then $\graded(A)$ is, fibre-wise, the Lie algebra
+    direct sum of its negative and non-negative parts, i.e., $\oplus_{i<0}\graded(A)_i$
+    and $\oplus_{i\ge 0}\graded(A)_i$ are fibre-wise ideals of $\graded(A)$. \label{rt2}
     \end{conditions}
 \end{proposition}
 %
@@ -525,7 +526,7 @@ $\Gamma(A^j) \subset \Gamma(A)$ is an ideal for all $j \ge 0$.
 
 
 \begin{notation}[Bounds on degree]
-  Suppose $A$ is a {\df graded} vector space or vector bundle. Then, we write $k \le A$ if
+  Suppose $A$ is a {\em graded} vector space or vector bundle. Then, we write $k \le A$ if
   $A_i=0$ for all $i < k$ and $A \le k$ if $A_i=0$ for all $i > k$. For example, if
   $A = A_{-2}\oplus A_{-1} \oplus A_0$, then we write $-2 \le A \le 0$. We write
   $|A| = k $ if $-k \le A \le k$ and $A_{-k} \ne 0 \ne A_k$.
@@ -662,22 +663,24 @@ natural extension of the notion of firmness of the filtration of $A$.
 \subsection{Parabolic subalgebras and canonical filtrations}\label{canonical_filtrations_}
 Let ${\mathfrak g} $ be a semisimple Lie algebra over ${\mathbb C} $ or ${\mathbb R} $ of
 finite dimension. Then ${\mathfrak p} \subset {\mathfrak g} $ is {\df parabolic} if its
-Killing polar ${\mathfrak p}^\perp$ is a nilpotent subalgebra.\footnote{Readers may
-  understand parabolic subalgebras as those containing a Borel (maximal solvable)
-  subalgebra. That, over ${\mathbb C} $ or ${\mathbb R} $, this is equivalent to the
-  stated definition is proven in \cite{Burstall_10}.} These subalgebras are intimately
-connected with filtrations of $\mathfrak g$: Define ${\mathfrak g}^0= {\mathfrak p}$ and
-${\mathfrak g}^1={\mathfrak p}^\perp$, and inductively define
-${\mathfrak g}^j = [{\mathfrak g}^1, {\mathfrak g}^{j-1}]$, for $j \ge 2$, and
+Killing polar ${\mathfrak p}^\perp$ is a nilpotent ideal of ${\mathfrak p}. $\footnote{It
+  suffices that ${\mathfrak p} ^\perp$ is a nilpotent subalgebra of ${\mathfrak g} $
+  \cite[Theorem 3.4]{Calderbank_Noppakaew_16}. Parabolic subalgebras are commonly
+  defined in terms of Borel subalgebras. Equivalency with the stated definition, over
+  ${\mathbb C} $ or ${\mathbb R} $, is established in \cite{Burstall_10}.} These
+subalgebras are intimately connected with filtrations of $\mathfrak g$: Define
+${\mathfrak g}^0= {\mathfrak p}$ and ${\mathfrak g}^1={\mathfrak p}^\perp$, and
+inductively define ${\mathfrak g}^j = [{\mathfrak g}^1, {\mathfrak g}^{j-1}]$, for
+$j \ge 2$, and
 ${\mathfrak g}^j = \{X \in {\mathfrak g} \suchthat [X, {\mathfrak g}^1] \subset {\mathfrak
   g}^{j+1}\}$, for $j\le -1$. Then:
 
 \begin{proposition}\mbox{}
   \begin{conditions}
   \item The above definitions make ${\mathfrak g} $ into a filtered Lie algebra with
-    $|{\mathfrak g}| \le k$ for some $k\ge 0$, and this is called the {\df canonical
-      filtration} associated with ${\mathfrak p}$.
-  \item \label{lqq} In any filtration of ${\mathfrak g} $ defined by a grading
+    $|{\mathfrak g}| \le k$ for some $k\ge 0$ (see Notation \ref{filtered}) and this is
+    called the {\df canonical filtration} associated with ${\mathfrak p}$.
+  \item \label{lqq} In any filtration of ${\mathfrak g} $ defined by a {\em grading}
     ${\mathfrak g}=\oplus_{j \in {\mathbb Z}} {\mathfrak g}_j$, the subalgebra
     ${\mathfrak g}^0 = \oplus_{j\ge0}{\mathfrak g}_j$ is parabolic. Moreover, this
     filtration is precisely the associated canonical filtration provided
@@ -685,9 +688,8 @@ ${\mathfrak g}^j = \{X \in {\mathfrak g} \suchthat [X, {\mathfrak g}^1] \subset 
  \end{conditions}
 \end{proposition}
 \noindent%
-An elementary proof of this known result is given in Appendix
-\ref{lie_algebra_facts}. Part \eqref{lqq} is useful for identifying parabolic subalgebras
-in examples.
+An elementary proof of this known
+result is given in Appendix \ref{lie_algebra_facts}.
 
 \begin{remark}
   In fact, for a parabolic ${\mathfrak p} $, ${\mathfrak p}^\perp$ is the nilpotent radical
@@ -706,7 +708,9 @@ in examples.
 A crucial property of a canonical filtration of semisimple ${\mathfrak g}$ is that passing
 to the associated grading incurs no essential loss of information, as
 $\graded({\mathfrak g})$ turns out to be isomorphic to ${\mathfrak g} $ (Lemma
-\ref{gradings_from_filtrations}).
+\ref{gradings_from_filtrations}). Combining this fact with the proposition, we see that 
+${\mathfrak p} \subset {\mathfrak g}$ is parabolic {\em if and only if} there exists a grading
+of ${\mathfrak g} $ such that ${\mathfrak p} = \oplus_{j\ge 0} {\mathfrak g}_j$.
 
 \subsection{Generalized flag manifolds}\label{parabolic_}
 Suppose that $G$ is a semisimple Lie group and $P \subset G$ a parabolic subgroup. By
@@ -935,7 +939,7 @@ whose Lie algebroid $B$ has anchor kernel $B^0$ and satisfies $B \le 0$ (see Not
 \noindent Notice that \eqref{levi6} and Proposition \eqrefs{canonical_filtrations_}{lqq}
 ensure that $B^0 \oplus \graded(T^*\!M) $ is fibre-wise $T$-parabolic. (By Remark
 \ref{canonical_filtrations_}, $B^0$ is a fibre-wise reductive Levi subalgebra, and in
-particular, the vertex group of ${\mathcal H} $ is necessarily reductive.)  By the
+particular, the vertex groups of ${\mathcal H} $ are necessarily reductive.)  By the
 semisimplicity of $T$, there will be a unique section $E \in \Gamma(B^0)$ constituting a
 fibre-wise grading element, and the uniqueness and \eqref{tai} ensure that $E$ is
 ${\mathcal H}$-invariant.
@@ -1052,6 +1056,7 @@ described in \ref{eg2}, specialized to the parabolic case. To avoid confusion, w
 eschew the term altogether.
 
 \subsection{Prolonging a Levi structure to a parabolic geometry}\label{existence}
+Our proof of the following basic existence theorem is new:
 \begin{theorem}[Theorem \ref{existence_}]
   Every Levi structure $({\mathcal H}, T, R)$ is, up to isomorphism, the reduction of some
   parabolic geometry $({\mathcal G}, \tau)$. If the Levi structure is regular, then the
@@ -4648,7 +4653,7 @@ algebra are inner \cite{Kirillov_08}. Among other things we prove Proposition
   \begin{conditions}
   \item\label{lpp_} Let ${\mathfrak g} $ be a finite-dimensional semisimple Lie algebra
     over ${\mathbb C} $ or ${\mathbb R} $ and ${\mathfrak p} \subset {\mathfrak g} $ a
-    parabolic subalgebra (${\mathfrak p}^\perp$ is a nilpotent subalgebra of
+    parabolic subalgebra (${\mathfrak p}^\perp$ is a nilpotent ideal of
     ${\mathfrak p}$). Define ${\mathfrak g}^0= {\mathfrak p}$ and
     ${\mathfrak g}^1={\mathfrak p}^\perp$, and inductively define
     ${\mathfrak g}^j = [{\mathfrak g}^1, {\mathfrak g}^{j-1}]$, for $j \ge 2$, and
@@ -4665,9 +4670,10 @@ algebra are inner \cite{Kirillov_08}. Among other things we prove Proposition
 \end{proposition}
 %
 \begin{proof}[Proof of \eqref{lpp_}]
-  By definition, we ${\mathfrak g}^1 \perp {\mathfrak g}^0$, which anchors an inductive
-  proof that ${\mathfrak g}^j \perp {\mathfrak g}^k$, whenever $j + k =1$. By a similar
-  induction, the reader will also see that
+  By definition, we have ${\mathfrak g}^1 \perp {\mathfrak g}^0$, which anchors an
+  inductive proof that ${\mathfrak g}^j \perp {\mathfrak g}^k$, whenever $j + k =1$. By a
+  similar induction (see, e.g., \cite[Proposition 2.4]{Calderbank_Noppakaew_16}) the
+  reader will also see that
   $[{\mathfrak g}^j, {\mathfrak g}^k] \subset {\mathfrak g}^{j +k}$. Now
   $\cap_{j \in {\mathbb Z}} {\mathfrak g}^j = 0$, because
   ${\mathfrak g}^1 = {\mathfrak p}^\perp$ is nilpotent. So there is $k > 0$ such that
@@ -4676,7 +4682,8 @@ algebra are inner \cite{Kirillov_08}. Among other things we prove Proposition
   ${\mathfrak g}^{-k} = ({\mathfrak g}^{k+1}) ^\perp\ne {\mathfrak g}$, i.e.,
   $\graded({\mathfrak g})_{-k}\ne 0$, and
   ${\mathfrak g}^{-k}=({\mathfrak g}^{k+1})^\perp = 0^\perp = {\mathfrak g}$, i.e.,
-  $\cup_{j \in {\mathbb Z}} {\mathfrak g}_j= {\mathfrak g} $, and $\graded({\mathfrak g})_{-k-1}=0$.
+  $\cup_{j \in {\mathbb Z}} {\mathfrak g}_j= {\mathfrak g} $, and
+  $\graded({\mathfrak g})_{-k-1}=0$.
 \end{proof}
 
 \noindent%
