@@ -11,8 +11,11 @@
 \usepackage{hyperref}
 % to increase height of rows in tables:
 \renewcommand{\arraystretch}{1.2}
-\newcommand\disclaimer{{\tiny\sffamily ---~Work in progress. Version 1~---}}
-%
+
+% for each new GitHub version, edit the dates in the next line and in the BibTex just
+% below "\begin{document}". Tag a new version as "2026.11" etc,  
+\newcommand\disclaimer{{\tiny\sffamily ---~Work in progress. November 2026 version~---}}
+% 
 \usepackage{rotating}
 
 % DRAFTING OPTIONS
@@ -40,6 +43,25 @@
 % \renewcommand{\contentsname}{\vspace{-\baselineskip}}
 %
 \begin{document}
+
+\noindent%
+These notes are a work in progress. Please cite this version like this:
+\vspace{\baselineskip}
+
+{\ttfamily
+\noindent%
+@unpublished\{\\
+\mbox{~~~}BlaomParabolicNotes,\\
+\mbox{~~~}author=\{Anthony D. Blaom\},\\
+\mbox{~~~}title=\{\{Filtered Lie algebroids and parabolic geometry\}\},\\
+\mbox{~~~}note=\{In preparation\},\\
+\mbox{~~~}year=\{\{2026\}\},\\
+\mbox{~~~}month=\{\{November\}\},\\
+\mbox{~~~}url=\{https://github.com/ablaom/FilteredAlgebroids/blob/2026.11/blaom.pdf\},\\
+\}
+}
+\newpage
+
 \bibliographystyle{plain}
 %
 \vspace{\baselineskip}
@@ -87,7 +109,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Body starts
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% here %%%%%%%%%%%%%%%%%%%%%%%
 \refreshpage
-
 \section{Introduction}
 Parabolic geometry is an abstract framework that unifies a rich collection of finite-type
 geometric structures, such as conformal, projective, contact projective,
