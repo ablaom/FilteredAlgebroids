@@ -11,7 +11,7 @@
 \usepackage{hyperref}
 % to increase height of rows in tables:
 \renewcommand{\arraystretch}{1.2}
-\newcommand\disclaimer{{\tiny\sffamily --- Incomplete notes prepared \today~---}}
+\newcommand\disclaimer{{\tiny\sffamily ---~Work in progress. Version 1~---}}
 %
 \usepackage{rotating}
 
@@ -33,7 +33,7 @@
 % Macros just for this paper:
 \newcommand{\interior}{\lrcorner}
 \newcommand{\equivalent}[1]{{\overset{#1}{\,\sim\,}}}
-\newcommand{\varcheck}[1]{{#1^\wedge}}
+\newcommand{\varcheck}[1]{{#1^\wedge}} 
 \newcommand{\model}{\automorphism({TM},A)}
 \newcommand{\leftpartial}[1]{\xleftarrow{\partial^{#1}}}
 \newcommand{\rightpartial}[1]{\xrightarrow{\partial^{#1}}}
@@ -116,7 +116,7 @@ parabolic geometries arise when one chooses $G$ to be semisimple, and $H \subset
 a parabolic subgroup, objects in rich supply, in which case $G/H $ is known as a
 generalized flag manifold. The alternative approach promoted here is to consider
 deformations of action groupoids, which in the transitive case have the form $G \times M$,
-$M \cong G/H$. In this approach, as we now outline, the key concept of {\em prolongation}
+$M \cong G/H$. In this approach, as we now indicate, the key concept of {\em prolongation}
 appears most naturally.
 
 For the sake of concreteness, consider the conformal sphere $S^n$, a generalized flag
@@ -125,7 +125,7 @@ automorphisms, i.e., elements of $\SO(n + 1, n)$, we obtain a natural Lie groupo
 morphism $$\SO(n + 1, n) \times S^n \rightarrow \CO[TS^n]$$ onto the frame groupoid
 $\CO[TS^n]$, consisting of conformal isomorphisms between tangent spaces. The kernel of
 this morphism is a Lie group bundle with commutative, simply-connected fibres. By
-arguments recalled later, it has a canonical identification with $T^*\!S^n$. A fundamental
+arguments recalled later, it has a natural identification with $T^*\!S^n$. A fundamental
 observation, not immediately obvious, but following from the general results presented
 here, is that the morphism above splits (non-canonically), delivering an identification of
 $\SO(n + 1, n) \times S^n$ with the Lie groupoid semi-direct product
@@ -136,8 +136,10 @@ is what we call the {\df prolongation} of the conformal structure.
 
 In the flat case, we can give the kernel $T^*\!S^n$ the interpretation of all $2$-jets of
 conformal automorphisms vanishing to first order. Relevant arguments can be found in
-\cite{Abadoglu_etal_08}. This connects prolongation to the usual idea of
-introducing derivatives as new variables.
+\cite{Abadoglu_etal_08}. This connects prolongation to the usual idea of introducing
+derivatives as new variables. The reader is warned, however, that prolongations appearing
+in the Cartan geometry literature, and prolongations in the naive sense of PDE's,
+generally diverge in the {\em curved} case, and this is true here also.
 
 Prolongation allows us to recover, in the typical case, an abstract parabolic geometry
 from it's ``underlying geometric structure'', such as the conformal structure above, which
@@ -201,11 +203,11 @@ $0=:T^0M \subset T^{-1}M:={\mathcal H} \subset T^{-2}M:=TM$.
 Different choices of $\omega $ may lead to the same underlying geometric structure, which
 leads to the first fundamental problem of the theory, how to choose $\omega $ so as to
 ``normalize'' the model curvature, for then $\omega$ (and its curvature, for example)
-encode basic invariants about the underlying geometry. The second fundamental problem is
-how to reconstruct an abstract Cartan geometry from the underlying geometric structure.
-Where this is possible one obtains a one-to-one correspondence between (isomorphism
-classes) of normalized Cartan geometries and the concrete geometries of interest, solving
-the equivalence problem for those structures. The technical tool for making this
+encode basic invariants of the underlying geometry. The second fundamental problem is how
+to reconstruct an abstract Cartan geometry from the underlying geometric structure.  Where
+this is possible one obtains a one-to-one correspondence between (isomorphism classes) of
+normalized Cartan geometries and the concrete geometries of interest, solving the
+``equivalence problem'' for those structures. The technical tool for making this
 reconstruction is known as prolongation, because of its roots in the procedure in the
 theory of PDE's of the same name.
 
@@ -266,11 +268,11 @@ $\graded({\mathfrak a}^0)$ and not $\graded({\mathfrak a})$. When the additional
 ``invariance'' condition \eqref{invariance} is satisfied, we call $\epsilon $ a {\df Weyl
   gauge}.
 
-If the condition about ideals is satisfied, necessary for the existence of a Weyl gauge,
-we say that ${\mathfrak a} $ is {\df firmly filtered}. This is a strong condition, but the
-right one for our general setting, as we shall see already for homogeneous spaces $G/H$
-and other examples (Section \ref{introduction}). The theorem above has the following
-corollary:
+If ${\mathfrak a} $ is filtered and the condition about ideals is also satisfied,
+necessary for the existence of a Weyl gauge, we say that ${\mathfrak a} $ is {\df firmly
+  filtered}. This is a strong condition, but the right one for our general setting, as we
+shall see already for homogeneous spaces $G/H$ and other examples in Section
+\ref{introduction}. The theorem above has the following corollary:
 \begin{aside}
   A filtered Lie algebra ${\mathfrak a}$ admits a Weyl gauge if and only if it is firmly
   filtered and $\graded({\mathfrak a}^0)$ admits an ${\mathfrak a}$-invariant grading
@@ -329,7 +331,7 @@ source-simply-connected Lie groupoids.
 
 In the principal bundle approach, it is conventional to view something called the the 
   adjoint tractor bundle ${\mathcal A}$, as the corresponding infinitesimal object. For
-example, the (model) curvature of a parabolic geometry is there understood as an
+example, the model curvature of a parabolic geometry is there understood as an
 ${\mathcal A}$-valued two-form. This seems natural because tractor bundles are associated
 bundles. In the Lie groupoid point-of-view the analogue of associated bundles are Lie
 groupoid representations, but there is no canonical representation of a Lie groupoid on
@@ -464,11 +466,11 @@ foreshadowing aspects of parabolic geometry to be presented in Section
 \ref{parabolic_summary}.
 
 \subsection{Definition}\label{filtered}
-In these notes, a filtration
-$$\cdots A^{-1}\supset A^0 \supset A^1 \supset A^2 \supset\cdots $$ of some vector space
-or bundle $A$ will always be understood to satisfy $\cap_j A^j =0$ and $\cup_j A^j =
-A$. All filtrations are descending.  If $A$ is a vector bundle, then we call the
-filtration a {\df Lie algebroid filtration} if $A$ is a Lie algebroid and:
+Here a filtration $$\cdots A^{-1}\supset A^0 \supset A^1 \supset A^2 \supset\cdots $$ of
+some vector space or vector bundle $A$ will always be understood to satisfy
+$\cap_j A^j =0$ and $\cup_j A^j = A$. All filtrations are descending.  If $A$ is a vector
+bundle, then we call the filtration a {\df Lie algebroid filtration} if $A$ is a Lie
+algebroid and:
 
 \begin{conditions}
 \item[\bf F1.] The induced filtration
@@ -655,12 +657,12 @@ them. Proofs appear after various restatements given in Section \ref{parabolic_p
 \subsection{Filtered Lie groupoids}\label{filtered_groupoids}
 We will call a Lie groupoid ${\mathcal G} $ over $M$ {\df filtered} if its associated Lie
 algebroid $A$ is filtered. Now ${\mathcal G} $ acts on elements of the anchor kernel of
-$A$, and so on elements of $A^0$, although this action need not preserve $A^0$ in
-general. This action will be denoted $\Adjoint$. The Lie groupoid is {\em firmly filtered}
-if $A^j$ is ${\mathcal G}$-invariant under $\Adjoint$, for all $j \ge 0$, a stronger but
-natural extension of the notion of firmness of the filtration of $A$.
+$A$, and so on elements of $A^0$; if $A$ is firmly filtered then this action of
+$\mathcal G$, denoted $\Adjoint$, will {\em infinitesimally} preserve $A^0$ and its
+filtration, but need not do so globally. However, if it does, then $\mathcal G$ is said to
+be {\df firmly filtered}.
 
-\subsection{Parabolic subalgebras and canonical filtrations}\label{canonical_filtrations_}
+\subsection{Parabolic subalgebras and parabolic filtrations}\label{canonical_filtrations_}
 Let ${\mathfrak g} $ be a semisimple Lie algebra over ${\mathbb C} $ or ${\mathbb R} $ of
 finite dimension. Then ${\mathfrak p} \subset {\mathfrak g} $ is {\df parabolic} if its
 Killing polar ${\mathfrak p}^\perp$ is a nilpotent ideal of ${\mathfrak p}. $\footnote{It
@@ -678,18 +680,27 @@ ${\mathfrak g}^j = \{X \in {\mathfrak g} \suchthat [X, {\mathfrak g}^1] \subset 
 \begin{proposition}\mbox{}
   \begin{conditions}
   \item The above definitions make ${\mathfrak g} $ into a filtered Lie algebra with
-    $|{\mathfrak g}| \le k$ for some $k\ge 0$ (see Notation \ref{filtered}) and this is
+    $|{\mathfrak g}| \le k$ for some $k\ge 0$ (see Notation \ref{filtered}); this is
     called the {\df canonical filtration} associated with ${\mathfrak p}$.
-  \item \label{lqq} In any filtration of ${\mathfrak g} $ defined by a {\em grading}
-    ${\mathfrak g}=\oplus_{j \in {\mathbb Z}} {\mathfrak g}_j$, the subalgebra
-    ${\mathfrak g}^0 = \oplus_{j\ge0}{\mathfrak g}_j$ is parabolic. Moreover, this
-    filtration is precisely the associated canonical filtration provided
-    ${\mathfrak g}_1$ generates ${\mathfrak g}^1=\oplus_{j\ge 1}{\mathfrak g}_j$.
+  \item The Lie algebra $\mathfrak g$, and the graded Lie algebra
+    $\graded ({\mathfrak g})$ associated with a canonical filtration, are
+    isomorphic (non-canonically).
+  \item \label{lqq} A subalgebra ${\mathfrak p} \subset {\mathfrak g} $ is parabolic if
+    and only if there exists a grading $\{{\mathfrak g}_j\}_{j \in {\mathbb Z}}$ of
+    ${\mathfrak g} $ such that
+    ${\mathfrak p} = {\mathfrak g}^0 := \oplus_{j\ge 0} {\mathfrak g}_j$. For such a
+    grading, the corresponding filtration, defined by
+    ${\mathfrak g}^j:=\oplus_{k\ge j}{\mathfrak g}_k$, is precisely the canonical
+    filtration associated with ${\mathfrak p} $, whenever ${\mathfrak g}_1$ generates
+    ${\mathfrak g}^1:=\oplus_{j\ge 1}{\mathfrak g}_j$.
  \end{conditions}
 \end{proposition}
 \noindent%
-An elementary proof of this known
-result is given in Appendix \ref{lie_algebra_facts}.
+An elementary proof of this known result is given in Appendix \ref{lie_algebra_facts}. In
+a filtered semisimple Lie algebra $\mathfrak g$, the subalgebra ${\mathfrak g}^0$ does not
+need to be parabolic: take ${\mathfrak g}$ to be $\speciallinear(2, {\mathbb C})$,
+${\mathfrak g}^{-1}={\mathfrak g} $, ${\mathfrak g}^1=0$, and ${\mathfrak g}^0$ to be the
+one-dimensional subalgebra of diagonal matrices.
 
 \begin{remark}
   In fact, for a parabolic ${\mathfrak p} $, ${\mathfrak p}^\perp$ is the nilpotent radical
@@ -700,17 +711,10 @@ result is given in Appendix \ref{lie_algebra_facts}.
 \end{remark}
 
 \begin{definition}
-  Call a filtration of a semisimple Lie algebra ${\mathfrak g} $ {\df canonical} if
+  Call a filtration of a semisimple Lie algebra ${\mathfrak g} $ {\df parabolic} if
   ${\mathfrak g}^0$ is parabolic and the filtration is the associated canonical
   filtration.
 \end{definition}
-
-A crucial property of a canonical filtration of semisimple ${\mathfrak g}$ is that passing
-to the associated grading incurs no essential loss of information, as
-$\graded({\mathfrak g})$ turns out to be isomorphic to ${\mathfrak g} $ (Lemma
-\ref{gradings_from_filtrations}). Combining this fact with the proposition, we see that 
-${\mathfrak p} \subset {\mathfrak g}$ is parabolic {\em if and only if} there exists a grading
-of ${\mathfrak g} $ such that ${\mathfrak p} = \oplus_{j\ge 0} {\mathfrak g}_j$.
 
 \subsection{Generalized flag manifolds}\label{parabolic_}
 Suppose that $G$ is a semisimple Lie group and $P \subset G$ a parabolic subgroup. By
@@ -775,7 +779,7 @@ filtration-compatible model data $\tau $ on $A$, such that:
 \begin{conditions}
     \item[{\bf P1.}] The Lie algebra model for $\tau $ is semisimple.\label{parabolic2}
     \item[{\bf P2.}] $A^0$ is the kernel of the anchor of $A$. \label{parabolic0}
-    \item[{\bf P3.}] With respect to $\tau $, the filtration of $A$ is fibre-wise canonical, in the
+    \item[{\bf P3.}] With respect to $\tau $, the filtration of $A$ is fibre-wise parabolic, in the
       sense of Definition \ref{canonical_filtrations_}. \label{parabolic1}
     \item[{\bf P4.}] There exists a Cartan connection $D$ on ${\mathcal G} $
       compatible with $\tau $.\label{parabolic4}
@@ -821,8 +825,8 @@ $\oplus_{i<0}\graded(A)_i \cong \graded(TM)$, and model data $\tau $ compatible 
 filtration is said to be {\df regular} if the induced bracket on $\graded(TM)$ is minus
 one times the canonical bracket (the one induced by the Jacobi-Lie bracket on vector
 fields).\footnote{The minus sign is connected to the convention adopted here,
-  and in most Lie groupoid literature, that brackets on the Lie algebras of Lie groups are
-  defined by {\em right}-invariant vector fields.} It is not hard to show that the
+  and often in the Lie groupoid literature, that brackets on the Lie algebras of Lie groups are
+  defined by {\em right}-invariant vector fields; most of the parabolic geometry literature, including \cite{Cap_Slovak_09}, adopts the opposite convention.} It is not too hard to show that the
 canonical model data associated with any filtered Klein geometry, and in particular the
 canonical model data associated with a generalized flag manifold, is regular (Proposition
 \ref{homogeneous}).
@@ -862,8 +866,8 @@ of $B$ on $\graded(A)$, which are simply infinitesimalizations of the global one
 $R^\nabla =dR^D$.
 
 If we write $T := \graded_0(\tau)$, then $(\graded(A), T)$ is a graded Lie algebra bundle
-with the same semisimple Lie algebra model as $(A, \tau )$ (by Lemma
-\ref{gradings_from_filtrations}).  By transitivity, we have
+with the same semisimple Lie algebra model as $(A, \tau )$ (by Proposition
+\eqrefs{canonical_filtrations_}{hure}).  By transitivity, we have
 $\oplus_{i<0}\graded(A)_i \cong \graded(TM)$, so we obtain a representation of
 ${\mathcal H} $ on $\graded(TM)$. On the other hand, we can use the Killing form of $T$,
 or any fixed scalar multiple, to identify $\graded(A^1)=\oplus_{i>0}\graded(A)_i$ with
@@ -1074,7 +1078,7 @@ normalization of this data is addressed in \ref{normalization} below.
 
 The key idea in the theorem's proof is to observe that every parabolic geometry
 $({\mathcal G}, \tau)$ has a semi-direct product structure, which follows from the
-guaranteed existence of {\df Weyl gauges}, a notion introduced in Section
+guaranteed existence of Weyl gauges, a notion introduced in Section
 \ref{semi-direct}. Specifically, the representation $R^D$ of ${\mathcal G}/{\mathcal G}^1$
 on $\graded(T^*\!M)$, defined by the $\tau $-compatible Cartan connection $D$, integrates
 to an action of ${\mathcal G}/{\mathcal G}^1$ on $\exp(\graded(T^*\!M))$, the Lie group
@@ -1092,7 +1096,7 @@ ${\mathcal G} = {\mathcal H} \times_R \exp(\graded(T^*\!M)) $, which we call the
   prolongation} of the Levi structure. The more technical task is to reconstruct
 suitable model data $\tau $ such that $\graded_0(\tau) = T$. In fact, we state and prove a
 more general result, Theorem \ref{abstract_levi_}, characterizing arbitrary transitive
-{\df filtered Cartan geometries}. This result includes an explicit description of $\tau $
+filtered Cartan geometries. This result includes an explicit description of $\tau $
 and a compatible Cartan connection $D$, in terms of the aforementioned Rho tensor
 ${\mathsf P}$ and splittings.
 
@@ -1116,7 +1120,7 @@ Lie algebra modeled by $\tau $. The model curvature measures the difference betw
 and a bona fide Lie bracket, prescribed by the model data. (This nice interpretation is
 not obvious in the standard principal bundle approach.) Basic properties of curvature,
 such as a transformation rule and the Bianchi identity, are established in Section
-\ref{modelcurvature}.
+\ref{modelcurvature}; see also Theorem \ref{transform_}.
 
 The model curvature is the Lie algebroid analogue of ``curvature'', as that term is
 generally understood in the Cartan geometry literature.
@@ -1124,11 +1128,11 @@ generally understood in the Cartan geometry literature.
 As we have observed, there is considerable freedom in the choice of model data $\tau $
 appearing in the existence Theorem \ref{existence}, although we will always have
 $\graded_0(\tau) = T$. Since $A^0 \subset A$ is fibre-wise parabolic, we have
-$A^0 \perp A^1$, where $\perp$ is with respect to the Killing form of $\tau $. Therefore,
-fixing some multiple of this form, as we did for $T$ in \ref{reduction_} and \ref{levi_},
-we can use it to identify $(A/A^0)^*$ with $A^1$. But, by transitivity, $A/A^0\cong TM $,
-because $A^0$ is the anchor kernel (Axiom P2), and we
-conclude $T^*\!M \cong A^1$. In this way, we may view $\kappa$ as a section of
+$A^1 = (A^0)^\perp$, where $\perp$ is with respect to the Killing form of $\tau
+$. Therefore, fixing some multiple of this form, as we did for $T$ in \ref{reduction_} and
+\ref{levi_}, we can use it to identify $(A/A^0)^*$ with $A^1$. But, by transitivity,
+$A/A^0\cong TM $, because $A^0$ is the anchor kernel (Axiom P2), and we conclude
+$T^*\!M \cong A^1$. In this way, we may view $\kappa$ as a section of
 $\wedge^2 A^1 \otimes A$.
 
 As the bracket $\tau $ makes the vector bundle $A$ into a representation of the Lie
@@ -1192,7 +1196,7 @@ useful is true:
      \item In a natural representation of ${\mathcal G} $ on $H_k(A^1, A)$ defined by the
     compatible connection $D$, the subgroupoid ${\mathcal G}^1$ acts trivially, i.e.,
     $H_k(A^1, A)$ is a representation of ${\mathcal G}/{\mathcal G}^1$.\label{poker1}
-  \item $H_k(A^1, A)$ admits a canonical grading compatible with it's natural filtration,
+  \item $H_k(A^1, A)$ admits a canonical {\bfseries grading} compatible with it's natural filtration,
     allowing harmonic curvature to be unambiguously split into grading components,
     $\kappa_{\mathrm H} = \sum_{i\ge 1}(\kappa_{\mathrm H})_i$.\label{poker2}
   \item If $\kappa $ is homogeneous of degree $l \ge 1$ and $(\kappa_{\mathrm H})_l = 0$,
@@ -1219,11 +1223,11 @@ single fibre, which will be a representation of the (reductive) vertex group of
 ${\mathcal G}/{\mathcal G}^1$. More generally, each fibre of $H_j(A^1, A)$, $j \ge 0$, is
 of the form $H_j({\mathfrak g}^1, {\mathfrak g})$, where ${\mathfrak g} $ is the
 semisimple Lie algebra model for the Lie algebra bundle structure $\tau $, which gets a
-canonical filtration, because $A$ is canonically filtered; the subalgebra
+canonical filtration, because $A$ is parabolically filtered; the subalgebra
 ${\mathfrak g}^0$ will be parabolic. Fixing a lift $\epsilon $ of the unique grading
 element $E \in \graded({\mathfrak g})$, we can write ${\mathfrak g}$ as a graded Lie
-algebra, ${\mathfrak g}_{-k} \oplus \cdots \oplus {\mathfrak g}_k$, $k\ge 0$ (Lemma
-\ref{gradings_from_filtrations}). This allows us to introduce the {\em co}homology
+algebra, ${\mathfrak g}_{-k} \oplus \cdots \oplus {\mathfrak g}_k$, $k\ge 0$ (Proposition
+\eqrefs{canonical_filtrations_}{hure}). This allows us to introduce the {\em co}homology
 $H^j({\mathfrak g}_-, {\mathfrak g})$, where
 ${\mathfrak g}_- = {\mathfrak g}_{-k}\oplus \cdots \oplus {\mathfrak g}_{-1}$. (This
 space, in turn, is the model for the bundle of cohomologies for a cochain complex
@@ -1417,7 +1421,7 @@ $\graded(A)$, only of $\graded(A^0)$ (but see also \ref{model_data_gradings}).
   \end{conditions}
 \end{theorem}
 \noindent%
-Note that identification $A \cong A/A^1 \oplus_{\adjoint}\graded(A^1)$ transfers to
+Note that the identification $A \cong A/A^1 \oplus_{\adjoint}\graded(A^1)$ transfers to
 $A/A^1 \oplus_{\adjoint}\graded(A^1)$ the following filtration:
 $(A/A^1 \oplus_{\adjoint}\graded(A^1))^i= (A^i/A^0)
 \oplus_{\adjoint}(\oplus_{j\ge\max\{1,i\}}\graded(A)_j)$.
@@ -1546,7 +1550,7 @@ $\Adjoint$, in which case the requirement \eqrefs{weyl}{w2} is automatic.
 To navigate a mild obstruction to obtaining semi-direct products in the groupoid
 case, we will say the filtration of $\mathcal G$ is {\df weakly firm} if $A^1$ is
 ${\mathcal G} $-invariant under $\Adjoint$. Evidently a firm filtration of
-${\mathcal G} $ is weakly firm.
+${\mathcal G} $ is weakly firm. (This notion will not be important for our later applications to parabolic geometry.)
 \begin{remark}
   Suppose ${\mathcal G} $ is filtered and admits a Weyl gauge $\epsilon$. Then if $\mathcal G$ has
   connected source fibres, then we claim it is weakly firm. Indeed, $\epsilon$ will be a
@@ -1851,9 +1855,9 @@ ${\mathcal G} \rightarrow J^1 {\mathcal G} $ for the canonical projection
 $J^1 {\mathcal G} \rightarrow {\mathcal G} $, which is necessarily uniquely determined by
 $D$. Here $J^1 {\mathcal G} $ denotes the Lie groupoid of one-jets of bisections of
 ${\mathcal G} $. Of course, we are understanding the right inverse to be a Lie groupoid
-morphism. This is equivalent to requiring that $D \subset TM$ be multiplicatively closed,
-in the sense of \cite{Salazar_13,Crainic_etal_15}, but this interpretation will play no
-role here.
+morphism. This is equivalent to requiring that $D \subset T {\mathcal G}$ be
+multiplicatively closed, in the sense of \cite{Salazar_13,Crainic_etal_15}, but this
+interpretation will play no role here.
 
 The usual adjoint action of a Lie group on its Lie algebra is generalized by an action of
 $J^1 {\mathcal G} $ on the Lie algebroid $A$ of ${\mathcal G} $, denoted $\Adjoint$
@@ -2605,7 +2609,7 @@ filtered Lie algebroids or Lie groupoids by simply restricting the class of morp
 those whose source and target are firmly filtered objects.
 
 For simplicity, and as it will suffice for current purposes, we only define morphisms for
-filter Cartan geometries that are isomorphisms. A {\df morphism} of infinitesimal filtered
+filtered Cartan geometries that are isomorphisms. A {\df morphism} of infinitesimal filtered
 Cartan geometries
 $$(A, \tau, \nabla) \rightarrow (\tilde A, \tilde \tau, \tilde \nabla)$$ is an isomorphism of
 underlying filtered Lie algebroids such that $\tau$ and $\nabla $ push forward to
@@ -3512,7 +3516,7 @@ model curvature transforms in a natural way.
   $\tau' $, and infinitesimalizing to $\nabla'$. In any case, if $\kappa$ is the model
   curvature of $(\tau, \nabla)$ and $\kappa'$ the model curvature of $(\tau', \nabla')$,
   viewed as sections of $\wedge^2 T^*\!M \otimes {\mathcal A}$ and
-  $\wedge^2 T^*\!M' \otimes {\mathcal A}'$, then
+  $\wedge^2 T^*\!M' \otimes {\mathcal A}'$, then we obtain the {\df transformation rule},
   \begin{equation}
     \label{tarragon5}
     \kappa'(V_1, V_2) = q \kappa (Tf^{-1} \cdot V_1, Tf^{-1}\cdot V_2); \qquad V_1, V_2 \in TM.
@@ -3948,9 +3952,9 @@ are known in the cases we will need them \cite[\S3.3]{Cap_Slovak_09}.
   Let $({\mathcal G}, \tau)$ be a parabolic geometry with Lie algebroid $A$, and let
   ${\mathfrak g} $ be a filtered Lie algebra constituting a model for the semisimple Lie
   algebra bundle structure $\tau$; without loss of generality, we may suppose
-  ${\mathfrak g} $ is actually graded (Lemma \ref{gradings_from_filtrations}), and let
-  ${\mathfrak g}_-=\oplus_{j<0} {\mathfrak g}_j$. Then the mutually isomorphic (co)homology
-  vector bundles
+  ${\mathfrak g} $ is actually graded (Proposition \eqrefs{canonical_filtrations_}{hure}),
+  and let ${\mathfrak g}_-=\oplus_{j<0} {\mathfrak g}_j$. Then the mutually isomorphic
+  (co)homology vector bundles
   $$H_n(A^1,A),\quad H_n(\graded(A^1),\graded(A)),\quad H^n(\graded(TM),\graded(A))$$
   are associated bundles for a representation of the vertex group of
   ${\mathcal G}/{\mathcal G}^1$ over some point $m_0 \in M$ on the Lie algebra cohomology
@@ -4069,11 +4073,11 @@ This section proves results only stated in Section \ref{parabolic_summary}.
 \end{theorem}
 
 The proof requires these facts about semisimple Lie algebras: All derivations are inner;
-Every parabolic subalgebra (as we have defined it) contains a Borel subalgebra
-\cite{Burstall_10}; The centralizer of a Borel subalgebra is always trivial; The only
-automorphism of the Lie algebra fixing elements of a Borel subalgebra is the identity. The
-last two facts are readily proved by readers familiar with the basic structure theory of
-semisimple Lie algebras.
+For complex Lie algebras, every parabolic subalgebra (as we have defined it) contains a
+Borel subalgebra \cite{Burstall_10}; The centralizer of a Borel subalgebra is always
+trivial; The only automorphism of a complex Lie algebra fixing elements of a Borel
+subalgebra is the identity. The last two facts are readily proved by readers familiar with
+the basic structure theory of semisimple Lie algebras.
 
 \begin{proof}
   In the infinitesimal case, suppose that $\nabla^1$ and $\nabla^2$ are Cartan connections
@@ -4643,51 +4647,86 @@ $H({\mathfrak g}_-, {\mathfrak g})^1$ depends only on the isomorphism class in e
 \appendix
 \refreshpage
 \section{On filtrations of semisimple Lie algebras}\label{lie_algebra_facts}
-While the results proven in this section are well known, we do not know a place where they
-are established without advanced structure theory, as we do here. We do need Cartan's
-criterion for semisimplicity, and the fact that all derivations of a semisimple Lie
-algebra are inner \cite{Kirillov_08}. Among other things we prove Proposition
-\ref{canonical_filtrations_}, restated now for convenience.
+While the results proven in this section are well known, they are ordinarily proven first
+over ${\mathbb C} $ using a lot of structure theory, and over ${\mathbb R} $ with the help of
+ancilliary arguments, both of which we avoid here. Most of what follows is adapted from
+\cite{Calderbank_Noppakaew_16}; see also \cite{Burstall_10}.
+
+We will assume as known Cartan's criterion for semisimplicity, and the fact that all
+derivations of a semisimple Lie algebra are inner \cite{Kirillov_08}. Our primary goal is
+to prove Proposition \ref{canonical_filtrations_}, restated now for convenience.
 
 \begin{proposition}
+  Let ${\mathfrak g} $ be a semisimple Lie algebra over ${\mathbb C} $ or ${\mathbb R} $
+  of finite dimension and, ${\mathfrak p} \subset {\mathfrak g} $ a parabolic subalgebra
+  (${\mathfrak p}^\perp \subset {\mathfrak p} $ is a nilpotent ideal). Define
+  ${\mathfrak g}^0= {\mathfrak p}$ and ${\mathfrak g}^1={\mathfrak p}^\perp$, and
+  inductively define ${\mathfrak g}^j = [{\mathfrak g}^1, {\mathfrak g}^{j-1}]$, for
+  $j \ge 2$, and
+  ${\mathfrak g}^j = \{X \in {\mathfrak g} \suchthat [X, {\mathfrak g}^1] \subset
+  {\mathfrak g}^{j+1}\}$, for $j\le -1$. Then:
   \begin{conditions}
-  \item\label{lpp_} Let ${\mathfrak g} $ be a finite-dimensional semisimple Lie algebra
-    over ${\mathbb C} $ or ${\mathbb R} $ and ${\mathfrak p} \subset {\mathfrak g} $ a
-    parabolic subalgebra (${\mathfrak p}^\perp$ is a nilpotent ideal of
-    ${\mathfrak p}$). Define ${\mathfrak g}^0= {\mathfrak p}$ and
-    ${\mathfrak g}^1={\mathfrak p}^\perp$, and inductively define
-    ${\mathfrak g}^j = [{\mathfrak g}^1, {\mathfrak g}^{j-1}]$, for $j \ge 2$, and
-    ${\mathfrak g}^j = \{X \in {\mathfrak g} \suchthat [X, {\mathfrak g}^1] \subset
-    {\mathfrak g}^{j+1}\}$, for $j\le -1$. Then this makes ${\mathfrak g} $ into a
-    filtered Lie algebra with $|{\mathfrak g}| \le k$ for some $k\ge 0$. This is called
-    the {\df canonical filtration} associated with ${\mathfrak p} $.
-  \item \label{lqq_} In any filtration of ${\mathfrak g} $ defined by a grading
-    ${\mathfrak g}=\oplus_{j \in {\mathbb Z}} {\mathfrak g}_j$, the subalgebra
-    ${\mathfrak g}^0 = \oplus_{j\ge0}{\mathfrak g}_j$ is parabolic. Moreover, this
-    filtration is precisely the associated canonical filtration provided ${\mathfrak g}_1$
-    generates ${\mathfrak g}^1=\oplus_{j\ge 1}{\mathfrak g}_j$.
-  \end{conditions}
+  \item\label{lpp_} The above definitions make ${\mathfrak g} $ into a filtered Lie algebra
+      with $|{\mathfrak g}| \le k$ for some $k\ge 0$, the {\df canonical
+        filtration} associated with ${\mathfrak p}$.
+  \item\label{hure} The Lie algebra $\mathfrak g$, and the graded Lie algebra
+      $\graded ({\mathfrak g})$ associated with a canonical filtration, are isomorphic.
+    \item \label{lqq_} A subalgebra ${\mathfrak p} \subset {\mathfrak g} $ is parabolic if
+      and only if there exists a grading $\{{\mathfrak g}_j\}_{j \in {\mathbb Z}}$ of
+      ${\mathfrak g} $ such that
+      ${\mathfrak p} = {\mathfrak g}^0 := \oplus_{j\ge 0} {\mathfrak g}_j$. For such a
+      grading, the corresponding filtration is precisely the canonical filtration associated
+      with ${\mathfrak p} $, whenever ${\mathfrak g}_1$ generates
+      ${\mathfrak g}^1:=\oplus_{j\ge 1}{\mathfrak g}_j$.
+ \end{conditions}
 \end{proposition}
 %
 \begin{proof}[Proof of \eqref{lpp_}]
   By definition, we have ${\mathfrak g}^1 \perp {\mathfrak g}^0$, which anchors an
-  inductive proof that ${\mathfrak g}^j \perp {\mathfrak g}^k$, whenever $j + k =1$. By a
-  similar induction (see, e.g., \cite[Proposition 2.4]{Calderbank_Noppakaew_16}) the
-  reader will also see that
-  $[{\mathfrak g}^j, {\mathfrak g}^k] \subset {\mathfrak g}^{j +k}$. Now
-  $\cap_{j \in {\mathbb Z}} {\mathfrak g}^j = 0$, because
+  inductive proof that ${\mathfrak g}^j \perp {\mathfrak g}^k$, whenever $j + k =1$. We turn next to the proof that
+  \begin{equation}
+    \label{star}
+    [{\mathfrak g}^j, {\mathfrak g}^k] \subset {\mathfrak g}^{j+k}
+  \end{equation}
+  holds for all $j, k \in {\mathbb Z}$.
+
+  By construction, we have
+  $[{\mathfrak g}^j, {\mathfrak g}^1] \subset {\mathfrak g}^{j+1}$ and
+  ${\mathfrak g}^{j+1} \subset {\mathfrak g}^j$ in every case, except $j=0$, which we get
+  from the hypothesis that ${\mathfrak g}^1 = {\mathfrak p}^\perp$ is an ideal of
+  ${\mathfrak g}^0 = {\mathfrak p} $. An easy induction then establishes \eqref{star} for
+  all $j \in {\mathbb Z}$, $k\ge 1$. By antisymmetry of the bracket, \eqref{star} must
+  also hold for $k \in {\mathbb Z} $ and $j \ge 1$, which leaves only the cases where
+  $j \le 0$ and $k \le 0$. The largest that $m := j + k $ can be in that case is $0$, in
+  which case \eqref{star} holds because ${\mathfrak g}^0 = {\mathfrak p} $ is a subalgebra
+  of ${\mathfrak g} $. This anchors an induction on $m \le 0$. So, restricting to
+  non-negative integers $j, k$, let us take as our induction hypothesis that \eqref{star}
+  holds whenever $j + k \ge m$, but suppose now only that $j + k \ge m - 1$. From
+  Bianchi's identity, we obtain
+  \begin{equation*}
+    [[{\mathfrak g}^j, {\mathfrak g}^k], {\mathfrak g}^1] \subset
+    [{\mathfrak g}^j, [{\mathfrak g}^k, {\mathfrak g}^1]] +
+    [{\mathfrak g}^k, [{\mathfrak g}^j, {\mathfrak g}^1]] \subset
+    [{\mathfrak g}^j, {\mathfrak g}^{k+1}] + [{\mathfrak g}^k, {\mathfrak g}^{j+1}]
+    \subset {\mathfrak g}^{j+k+1},
+  \end{equation*}
+  the last containment following from the induction hypthesis. By the definition of
+  ${\mathfrak g}^{j+k}$, for $j + k \le -1$, we conclude
+  $[{\mathfrak g}^j, {\mathfrak g}^k] \subset {\mathfrak g}^{j+k}$.
+
+  Now $\cap_{j \in {\mathbb Z}} {\mathfrak g}^j = 0$, because
   ${\mathfrak g}^1 = {\mathfrak p}^\perp$ is nilpotent. So there is $k > 0$ such that
-  ${\mathfrak g}^k \ne 0$, but ${\mathfrak g}^{k +1} =0$, so that
-  $\graded({\mathfrak g})_k\ne 0$ but $\graded({\mathfrak g})_{k+1}=0$. We have
-  ${\mathfrak g}^{-k} = ({\mathfrak g}^{k+1}) ^\perp\ne {\mathfrak g}$, i.e.,
-  $\graded({\mathfrak g})_{-k}\ne 0$, and
-  ${\mathfrak g}^{-k}=({\mathfrak g}^{k+1})^\perp = 0^\perp = {\mathfrak g}$, i.e.,
-  $\cup_{j \in {\mathbb Z}} {\mathfrak g}_j= {\mathfrak g} $, and
-  $\graded({\mathfrak g})_{-k-1}=0$.
+  ${\mathfrak g}^k \ne 0$ and ${\mathfrak g}^{k +1} =0$, and we conclude
+  $\graded({\mathfrak g})_k\ne 0$ and $\graded({\mathfrak g})_{k+1}=0$. We have
+  ${\mathfrak g}^{-k +1} = ({\mathfrak g}^k)^\perp \ne {\mathfrak g}$, and
+  ${\mathfrak g}^{-k}=({\mathfrak g}^{k+1})^\perp = 0^\perp = {\mathfrak g}$, and we
+  conclude $\cup_{j \in {\mathbb Z}} {\mathfrak g}_j= {\mathfrak g} $,
+  $\graded({\mathfrak g})_{-k}\ne 0$, and $\graded({\mathfrak g})_{-k-1}=0$.
 \end{proof}
 
 \noindent%
-Part \eqref{lqq_} is proven in \ref{parabolics_from_filtrations}.
+Part \eqref{hure} will follow from Lemma \ref{gradings_from_filtrations}, while part
+\eqref{lqq_} is proven in \ref{parabolics_from_filtrations}.
 
 \subsection{Grading elements}\label{grading_elements}
 Grading elements have been defined in \ref{intro_prolong}.
@@ -4701,11 +4740,11 @@ Grading elements have been defined in \ref{intro_prolong}.
   unique since ${\mathfrak g} $ has trivial centre, such that $DX = [E, X]$.
 \end{proof}
 
-\subsection{Canonical filtrations always split}\label{gradings_from_filtrations}
+\subsection{Parabolic filtrations always split}\label{gradings_from_filtrations}
 \begin{lemma}
   Let ${\mathfrak g} $ be a finite-dimensional semisimple Lie algebra over ${\mathbb C} $
   or ${\mathbb R} $ equipped with the canonical filtration associated with some parabolic
-  subalgebra. Then $\graded({\mathfrak g})$ has a unique grading element $E$ and the
+  subalgebra (what we previously called a parabolic filtration). Then $\graded({\mathfrak g})$ has a unique grading element $E$ and the
   splitting $\Phi_\epsilon \colon \graded ({\mathfrak g}) \rightarrow {\mathfrak g} $
   defined by any lift $\epsilon \in {\mathfrak g}^0$ of $E$ is a Lie algebroid
   isomorphism.
@@ -4757,8 +4796,10 @@ Splittings $\Phi_\epsilon$ were defined in \ref{splittings}.
   corollary, to ensure non-degeneracy of $B$.
 \end{proof}
 
-To prove part \eqref{lqq_} of the proposition above, suppose ${\mathfrak g} $ is
-graded. Applying \eqref{ft1}, we obtain
+We now return to the proof of \eqref{lqq_} of the proposition above. The first two parts
+of the proposition already show that every parabolic subalgebra appears as
+$\oplus_{j\ge 0}{\mathfrak g}_j$ in some grading of ${\mathfrak g} $. For the converse,
+suppose ${\mathfrak g} $ is graded. Applying \eqref{ft1}, we obtain
 ${\mathfrak g}^0={\mathfrak g}_0 \oplus {\mathfrak g}_1 \oplus \cdots \oplus {\mathfrak
   g}_k \subset ({\mathfrak g}_1 \oplus \cdots \oplus {\mathfrak g}_k)^\perp=({\mathfrak
   g}^1)^\perp$. By \eqref{ft2}, non-degeneracy of $B$ and a dimension count, this
@@ -4767,9 +4808,9 @@ inclusion is actually equality. In fact, similar arguments actually establish
   \label{trees}
    {\mathfrak g}^j = ({\mathfrak g}^k)^\perp\quad\text{whenever $j + k = 1$}.
 \end{equation}
-In any case, since ${\mathfrak g}^1$ is nilpotent, by the definition of Lie algebra
-filtrations, ${\mathfrak g}^0$ is parabolic, by the definition of parabolic given in
-\ref{canonical_filtrations_}.
+In any case, since ${\mathfrak g}^1$ is nilpotent ideal of ${\mathfrak g}^0$, by the
+definition of Lie algebra filtrations, ${\mathfrak g}^0$ is parabolic, by the definition
+of parabolic given in \ref{canonical_filtrations_}.
 
 Let us write the canonical filtration of ${\mathfrak g} $ associated with
 ${\mathfrak p}:={\mathfrak g}^0$ as
@@ -4778,7 +4819,7 @@ far it is clear that ${\mathfrak g}^0 = \tilde {\mathfrak g}^0$ and
 ${\mathfrak g}^1 = \tilde {\mathfrak g}^1$. For $j \ge 2$,
 ${\mathfrak g}^j = \tilde{\mathfrak g}^j$ follows the definition of
 $\tilde {\mathfrak g}^j$ and the assumption that ${\mathfrak g}_1$ generates
-${\mathfrak g}^1$. For $j \le -1$, equality follows from the $j \le 1$ case and the fact
+${\mathfrak g}^1$. For $j \le -1$, equality follows from the $j \ge 1$ case and the fact
 that $\tilde {\mathfrak g}^j = (\tilde {\mathfrak g}^k)^\perp$ whenever $j + k = 1$ (see
 the proof of part \eqref{lpp_} of the proposition) and its analogue \eqref{trees}.
 
