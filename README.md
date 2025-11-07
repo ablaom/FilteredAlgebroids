@@ -1,4 +1,4 @@
-# Filtered Lie algebroids and parabolic geometry (version 1)
+# Filtered Lie algebroids and parabolic geometry
 
 Anthony D. Blaom
 
