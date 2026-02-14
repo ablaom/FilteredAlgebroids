@@ -6,12 +6,6 @@ Ender Abado\u{g}lu, Erc\"{u}ment Orta\c{c}gil, and Ferit \"{O}zt\"{u}rk.
   finite type.
 \newblock {\em J. Lie Theory}, 18(1):67--82, 2008.
 
-\bibitem{Bailey_etal_94}
-T.~N. Bailey, M.~G. Eastwood, and A.~R. Gover.
-\newblock Thomas's structure bundle for conformal, projective and related
-  structures.
-\newblock {\em Rocky Mountain J. Math.}, 24(4):1191--1217, 1994.
-
 \bibitem{Blaom_06}
 A.~D. Blaom.
 \newblock {Geometric structures as deformed infinitesimal symmetries}.
@@ -107,6 +101,11 @@ Charles Ehresmann.
 \newblock In {\em Colloque {G}\'eom. {D}iff. {G}lobale ({B}ruxelles, 1958)},
   pages 137--150. Centre Belge Rech. Math., Louvain, 1959.
 
+\bibitem{Guillemin_Sternberg_64}
+Victor~W. Guillemin and Shlomo Sternberg.
+\newblock An algebraic model of transitive differential geometry.
+\newblock {\em Bull. Amer. Math. Soc.}, 70:16--47, 1964.
+
 \bibitem{Kostant_61}
 Bertram Kostant.
 \newblock Lie algebra cohomology and the generalized {B}orel-{W}eil theorem.
@@ -140,6 +139,12 @@ R.~W. Sharpe.
 \newblock {\em {Differential Geometry: Cartan's generalization of Klein's
   Erlangen program}}, volume 166 of {\em Graduate Texts in Mathematics}.
 \newblock Springer, 1997.
+
+\bibitem{Singer_Sternberg_65}
+I.~M. Singer and Shlomo Sternberg.
+\newblock The infinite groups of {L}ie and {C}artan. {I}. {T}he transitive
+  groups.
+\newblock {\em J. Analyse Math.}, 15:1--114, 1965.
 
 \bibitem{Tanaka_79}
 Noboru Tanaka.
