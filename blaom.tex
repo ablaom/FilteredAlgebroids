@@ -23,11 +23,11 @@
 %   the name to match the new url on the cover page (e.g, 2025-11)
 
 \newcommand\disclaimer{{\tiny\sffamily ---~Work in progress. November 2025 version~---}}
-% 
+%
 \usepackage{rotating}
 
 % DRAFTING OPTIONS
-\iftrue % make true for drafts
+\iffalse % make true for drafts
   \usepackage[twoside=false,top=15mm,bottom=30mm,right=50mm,left=15mm]{geometry}
   \usepackage[right]{showlabels}
   \renewcommand{\showlabelfont}{\footnotesize\color{cyan}}
@@ -36,18 +36,17 @@
   \newcommand\refreshpage{\newpage}
 %  \showlabels{cite}
 \fi
-\iffalse % make false for drafts
+\iftrue % make false for drafts
   \newcommand\refreshpage{}
   \usepackage[margin=35mm]{geometry}
 \fi
 % Uncomment the following two lines to display reference labels:
 % Macros just for this paper:
-\newcommand{\interior}{\lrcorner}
-\newcommand{\equivalent}[1]{{\overset{#1}{\,\sim\,}}}
-\newcommand{\varcheck}[1]{{#1^\wedge}}
-\newcommand{\model}{\automorphism({TM},A)}
+\newcommand{\interior}{\lrcorner} \newcommand{\equivalent}[1]{{\overset{#1}{\,\sim\,}}}
+\newcommand{\varcheck}[1]{{#1^\wedge}} \newcommand{\model}{\automorphism({TM},A)}
 \newcommand{\leftpartial}[1]{\xleftarrow{\partial^{#1}}}
 \newcommand{\rightpartial}[1]{\xrightarrow{\partial^{#1}}}
+\newcommand{\confmetric}{{\mathrm{\mathbf{g}}}}
 % \renewcommand{\contentsname}{\vspace{-\baselineskip}}
 %
 \begin{document}
@@ -77,7 +76,7 @@ Copyright (c) 2025, 2026 Anthony D Blaom
 \vspace{\baselineskip}
 
 \noindent%
-Permission is hereby granted, free of charge, to any person wishing to make a digital or
+Permission is hereby granted, free of charge, to any person wishing to make digital or
 printed copies of any file with the name ``blaom.pdf'' contained in the FilteredAlgebroids
 repository located at https://github.com/ablaom/FilteredAlgebroids/, provided any such
 copy is complete, unedited, and includes this permission notice.  \vspace{\baselineskip}
@@ -91,7 +90,7 @@ tort or otherwise, arising from, out of or in connection with the notes or the u
 other dealings in the notes.  \vspace{\baselineskip}
 }
 
-\newpage 
+\newpage
 
 \bibliographystyle{plain}
 %
@@ -121,22 +120,26 @@ other dealings in the notes.  \vspace{\baselineskip}
   \vspace{\baselineskip}
 \end{center}
 \begin{abstract}
-  This work is an exposition of parabolic geometry with some notable novelties. The
-  filtered Lie algebroids introduced here generalize the filtered manifolds in Tohru
-  Morimoto's study of (what are now called) parabolic geometries, a rich class of finite type
-  structures generalizing conformal and projective structures. We propose a new
-  abstraction of parabolic geometry based on Lie groupoids whose associated Lie algebroids
-  are filtered. In particular, we present a new prolongation procedure to recover the
-  abstraction from its ``underlying geometric structure'', using semi-direct products in
-  the Lie groupoid category. The construction is predicated on the observation that Lie
-  groupoids with filtered Lie algebroids admit a semi-direct product structure whenever
-  they also admit a Weyl gauge, an ``oid'' version of lifts of grading elements of a Lie
-  algebra. Our approach allows for the parallel treatment of infinitesimal and global
-  aspects, the simpler infinitesimal apsect typically informing global constructions.
+  This work is a novel exposition of the basic elements of parabolic geometry, a rich
+  class of finite type structures generalizing conformal and projective structures. We
+  introduce filtered Lie algebroids, a generalization of Tohru Morimoto's filtered
+  manifolds, and we propose abstractions of parabolic geometry based on Lie groupoids
+  whose associated Lie algebroids are filtered. Moreover, we present a new prolongation
+  procedure to recover the abstraction from the underlying geometric structure, using
+  semi-direct products in the Lie groupoid category. Our construction is predicated on the
+  observation that Lie groupoids with filtered Lie algebroids admit a semi-direct product
+  structure whenever they also admit a Weyl gauge, an ``oid'' version of lifts of grading
+  elements of a Lie algebra.
+
+  Our approach allows for the parallel treatment of infinitesimal and global aspects, the
+  simpler infinitesimal apsect typically informing constructions in the global
+  case. Furthermore, we establish, in the parabolic case, that the global Cartan
+  connection is completely determined by infinitesimal data, a fact that is shared by some
+  other, but not all, Cartan geometries.
 
   A parabolic geometry is essentially a deformed generalized flag manifold $G/H$ where, in
-  previous formulations, $G$ is assumed to have a semisimple Lie algebra. Here we show, with
-  little additional effort, that it is suffices to suppose the Lie algebra is reductive.
+  previous formulations, $G$ is assumed to be semisimple. Here $G$ can be any Lie group
+  whose Lie algebra is reductive.
 \end{abstract}
 \maketitle
 %\vspace{-1\baselineskip}\tableofcontents
@@ -177,47 +180,53 @@ manifests in a most natural way.
 
 For the sake of concreteness, consider the conformal sphere $S^n$, a generalized flag
 manifold with action groupoid $\SO(n + 1, 1) \times S^n$. Now, differentiating conformal
-automorphisms, i.e., elements of $\SO(n + 1, 1)$, we obtain a Lie groupoid
-morphism $$\SO(n + 1, 1) \times S^n \rightarrow \CO[TS^n]$$ onto the frame groupoid
-$\CO[TS^n]$, consisting of conformal isomorphisms between tangent spaces. The kernel of
-this morphism is a Lie group bundle with commutative, simply-connected fibres. By
-arguments recalled later, it has a natural identification with $T^*\!S^n$. A fundamental
-observation, not immediately obvious, but following from the general results presented
-here, is that the morphism above splits (non-canonically), delivering an identification of
-$\SO(n + 1, 1) \times S^n$ with the Lie groupoid semi-direct product
-$\CO[TS^n] \times T^*\!S^n$. This is significant, for in the ``curved'' case of an
-arbitrary conformal manifold $M$, where the action groupoid is gone, {\em a proxy for the
-  action groupoid persists}, namely the semi-direct product $\CO[TM] \times T^*\!M$. This
-is what we call the {\df prolongation} of the conformal structure.
+automorphisms, i.e., elements of $\SO(n + 1, 1)$, we obtain a Lie groupoid morphism
+\begin{equation}\label{morphi}
+  \SO(n + 1, 1) \times S^n \epimorphism \CO[TS^n]
+\end{equation}
+onto the frame groupoid $\CO[TS^n]$, consisting of conformal isomorphisms between tangent
+spaces. The kernel of this morphism is a Lie group bundle with commutative,
+simply-connected fibres. By arguments recalled later, it has a natural identification with
+$T^*\!S^n$. A fundamental observation, not immediately obvious, but following from the
+general results presented here, is that \eqref{morphi} splits (non-canonically) delivering
+an identification of $\SO(n + 1, 1) \times S^n$ with the Lie groupoid semi-direct product
+$\CO[TS^n] \times T^*\!S^n$. This is significant, for in the curved case of an arbitrary
+conformal manifold $M$, where the action groupoid is gone, {\em a proxy for the action
+  groupoid persists}, namely the semi-direct product $\CO[TM] \times T^*\!M$. This is what
+we call the {\df prolongation} of the conformal structure.
 
 In the flat case, we can give the kernel $T^*\!S^n$ the interpretation of all $2$-jets of
 conformal automorphisms vanishing to first order. Relevant arguments can be found in
-\cite{Abadoglu_etal_08}. This connects prolongation to the usual idea of introducing
-derivatives as new variables. The reader is warned, however, that prolongations appearing
-in the Cartan geometry literature, and prolongations in the naive sense of PDE's,
-generally diverge in the {\em curved} case, and this is true here also.
+\cite{Abadoglu_etal_08}; curved analogues are offered in Section \ref{jets}. This connects
+prolongation to the usual idea of introducing derivatives as new variables. The reader is
+warned, however, that prolongations appearing in the Cartan geometry literature, and
+prolongations in the sense of PDE's, generally diverge in the {\em curved} case, and this
+is true here also.
 
-To make the prolongation $\CO[TM] \times T^*M$ a formal parabolic geometry, it suffices to
-equip its Lie algebroid $A$ with a suitable $\so(n + 1, 1)$-bundle structure (one
-extending the canonical Lie algebra bundle structure on its anchor kernel) and this
-structure, which we call {\df model data}, is identifiable with the trivial
-$\so(n + 1, 1)$-bundle structure of the action algebroid $\so(n + 1, 1) \times S^n\cong A$
-in the flat case. As we will see in \ref{conformal}, the Lie algebroid $A$ of
-$\CO[TM] \times T^*\!M $ has a natural filtration
+To make the prolongation $\CO[TM] \times T^*M$ a formal parabolic geometry, as we shall
+define the notion here, it suffices to equip its Lie algebroid $A$ with a suitable
+$\so(n + 1, 1)$-bundle structure (namely, one extending the canonical Lie algebra bundle
+structure on its anchor kernel) and this structure, which we call {\df model data}, is
+identifiable with the trivial $\so(n + 1, 1)$-bundle structure of the action algebroid
+$\so(n + 1, 1) \times S^n\cong A$ in the flat case. As we will see in \ref{conformal}, the
+Lie algebroid $A$ of $\CO[TM] \times T^*\!M $ has a natural filtration
 $A = A^{-1} \supset A^0 \supset A^1=T^*\!M$, and while the Lie algebra bundle structure on
 the associated graded $\graded(A)$ determined by the bracket on $A$ is {\em not} modeled
 on $\so(n + 1, 1)$, there is a second, related Lie algebra bundle structure that {\em
   is}. Model data on $A$ is constructed by finding a canonical way to lift this latter Lie
 algebra bundle structure from $\graded(A)$ to $A$. A ``canonical'' lift is one that
-normalizes the corresponding {\df model curvature}, the local obstruction to the existence
-of $\SO(n + 1, 1)$-symmetry.
+suitably normalizes the corresponding {\df model curvature}, the local obstruction to the
+existence of $\SO(n + 1, 1)$-symmetry. To understand what normalization should mean, one
+hooks into the algebraic machinery introduced by Betram Kostant for studying certain Lie
+algebra (co)homology spaces associated with a reductive Lie algebra and parabolic
+subalgebra.
 
 More generally, prolongation allows us to recover, in the typical case, an abstract
 parabolic geometry from it's ``underlying geometric structure'', of which a conformal
-structure is but one example, this manifesting in the standard theory as a so-called
-``infinitesimal flag structure'' \cite[Definition 3.1.6, p.~248]{Cap_Slovak_09}. For
-reasons explained at the end of \ref{levi_}, we prefer to call the Lie groupoid version of
-these objects {\df Levi structures}.
+structure is but one example. In the the conventional approach, the underlying structure
+is formalized as an ``infinitesimal flag structure'' \cite[Definition 3.1.6,
+p.~248]{Cap_Slovak_09}. For reasons explained at the end of Section \ref{levisection}, we
+prefer to call the Lie groupoid version of these objects {\df Levi structures}.
 
 Our version of prolongation is anticipated by the observation that natural candidates for
 parabolic geometries are certain Lie groupoids that {\em always} admit a semi-direct
@@ -236,9 +245,10 @@ present context, of replacing principal bundles with Lie groupoids, dates back t
 Ehresmann's 1959 paper \cite{Ehresmann_59}.\footnote{At this time the infinitesimal
   concept of a Lie algebroid had not been formalized, and this concept did not mature
   substantially until Jean Pradines' work in the late 1960's. Perhaps this explains why
-  the groupoid approach did not immediately gain traction.}  Our work is strongly guided
-by {\v{C}}ap and Slov{\'a}k's seminal monograph \cite{Cap_Slovak_09} and our debt to that
-work necessarily extends beyond those places explicitly noted.
+  the groupoid approach did not immediately gain traction.}  While adopting a different
+approach, our work remains strongly guided by {\v{C}}ap and Slov{\'a}k's seminal monograph
+\cite{Cap_Slovak_09} and our debt to that work necessarily extends beyond those places
+explicitly noted.
 
 \subsection{The contemporary point of view}\label{contemporary}%
 In the principal bundle formulation, which originates in Ehresmann's earlier 1951 paper
@@ -300,21 +310,22 @@ conventional approach, along the lines intimated in \ref{firstfirst}. Previous w
 ours, reviewed in Section \ref{cartan_section}, shows how to view Lie algebroids or Lie
 groupoids as (possibly intransitive) ``symmetries deformed by curvature'', by equipping
 them with connections {\em without} model data
-\cite{Blaom_06,Blaom_12,Blaom_13,Blaom_16,Blaom_16b} (but nevertheless called Cartan
-  connections). In the groupoid case, the connection is a multiplicatively closed
-horizontal $n$-plane field, $D$, and in the infinitesimal case, it is a Koszul connection,
-$\nabla $, suitably compatible with the Lie algebroid structure. The type of symmetry, if
-it exists, is not specified {\em a priori}, and the natural definition of curvature (the
-usual one for $\nabla $) does not depend on a notion of model data. Here we introduce, for
-the first time in the ``oid'' context, a notion of compatible model data, and of model
-curvature, in which the model {\em is} specified ahead of time, as in the standard
-approach. With these basic ingredients we can imitate the standard theory, with some
-further novelties discussed below,
+\cite{Blaom_06,Blaom_12,Blaom_13,Blaom_16,Blaom_16b} (but nevertheless, and perhaps
+unfortunately, called Cartan connections). In the groupoid case, the connection is a
+multiplicatively closed horizontal $n$-plane field, $D$, and in the infinitesimal case, it
+is a Koszul connection, $\nabla $, suitably compatible with the Lie algebroid
+structure. The type of symmetry, if it exists, is not specified {\em a priori}, and the
+natural definition of curvature (the usual one for $\nabla $) does not depend on a notion
+of model data. Here we introduce, for the first time in the ``oid'' context, a notion of
+compatible model data, and of model curvature, in which the model {\em is} specified ahead
+of time, as in the standard approach. With these basic ingredients we can imitate the
+standard theory, with some further novelties discussed below,
 
 \subsection{Weyl gauges and semi-direct products}\label{intro_prolong}
 The general considerations leading to the Lie groupoid splittings alluded to in
 \ref{firstfirst} can be previewed here by considering the special Lie {\em algebra} case
-of our Theorem \ref{weyl}:
+of our Theorem \ref{weyl}, a theorem applying to general Lie algebroids (globalized to Lie
+groupoids by Theorem \ref{weyl2}):
 \begin{theorem}
   Let
   $\cdots \supset {\mathfrak a}^{-1} \supset {\mathfrak a}^0 \supset {\mathfrak a}^1
@@ -337,7 +348,7 @@ Recall here that an element $E$ of a graded Lie algebra
 ${\mathfrak g}=\oplus_j {\mathfrak g}_j $ is a {\df grading element} if $[E , X] = j X$,
 whenever $X \in {\mathfrak g}_j$. Note that the theorem requires only a grading element of
 $\graded({\mathfrak a}^0)$ and not $\graded({\mathfrak a})$. When the additional
-``invariance'' condition \eqref{invariance} is satisfied, we call $\epsilon $ a {\df Weyl
+``invariance condition'' \eqref{invariance} is satisfied, we call $\epsilon $ a {\df Weyl
   gauge}.
 
 If ${\mathfrak a} $ is filtered and the condition about ideals is also satisfied,
@@ -353,9 +364,9 @@ shall see already for homogeneous spaces $G/H$ and other examples in Section
 
 The above theorem does {\em not} apply to the canonical filtrations associated with the
 parabolic subalgebras of a reductive (or semisimple) Lie algebra (see
-\ref{canonical_filtrations_}), as these cannot be firmly filtered. The point is, rather,
+\ref{canonical_filtrations_}) as these cannot be firmly filtered. The point is, rather,
 that Weyl gauges have generalizations to filtered Lie algebroids and Lie groupoids (even
-intransitive ones), including the action algebroids/groupoids of generalized flag
+intransitive ones) including the action algebroids/groupoids of generalized flag
 manifolds. For us, a parabolic geometry is a firmly filtered, transitive Lie groupoid,
 together with suitably compatible model data (Definition \ref{parabolic_defined}). This
 model data identifies each tangent space $T_mM$ (non-canonically) with a Lie algebra
@@ -386,12 +397,12 @@ The name ``Weyl gauge'' comes from the Weyl structures/connections in the standa
 of parabolic geometry \cite{Cap_Slovak_09}, which generalize Weyl's own connections in
 conformal geometry.  It may be there exists a correspondence between the new semi-direct
 product description and the constructions in \cite{Cap_Slovak_09} but this is not obvious
-to us. In any case, Weyl gauges ground the entire theory developed here (and make sense
+to us. In any case, Weyl gauges here inform our notion of prolongation (and make sense
 before introducing any assumptions about model data, such as semisimplicity) while in
-\cite{Cap_Slovak_09} prolongation is first developed without Weyl structures.  Here the
-semi-direct product structure leads to perhaps the most explicit description of parabolic
-geometries to date --- in fact, of all transitive filtered Cartan geometries, a mild
-generalization (Theorem \ref{abstract_levi_}).
+\cite{Cap_Slovak_09} prolongation is first developed without Weyl structures. In our case
+the semi-direct product structure of a prolongation leads to perhaps the most explicit
+description of parabolic geometries to date --- in fact, of all transitive filtered Cartan
+geometries, a mild generalization (Theorem \ref{abstract_levi_}).
 
 \subsection{Infinitesimal geometry} An obvious advantage of the Lie groupoid approach is a
 direct relationship between global and infinitesimal representations of the geometry,
@@ -442,12 +453,11 @@ because it makes sense without reference to the Cartan connection $D$ (which cor
 to the parallelism in Ehresmann's definition). Model data identifies each tangent space
 $T_mM$ (non-canonically) with a Lie algebra quotient ${\mathfrak g}/{\mathfrak h}$, and if
 ${\mathfrak h} \subset {\mathfrak g} $ is a {\em separating} Lie subalgebra (true for all
-parabolic subalgebras when ${\mathfrak g} $ is reductive) then {\em any compatible Cartan
-  connection is completely determined by the model data}. So, in a sense, the model data
-``is'' also the connection in such cases, but unlike the connection $D$, it is a purely
-infinitesimal object! That said, given model data, the question of existence of a
-compatible Cartan connection $D$, which we require, is a subtle one. The notion of a
-separating Lie algebra is recalled in \ref{separating}.
+parabolic subalgebras when ${\mathfrak g} $ is reductive) then any compatible Cartan
+connection is completely determined by the model data. That is, {\em the Cartan geometry
+  is completely recoverable from purely infinitesimal data,} another fact that does not
+appear to have been noticed before. The notion of a separating subalgebra is recalled in
+\ref{separating}.
 
 % \subsection{Extensions} While not pursued here at all, the present work lays the
 % foundations for the possible extension of parabolic geometry to {\em intransitive}
@@ -546,11 +556,48 @@ detail, and for invaluable encouragement. The proof of Proposition \ref{separati
 is largely due to Professor Calderbank.
 
 \refreshpage
+\section{Table of compatibility conditions}
+A number of compatibility conditions defined in the text are summarized in the table
+below. Here:
+\begin{itemize}
+\item $A^\bullet$ is a filtration of some Lie algebroid $A$ (see \ref{filtered}).
+  \item $D$ is a Cartan connection on some Lie groupoid
+    integrating $A$ (see \ref{cartan}).
+   \item $\nabla$ is an infinitesimal Cartan connection on
+     $A$ (see \ref{hsd}).
+   \item $\tau $ is model data on $A$ (see \ref{md}).
+   \item $\epsilon$ is a Weyl gauge for $A$ or an integrating Lie groupoid (see \ref{weyl}
+     and \ref{weyl2}).
+\end{itemize}
+\begin{table}[!ht]
+  \centering
+    \begin{tabular}{|l|c|c|c|c|}
+    \hline
+                   & $D$                         & $\nabla$                          & $\tau$  & $\epsilon$ \\ \hline
+        $A^\bullet$ & $A^j$ is $\bar D$-invariant $\forall j$ & $A^j$ is $\bar\nabla$-invariant $\forall j$  & $\tau(A^j, A^k) \subset A^{j+k}, \forall j,k$ & - \\
+        $D$        &                             & -                                 & C1 and c2 (see below)) & - \\
+        $\nabla$   &                             &                                   & c1 and c2 (see below)  & - \\
+        $\tau$     &                             &                                   &  & $\graded_0(\epsilon)$ is grading \\
+                   &                             &                                   &  & section of $\graded_0(\tau)$ \\ \hline
+    \end{tabular}
+    \vspace{0.5\baselineskip}
+\end{table}
+\noindent%
+The conditions c1, c2 and C1, from \ref{preview}, are reproduced below:
+\begin{conditions}
+  \item[{\bf c1.}] $\tau $ is $\bar\nabla$-invariant (where $\nabla $ is the infinitesimalization of $D$ in the global case).
+  \item[{\bf c2.}] $\bar\nabla_ZX = \tau(Z, X)$ whenever $\#Z=0$, $X \in A$.
+  \item[{\bf C1.}] $\tau $ is $\bar D$-invariant,
+\end{conditions}
+Here $\# \colon A \rightarrow TM $ denotes the anchor.
+
+When c2 is dropped, we have {\df weak compatibility}.
+
+\refreshpage
 \section{Filtered Lie algebroids}\label{introduction}
 In this section we introduce filtered Lie algebroids and the important special case of
 {\em firmly} filtered Lie algebroids, and give examples which include observations
-foreshadowing aspects of parabolic geometry to be presented in Section
-\ref{parabolic_summary}.
+foreshadowing aspects of parabolic geometry to be presented in later sections.
 
 \subsection{Definition}\label{filtered}
 Here a filtration $$\cdots A^{-1}\supset A^0 \supset A^1 \supset A^2 \supset\cdots $$ of
@@ -652,7 +699,7 @@ $-1 \le A \le 0 $ that we call the {\df trivial filtration} of $A$.
 For a more interesting class of examples, let $G$ be a Lie group with Lie algebra
 ${\mathfrak g}$ and $P \subset G$ a closed subgroup. Furthermore, suppose that
 ${\mathfrak g} $ admits a $P$-invariant filtration such that ${\mathfrak g}^0$ is the Lie
-algebra of $P$. In particular, as recalled in \ref{canonical_filtrations_}, a canonical
+algebra of $P$. In particular, as we recall in \ref{canonical_filtrations_}, a canonical
 filtration of this kind exists whenever $G/P$ is a generalized flag manifold.  Write
 $M =G/P$ and let $A={\mathfrak g} \times M$ be the action algebroid. Then we obtain a
 filtration of $A$, as a vector bundle, by defining
@@ -676,7 +723,7 @@ abstract homogeneous PDE you solve to find the infinitesimal isometries of some 
 structure on $M$. Then $A$ is a subalgebroid mapped surjectively onto $J^1(TM)$ by the
 projection $J^2(TM) \rightarrow J^1(TM)$, whose kernel intersects $A$ in the image $A^1$
 of the natural injection $j \colon T^*\!M \rightarrow S^2(T^*\!M)\otimes TM$ defined by
-$$j(\alpha)(V_1, V_2) = \alpha(V_1)V_2 + \alpha(V_2)V_1.$$ See \cite[\S5.9]{Blaom_12}. If we define
+$$j(Z)(X_1, X_2) = \langle Z,X_1\rangle X_2 + \langle Z, X_2\rangle X_1.$$ See \cite[\S5.9]{Blaom_12}. If we define
 $A^0$ to be the anchor kernel of $A$, and $A^{-1}=A$, we get a firm Lie algebroid
 filtration of $A$ with $|A|=1$. The corresponding graded Lie algebra bundle is
 $$\graded(A) = TM \oplus \gl(TM) \oplus T^*\!M,$$
@@ -690,32 +737,33 @@ $n= \dimension(M)$, and compatible with the grading. The bracket for this struct
 we will denote $T$, extends the existing bracket on $\graded(A^0)=\gl(TM) \oplus T^*\!M $
 with the new relations
 \begin{equation}
-  T(C, V) = C V, \quad
-    T(V, \alpha) = j(\alpha)V, \label{projective_bracket}
+  T(C, X) = C X, \quad
+    T(X, Z) = j(Z)X, \label{projective_bracket}
 \end{equation}
-for sections $C$, $V$ and $\alpha $ of $\gl(TM)$, $TM$ and $T^*\!M $ respectively.
+for sections $C$, $X$ and $Z $ of $\gl(TM)$, $TM$ and $T^*\!M $ respectively.
 Significantly, this bracket coincides with the flat one referenced in \ref{eg2}, when $M$
 is the projective sphere, viewed as a homogeneous
 $\operatorname{SL}(n + 1, {\mathbb R})$-space.
 
-The fact that the Lie algebra $\speciallinear(n + 1, {\mathbb R})$ for the full symmetry
-of the homogeneous model persists in some form in the ``curved'' case is somewhat surprising but
-crucial, and is shared by every concrete geometric structure underlying a parabolic
-geometry.
+As we shall see, the fact that the Lie algebra $\speciallinear(n + 1, {\mathbb R})$ for
+the full symmetry of the homogeneous model persists in some form in the ``curved'' case is
+shared by every concrete geometric structure underlying a parabolic geometry.
 
 \subsection{Conformal structures}\label{conformal}
 Let $B \subset J^1(TM)$ be the abstract homogeneous PDE you solve to find the
-infinitesimal isometries of a conformal structure on $M$ \cite[Section
-12]{Blaom_12}.\footnote{Alternatively, we may identify $B$ with the Lie algebroid of the
-  Lie groupoid of all relative conformal frames.} Then $B$ is a transitive subalgebroid
-whose anchor kernel $\co(TM)\subset \gl(TM)$ consists of the infinitesimal conformal
-automorphisms of tangent spaces. Now $B$ acts on $TM$ via restricted adjoint action, and
-so acts on $T^*\!M $. Regarding $T^*\!M $ as a commutative Lie algebra bundle, we
-construct, in the category of Lie algebroids, the semi-direct product
-$A = B \oplus_{\adjoint} T^*\!M $ (what we shall come to call the {\df prolongation} of
-$B$). Then, if we put $A^1 = T^*\!M $, $A^0 = \co(TM) \oplus T^*\!M$ (the anchor kernel of
-$A$), and $A^{-1}=A$, then $A$ becomes a firmly filtered Lie algebroid with $|A| = 1$. The
-corresponding graded Lie algebra bundle is
+infinitesimal isometries of a conformal structure on $M$ \cite[Section 12]{Blaom_12}. An
+alternative model for $B$ is the Lie algebroid of the Lie groupoid $\CO[TM]$ of all
+relative conformal frames, discussed already in \ref{firstfirst}. In any case, $B$ is a
+transitive subalgebroid whose anchor kernel $\co(TM)\subset \gl(TM)$ is identifiable with
+the infinitesimal conformal automorphisms of tangent spaces, and $B$ acts on $TM$ (via
+restricted adjoint action, in the sense of \cite{Blaom_16b}, in the first case, and
+tautologically in the second). In particular, $B$ acts on $T^*\!M $ and, regarding
+$T^*\!M $ as a commutative Lie algebra bundle, we construct, in the category of Lie
+algebroids, the semi-direct product $A = B \oplus_{\adjoint} T^*\!M $ (what we shall come
+to call the {\df prolongation} of $B$). Then, if we put $A^1 = T^*\!M $,
+$A^0 = \co(TM) \oplus T^*\!M$ (the anchor kernel of $A$), and $A^{-1}=A$, then $A$ becomes
+a firmly filtered Lie algebroid with $|A| = 1$. The corresponding graded Lie algebra
+bundle is
 $$\graded(A)=TM \oplus \co(TM) \oplus T^*\!M,$$ where $\co(TM) \oplus T^*\!M $ is the
 semi-direct product, and $TM$ and $\co(TM) \oplus T^*\!M $ are ideals.
 
@@ -724,30 +772,29 @@ with the grading, in this case modeled on $\so(n + 1, 1)$, and coinciding with t
 one of \ref{eg2} when $M$ is the conformal sphere, viewed as a homogeneous
 $\operatorname{SO}(n + 1, 1)$-space. After redefining the injection $j$ above,
 \begin{equation*}
-  j(\alpha)(V_1, V_2) = \alpha(V_1) V_2 + \alpha(V_2)V_1 -
-  \sigma(V_1,V_2)\sigma^{-1}(\alpha),
+  j(Z)(X_1, X_2) = \langle Z, X_1\rangle X_2 + \langle Z, X_2\rangle X_1 -
+  {\mathrm g}(X_1,X_2){\mathrm g}^{-1}(Z),
 \end{equation*}
 now a map
 $j \colon T^*\!M\rightarrow (S^2(T^*\!M)\otimes TM) \cap (T^*\!M \otimes \co(TM)) $, the
 semisimple bracket $T$ extends the existing bracket on
 $\graded(A^0)=\co(TM) \oplus T^*\!M$, with the same additional relations
-\eqref{projective_bracket}.  Here $\sigma $ is any metric in the conformal class.
+\eqref{projective_bracket}.  Here ${\mathrm g} $ is any metric in the conformal class.
 
-\vspace{\baselineskip} The semisimple Lie algebra bundles $TM \oplus \gl(TM)\oplus T^*\!M$
-and $TM \oplus \co(TM)\oplus T^*\!M$ above are examples of infinitesimal Levi structures,
-defined in \ref{levi_}.
+We will see explicitly why $T$ is a $\so(n + 1, 1)$-bracket, when we take up conformal
+structures again in \ref{conformalaslevi}.
 
 \refreshpage
 \section{Cartan connections on Lie groupoids and algebroids}\label{cartan_section}
 Suppose that $G$ is a Lie group acting smoothly on a manifold $M$, possibly in a
 non-transitive fashion.  We are interested in ``deformed'' versions of the action groupoid
-${\mathcal G} := G \times M$, and its Lie algebroid $A := {\mathfrak g} \times M$, and to
+${\mathcal G} = G \times M$, and its Lie algebroid $A = {\mathfrak g} \times M$, and to
 that end we identify two structures: (i) The canonical horizontal $n$-plane field $D$ on
 ${\mathcal G} $, tangent to the foliation $G \times \{m\}$, $m \in M$ --- an example of a
-Lie groupoid {\df Cartan connection}, to be discussed in the current section; and (ii) The
-trivial Lie algebra bundle structure on the infinitesimalization
-$A = {\mathfrak g} \times M$ of ${\mathcal G} $ --- an example of {\df model data},
-defined in Section \ref{cartan_geometries}.
+Lie groupoid {\df Cartan connection}, to be defined shortly; and (ii) The trivial Lie
+algebra bundle structure on the infinitesimalization $A = {\mathfrak g} \times M$ of
+${\mathcal G} $ --- an example of {\df model data}, defined in Section
+\ref{cartan_geometries}.
 
 
 Cartan connections on Lie groupoids, introduced in \cite[Appendix A]{Blaom_12}, generalize
@@ -759,9 +806,9 @@ is detailed in \cite{Blaom_16b}. Methods from PDE's, such as prolongation and re
 can be used to directly construct Cartan connections for some simple geometric structures,
 such as Riemannian structures, without declaring up front what the symmetric model should
 look like \cite{Blaom_12}. For Riemannian geometry this is very natural, because there are
-multiple ``flat'' (symmetric) models --- the Euclidean, spherical and hyperbolic space
-forms. But, as mentioned in the Introduction, this approach has not been successful more
-generally.
+multiple ``flat'', i.e., maximally symmetric, models: Euclidean, spherical and hyperbolic
+space forms. But, as mentioned in the Introduction, this approach has not been successful
+more generally.
 
 As we recall here, the interpretation of curvature for Cartan connections on Lie groupoids
 and algebroids is an obstruction to {\em some} kind of (local) symmetry, but the kind of
@@ -770,7 +817,7 @@ what we call {\df model curvature} applies, but we will not discuss that notion 
 Section \ref{cartan_geometries}.
 
 With the exception of Proposition \ref{cartan}, which we presume is new, this section is a
-summary of definitions and results presented in the cited works and elsewhere. 
+summary of definitions and results presented in the cited works and elsewhere.
 
 \subsection{Cartan connections on a Lie groupoid}\label{cartan}%
 A {\df Cartan connection} on a Lie groupoid ${\mathcal G} $ over $M$ is an $n$-plane field
@@ -789,8 +836,9 @@ $J^1 {\mathcal G} $ on the Lie algebroid $A$ of ${\mathcal G} $, denoted $\Adjoi
 ${\mathcal G} \rightarrow J^1 {\mathcal G} $ of
 $J^1 {\mathcal G} \rightarrow {\mathcal G} $ associated with $D$, we obtain a
 representation $\bar D$ of ${\mathcal G}$ on $A$. This representation extends the
-canonical one of ${\mathcal G} $ on elements of the anchor kernel of $A$ (which we have
-also been denoting by $\Adjoint$ in Section \ref{semi-direct}). We may view $\bar D$ as a kind of proxy for the usual adjoint action for Lie groups.
+canonical one of ${\mathcal G} $ on elements of the anchor kernel of $A$ (which also
+denote by $\Adjoint$). We may view $\bar D$ as a kind of proxy for the usual adjoint
+action for Lie groups.
 
 The prototype of a Cartan connection is the horizontal $n$-plane field $D$ on
 an action groupoid $G \times M$, for a smooth action of some Lie group $ G $ on
@@ -846,7 +894,7 @@ associated $A$-connection on $TM$ defined by
 \begin{equation}
  \bar\nabla_XV= \#\nabla_VX +[\#X, V],
 \end{equation}
-an $A$-representation when $\bar\nabla $ is Cartan. Here $\# \colon A \rightarrow TM$
+an $A$-representation when $\nabla $ is Cartan. Here $\# \colon A \rightarrow TM$
 denotes anchor.
 
 Given a Cartan connection $\nabla $ on some Lie algebroid $A$, we can compose the
@@ -868,8 +916,9 @@ and $V \in \Gamma(TM)$, we have
 where
 \begin{equation*}
   \torsion \bar\nabla (X, Y) := \bar\nabla_XY - \bar\nabla_YX - [X, Y] =
-  \nabla_{\#Y}X - \nabla_{\#X}Y + [X, Y].
+  \nabla_{\#Y}X - \nabla_{\#X}Y + [X, Y]
 \end{equation*}
+is the {\df torsion}.
 
 The representation $\bar\nabla$ of $A$ on itself coincides with the canonical
 representation of $A$ on sections lying in the anchor kernel (denoted $\adjoint$ in
@@ -884,14 +933,12 @@ $\bar\nabla $:
 \end{proposition}
 
 \subsection{Curvature as obstruction to symmetry}\label{curvature}
-The {\df curvature} of $\nabla $ is defined as usual for Koszul connections. This notion
-of curvature is not to be confused with curvature as this is generally understood in the
-Cartan geometry literature, what we have called {\df model curvature}, whose Lie algebroid
-analogue was defined in \ref{model_curvature_general}. For further context, see
-\cite{Blaom_16b}.  The prototype of an infinitesimal Cartan connection is the trivial flat
-connection $\nabla $ on an action algebroid ${\mathfrak g} \times M$, for some
-infinitesimal action of a Lie algebra $\mathfrak g$ on $M$. If we identify
-${\mathfrak g} $ with the constant ($\nabla$-parallel) sections of
+The {\df curvature} of $\nabla $ is defined as usual for Koszul connections. As mentioned
+above, this is not to be confused with the more classical {\df model curvature}, defined
+later in \ref{model_curvature_general}. The prototype of an infinitesimal Cartan
+connection is the trivial flat connection $\nabla $ on an action algebroid
+${\mathfrak g} \times M$, for some infinitesimal action of a Lie algebra $\mathfrak g$ on
+$M$. If we identify ${\mathfrak g} $ with the constant ($\nabla$-parallel) sections of
 ${\mathfrak g} \times M$, then its bracket is
 $\torsion\bar\nabla(\,\cdot\,,\,\cdot\,)$. Indeed, let
 $\tau \in \Gamma(\wedge^2 A^* \otimes A)$ denote the trivial extension of the bracket on
@@ -920,16 +967,18 @@ from which $\tau = \torsion \bar\nabla $ immediately follows.
 \end{aside}
 
 If $\curvature \nabla =0$ but $M $ is not simply connected, then $A$ is a Lie algebra
-action with monodromy twist \cite{Blaom_16b}. Lie groupoids with Cartan connections,
-whose infinitesimalizations are flat, define pseudogroups of symmetries of $M$, and under
-an additional completeness assumption, twisted Lie group actions \cite{Blaom_16,
+action with monodromy twist \cite{Blaom_16b}. Lie groupoids with Cartan connections, whose
+infinitesimalizations are flat, define pseudogroups of symmetries of $M$, and under an
+additional completeness assumption, twisted Lie group actions \cite{Blaom_16,
   Blaom_16b}. In the transitive case, one can recover a locally homogeneous structure,
-assuming ``geometric closure'', if not global homogeneity up to cover \cite{Blaom_13}.
+assuming something called ``geometric closure'', if not global homogeneity up to cover
+\cite{Blaom_13}.
 
 \begin{example}[Riemannian geometry]
   Associated with every Riemannian metric is a canonical Cartan connection $\nabla $ on
   the isotropy subalgebroid\footnote{This isotropy is the abstract homogeneous PDE you
-    solve to find Killing fields (whether or not they exist).} $A \subset J^1 (TM)$ of the
+    solve to find Killing fields, which may be identified with the Lie algebroid of the
+    Lie groupoid $SO[TM]$ of relative orthogonal frames.} $A \subset J^1 (TM)$ of the
   metric \cite{Blaom_06,Blaom_12}, which is an infinitesimalization of a global connection
   $D$ on the isotropy subgroupoid ${\mathcal G} \subset J^1(M \times M)$ of the metric
   \cite{Blaom_16b}. It's significance is that the anchor induces a map
@@ -988,8 +1037,8 @@ negative.
 \end{example}
 
 \subsection{Cartan connections compatible with a filtration}\label{compat}
-Recall that an infinitesimal Cartan connection $\nabla$ on a filtered Lie algebroid $A$ is
-{\df compatible} with the filtration if the filtration is invariant under the associated
+An infinitesimal Cartan connection $\nabla$ on a filtered Lie algebroid $A$ is {\df
+  compatible} with the filtration if the filtration is invariant under the associated
 representation $\bar\nabla $. Similarly, a Cartan connection $D$ on a filtered Lie
 groupoid ${\mathcal G} $ with Lie algebroid $A$ is {\df compatible} with the filtration
 provided the filtration of $A$ is invariant under the associated representation $\bar D$,
@@ -1086,14 +1135,13 @@ $\graded^T(A)$, $\graded^T(A^0)$ and $\graded^T(TM)$.
 
 \refreshpage
 \section{Cartan geometries}\label{cartan_geometries}
-In this section we provide a definition of Cartan geometries resting on: (i) The notion of
-a Cartan connection on a Lie groupoid defined in Section \ref{cartan_section}; and (ii)
-The new notion of compatible model data on the corresponding Lie algebroid. We recover
-Ehresmann's principal bundle notion as the special transitive case. Mild, verifiable,
-sufficient conditions for the Cartan connection to be {\em uniquely} determined by
-compatible model data are then established in the transitive case (Proposition
-\ref{separating}). Model curvature is defined, and related to the curvature of the Lie
-algebroid connection discussed in \ref{curvature}.
+In this section we complete the definition of Cartan geometries \`a la Lie groupoids by
+introducing the notion of compatible model data. We recover Ehresmann's principal bundle
+notion as the special transitive case. Mild, verifiable, sufficient conditions for the
+Cartan connection to be {\em uniquely} determined by compatible model data are then
+established in the transitive case (Theorem \ref{separating}). Model curvature is
+defined, and related to the curvature of the Lie algebroid connection discussed in
+\ref{curvature}. It's basic properties are established.
 
 \subsection{Model data}\label{md}
 A smooth field $\tau $ of Lie brackets on a Lie algebroid $A$ is {\df model data} if
@@ -1132,24 +1180,24 @@ If only c1 (or C1) is known to hold, then $\tau $ is {\df weakly compatible} wit
 ``compatible''.
 
 \subsection{Compatibility}
-We now elaborate on condition c2, whose relevance is less obvious than c1 and C1. Notice
+We now elaborate on condition c2, which seems less natural than c1 and C1. Notice
 first that when a Lie algebroid $A$ is equipped with model data $\tau $ and an
 infinitesimal Cartan connection $\nabla$, then $A$ acts on itself in {\em two} distinct
 ways: first, we have the the Lie algebroid representation $\bar\nabla$; second we have the
 representation $X \mapsto \adjoint^\tau_X = \tau(X,\,\cdot\,)$ of $A$ on itself as a
 bundle of Lie algebras. Condition c2 is simply the assertion that every element of the
 anchor kernel of $A$ acts the same way in both these cases. (Elements of the kernel act on
-{\em elements} of $A$, not merely on sections.) As already noted, c2 holds in the flat models,
-which is some justification for including it. However, also:
+{\em elements} of $A$, not merely on sections.) As already noted, c2 holds in the flat
+models, which is some justification for including it. However, also:
 \begin{conditions}
-\item Both C1 and c2 hold for classical Cartan geometries (Proposition
+\item Both C1 and c2 hold for classical (Ehresmann) Cartan geometries (Proposition
   \ref{cartan_geometries_defined}).
 \item In the transitive case, we need c2 for model curvature to be a two-form on $M$
   (see \ref{model_curvature_general}).
-\item\label{sep}  For so-called {\em separating} model data, C1 or c1 already imply c2
-  (Proposition \eqrefs{separating}{nuf1}) and this will apply in many interesting
-  examples, including parabolic geometries (Proposition \ref{separating_}).
-\item In the transistive case, and assuming c2 holds, the {\em infinitesimal order} of the
+\item\label{sep}  For so-called {\df separating} model data, C1 or c1 already imply c2
+  (Theorem \eqrefs{separating}{nuf1}) and this will apply in many interesting
+  examples, including parabolic geometry (Proposition \ref{separating_}).
+\item In the transistive case, and assuming c2 holds, the {\df infinitesimal order} of the
   geometry, providing a lower bound $m$ on the semi-holonomic jet space $\bar J^m(TM)$
   that must contain $A$ as an embedded subalgebroid, is completely encoded in the Lie
   algebra model ${\mathfrak g}$ for $\tau $, together with the subalgebra
@@ -1157,7 +1205,7 @@ which is some justification for including it. However, also:
   (Theorem \ref{from_algebraic}).
 \end{conditions}
 Point (\ref{sep}) notwithstanding, we have the following counterexample:
-\begin{example}[Weak compatibility without strong compatibility]
+\begin{example}[weak compatibility without strong compatibility]
   Let $M$ be a copy of ${\mathbb R} $ and $G$ the mutliplicative group $(0, \infty)$. Then
   we have the trivial, transitive Lie groupoid ${\mathcal G} := M \times G \times M$
   \cite[Example 1.1.7]{Mackenzie_05}, with Lie algebroid $A := TM \times {\mathfrak g} $,
@@ -1223,8 +1271,7 @@ The following is just a basic fact about Ehresmann-Cartan connections:
   In the scenario just described for classical Cartan geometries, the model data $\tau $
   is compatible with $D$.
 \end{proposition}
-
-\begin{proof}[Proof of proposition]
+\begin{proof}
   It remains to prove compatibility condition c2. For a section $X$ of $A = T P /H$, let
   $\hat X$ denote the corresponding $H$-invariant vector field on $P$, so that
   $[\hat X(p)]_H=X(\pi(p))$. Then we may express \eqref{defmodel} as
@@ -1242,27 +1289,29 @@ The following is just a basic fact about Ehresmann-Cartan connections:
 \subsection{Separating model data}\label{separating}
 We call a subalgebra ${\mathfrak h} \subset {\mathfrak g} $ {\df separating} if it is
 separating for the automorphism group $\automorphism({\mathfrak g})$, which is to say,
-that if any two automorphisms agree on ${\mathfrak h} $, then they must agree on all of
-${\mathfrak g}$. Equivalently, the requirement is that the only automorphism restricting
-to the identity on ${\mathfrak h} $ is the identity.
+that if any two Lie algebra automorphisms agree on ${\mathfrak h} $, then they must agree
+on all of ${\mathfrak g}$. Equivalently, the requirement is that the only automorphism
+restricting to the identity on ${\mathfrak h} $ is the identity element of
+$\automorphism({\mathfrak g})$.
 
 Similarly, we say that ${\mathfrak h} \subset {\mathfrak g} $ is {\df infinitesimally
   separating} if the only derivation vanishing on ${\mathfrak h} $ is the trivial
 derivation. Any separating subalgebra is automatically infinitesimally
-separating. Parabolic subalgebras of reductive Lie algebras are always separating
-(Proposition \ref{separating_}).
+separating.
 
-\begin{example}[Model data for Riemannian geometry]
-  Let ${\mathfrak g} $ be the semidirect product
-  ${\mathfrak g} = \so(n) \times {\mathbb R}^n$. Then $\so(n) \subset {\mathfrak g} $ is
-  separating.
-\end{example}
+Parabolic subalgebras of reductive Lie algebras are always separating (Proposition
+\ref{separating_}). In a semi-direct product ${\mathfrak g} = {\mathfrak h} \rtimes V$,
+the subalgebra ${\mathfrak h} \subset {\mathfrak g} $ is never separating, for
+$(X, v) \mapsto (X, \lambda v)$ is an Lie algebroid automorphism for any scalar
+$\lambda$. This rules out the standard Euclidean model for Riemannian geometry. However
+$\so(n) \subset \so(n+1)$ and $\so(n) \subset \so(n, 1)$, the spherical and hyperbolic
+models for Riemannian geometry, {\em are} separating.
 
 Model data $\tau $ on $A$ will be {\df separating} if at every point $m \in M$, the anchor
 kernel of $A$ sitting over $m$ is a separating subalgebra of $A|_m$, for the Lie bracket
 defined by $\tau $.
 
-\begin{proposition}
+\begin{theorem}
   Let $\tau $ be separating model data on a Lie algebroid $A$. Then:
   \begin{conditions}
   \item If $\tau$ is weakly compatible with an infinitesimal Cartan connection $\nabla$
@@ -1272,9 +1321,21 @@ defined by $\tau $.
   \item If $A$ is transitive, there can exist at most one infinitesimal or global Cartan
     connection compatible with $\tau $.\label{nuf2}
   \end{conditions}
-\end{proposition}
+\end{theorem}
 
-\begin{proof}
+Separability in \eqref{nuf2} is necessary:
+
+\begin{example}[multiple Cartan connections compatible with model data]
+  Let $M $ be a parallelizable manifold of dimension $n$, such as ${\mathbb R}^n$. Then a
+  Cartan connection $D$ on the pair groupoid ${\mathcal G} = M \times M$ is a parallelism
+  on $M$. The representation $\bar D$ of $M \times M$ on $TM$ is parallel translation with
+  respect to $D$.  Let ${\mathfrak g} $ be the commutative Lie algebra over ${\mathbb R} $
+  of dimension $n$. Then all model data $\tau $ on $A= TM$, modeled on ${\mathfrak g} $,
+  is the same and trivial: $\tau(X, Y)=0$. It is easy to see, that $\tau $ is compatible
+  with $D$ for {\em any}  choice of $D$.
+\end{example}
+
+\begin{proof}[Proof of Theorem]
   \eqref{nuf1}: If $A$ is integrated by a Lie groupoid ${\mathcal G} $ and $\tau$ is
   weakly compatible with $D$, then it is weakly compatible with its infinitesimalization
   $\nabla $. So to prove \eqref{nuf1}, it suffices to consider the infinitesimal case. Fix
@@ -1283,7 +1344,7 @@ defined by $\tau $.
   respect to the bracket $\tau $, this is a Lie algebra derivation, because $\tau $ is
   $\bar\nabla $-invariant, assuming weak compatibility. But $\adjoint_Z^\tau$ is also a
   derviation of $A|_m$, and on ${\mathfrak h} $ these two derivations coincide, by
-  \eqrefs{hsk}{zero} and the definition of model data. Since $\tau $ is separating,
+  \eqrefs{hsd}{zero} and the definition of model data. Since $\tau $ is separating,
   ${\mathfrak h} \subset A|_m$ is a separating subalgebra, with respect to the bracket
   defined by $\tau $, and so infinitesimally separating. It follows that the derivations
   agree on $A|_m$, which proves compatibility condition c2, and hence strong compatbility.
@@ -1315,13 +1376,14 @@ defined by $\tau $.
 \end{proof}
 
 \subsection{Model curvature}\label{model_curvature_general}
-Consider an infinitesimal Cartan geometry $(A, \nabla)$, such as the
+Consider an infinitesimal Cartan geometry $(A, \nabla)$, which may or may not be the
 infinitesimalization of some global Cartan geometry. While the curvature of the
-infinitesimal Cartan connection $\nabla$ is an obstruction to symmetry, and makes sense
-without the prescription of any model data, {\df model curvature} is more amenable to
-normalization, as we shall see concretely in the case of parabolic geometry.
+infinitesimal Cartan connection $\nabla$ is an obstruction to symmetry (Theorem
+\ref{curvature}) and makes sense without the prescription of any model data, {\df model
+  curvature} is more amenable to normalization, as we shall see concretely in the case of
+parabolic geometry.
 
-In the general case the model curvature is a section of $\wedge^2{\mathcal D}^*\otimes A$,
+In the general case, the model curvature is a section of $\wedge^2{\mathcal D}^*\otimes A$,
 where ${\mathcal D} \subset TM$ is the image of the anchor. In other words, curvature is
 an $A$-valued two-form on the oribits of $A$.  However, for simplicity, we only define it
 here in the case that $A$ is {\em transitive}: it is then the section $\kappa$ of
@@ -1333,10 +1395,6 @@ Here $\#$ is the anchor and
 $$\torsion \bar\nabla(X, Y) = \bar\nabla_XY - \bar\nabla_XY - [X, Y] = \nabla_{\#Y} X -
 \nabla_{\# X} Y + [X, Y].$$ That $\kappa $ is well defined follows from
 \eqrefs{hsd}{zero} and compatability condition c2.
-
-Basic properties of curvature, such as a
-transformation rule and the Bianchi identity, are established in Section
-\ref{modelcurvature}; see also Theorem \ref{transform_}.
 
 The model curvature is the Lie algebroid analogue of ``curvature'', as that term is
 generally understood in the Cartan geometry literature.
@@ -1350,12 +1408,12 @@ generally understood in the Cartan geometry literature.
   In particular, if $\kappa =0$, then $\curvature \nabla =0$ and
   $\torsion \bar\nabla =\tau $.
 \end{proposition}
-\noindent The consequences of $\curvature \nabla =0$ will be briefly reviewed in
+\noindent The consequences of $\curvature \nabla =0$ have already been discussed in
 \ref{curvature}.
 
-According to the proposition, $\kappa $ is also an obstruction to symmetry, but of the
-kind prescribed {\em a priori} by the choice of the Lie algebra model for $\tau $. As
-Theorem \ref{curvature} will show, the model curvature measures the difference between a
+According to the proposition, $\kappa $ is an obstruction to symmetry, but of the kind
+prescribed {\em a priori} by the choice of the Lie algebra model for $\tau $. According to
+Theorem \ref{curvature}, the model curvature measures the difference between a
 ``deformed'' Lie bracket $\torsion \bar\nabla$, defined by the Cartan connection, and a
 bona fide Lie bracket, prescribed by the model data $\tau$. This nice interpretation is
 obscured in the standard principal bundle approach.
@@ -1378,11 +1436,11 @@ obscured in the standard principal bundle approach.
 \end{proof}
 
 \subsection{Model curvature under automorphisms}\label{transform}
-Let $(A, \nabla, \tau)$ be an infinitesimal Cartan geometry. Let
+Let $(A, \nabla, \tau)$ be a transitive infinitesimal Cartan geometry. Let
 $f \colon M \rightarrow M'$ be a diffeomorphism and $q \colon A \rightarrow A'$ some Lie
-algebroid isomorphism, covering $f$, into some second Lie algebroid
-$A'$. Supposing $A^0$ is the anchor kernel of $A$, the push-forward $q_*\tau$, defined by
-$$(q_*\tau)(X, Y) = q \tau(q^{-1}X, q^{-1}Y),$$ will be model data on $A'$.
+algebroid isomorphism, covering $f$, into some second Lie algebroid $A'$ (necessarily
+transitive). It is not hard to see that the push-forward $q_*\tau$, defined by
+$(q_*\tau)(X, Y) = q \tau(q^{-1}X, q^{-1}Y),$ will be model data on $A'$.
 
 \begin{proposition}
   The equation
@@ -1406,14 +1464,14 @@ $$(q_*\tau)(X, Y) = q \tau(q^{-1}X, q^{-1}Y),$$ will be model data on $A'$.
   $({\mathcal G}', D', \tau')$ is a Cartan geometry, whose infinitesimalization is
   $(A', \nabla', \tau')$. In any case, if $\kappa$ is the model curvature of
   $(A, \tau, \nabla)$ and $\kappa'$ the model curvature of $(A, \tau', \nabla')$, then we
-  obtain the {\df transformation rule},
+  obtain the {\df curvature transformation rule},
   \begin{equation}
     \label{tarragon5}
     \kappa'(V_1, V_2) = q \kappa (Tf^{-1} \cdot V_1, Tf^{-1}\cdot V_2); \qquad V_1, V_2 \in TM.
   \end{equation}
   If $({\mathcal G}, \tau, D)$ (resp., $(A, \tau, \nabla)$) is an (infinitesimal)
   Cartan geometry, then $({\mathcal G}, \tau', D')$ (resp., $(A, \tau', \nabla')$) is an
-  (infinitesimal) Cartan geometry. 
+  (infinitesimal) Cartan geometry.
 \end{proposition}
 \begin{proof}
   To show $\nabla'$ is well-defined, we apply Proposition \ref{hsd}, which means we need
@@ -1487,7 +1545,7 @@ For any transitive infinitesimal Cartan geometry $(A, \nabla, \tau)$ one has the
 For a proof, first note that any infinitesimal Cartan connection
 $\nabla $ on a Lie algebroid, one has the Bianchi identity
 \begin{equation}
-    \label{pq1}
+    \label{pq1i}
     (\bar\nabla_{X_3}\torsion \bar\nabla )(X_1, X_2) + \torsion \bar\nabla
       (\torsion    \bar\nabla (X_1, X_2), X_3) + \text{terms cyclic in 1-2-3} = 0.
 \end{equation}
@@ -1496,7 +1554,7 @@ See \cite[Example 6.5]{Blaom_12}. Since $\bar\nabla \tau  = 0$
 \begin{equation*}
   (\bar\nabla_{X_3}\kappa )(\#X_1, \#X_2) = (\bar\nabla_{X_3}\torsion \bar\nabla )(X_1, X_2)
 \end{equation*}
-holds, as do the cyclicly permuted variants thereof. Using these in \eqref{pq1}, we obtain
+holds, as do the cyclicly permuted variants thereof. Using these in \eqref{pq1i}, we obtain
 \begin{equation*}
   (\bar\nabla_{X_3}\kappa)(\#X_1, \#X_2) + \torsion \bar\nabla
   (\torsion    \bar\nabla (X_1, X_2), X_3) + \text{terms cyclic in 1-2-3} = 0.
@@ -1505,8 +1563,14 @@ Rearranging the definition of $\kappa $, we have
 $\torsion \bar\nabla(X,Y) = \kappa(\#X, \#Y) + \tau(X, Y)$, which we can use to rewrite
 this last equation as \eqref{bianchi} above.
 
+\begin{remark}
+  We choose to write the Bianch identity in the form \eqref{bianchi}, as this leads to a
+  simple ``graded'' form, in the case that $A$ is a filtered Lie algebroid (Proposition
+  \ref{section_bianchi}).
+\end{remark}
+
 \refreshpage
-\section{Cartan geometries as bundles of semi-holonomic jets}
+\section{Cartan geometries as bundles of semi-holonomic jets}\label{jets}
 In this section, not essential to the sequel, we show how to realize an infinitesimal
 Cartan geometry $(A, \nabla, \tau)$ over $M$ as a subalgebroid of the bundle
 $\bar J^\nu(TM)$ of $\nu$th-order semi-holonomic jets of vector fields. Significantly, in
@@ -1514,42 +1578,48 @@ the transitive case, $\nu$ is completely determined by the Lie algebra quotient
 ${\mathfrak g} / {\mathfrak h} $ on which tangent spaces of $M$ are being modeled. Our
 results generalize to the curved case results we learned from \cite{Abadoglu_etal_08},
 which in turn are based on of the classical papers
-\cite{Guillemin_Sternberg_64,Singer_Sternberg_65}. With the Lie algebroid formalism we
-have in place, our results follow with very little effort. One can look for similar
+\cite{Guillemin_Sternberg_64,Singer_Sternberg_65}. With the Lie algebroid formalism that
+we have in place, our results follow with very little effort. One can look for similar
 results for global Cartan geometries, whose flat versions are described in
-\cite{Abadoglu_etal_08}, but we don't pursue this here.
+\cite{Abadoglu_etal_08}, but we do not pursue this here. A wrinkle in the global case is
+that the global notion of order (what \cite{Abadoglu_etal_08} calls the {\df geometric
+  order}) is sometimes one higher than the infinitesimal order, because of non-trivial but
+{\em discrete} kernels in what would otherwise be an embedding into the Lie groupoid
+$\bar J^\nu(M \times M)$.
 
 In the flat, infinitesimal case (action algebroids) one can replace $\bar J^\nu(TM)$ with
 the space $J^\nu(TM)$ of bona fide holonomic jets, that is, we may view the Cartan
-geometry as overdetermined homogeneous PDEs for vector fields on $M$ (and these PDE's even
-have solutions, namely the $\nu$th-order prolongations of the infinitesimal generators).
-To extend this PDE interpretation to the curved case requires a strong condition on
+geometry as overdetermined homogeneous PDEs for vector fields on $M$, and these PDE's even
+have solutions, namely the infinitesimal generators of the action.  Unfortunately, to
+extend this PDE interpretation to the curved case requires a strong condition on
 $\curvature\nabla $, as we show in Proposition \ref{infinitesimal_order} when $\nu=2$,
-which applies in the parabolic case, as we establish later.
+which covers the effective parabolic cases, as we establish later (``effective'' is
+defined below).
 
-Now in the scenario just mentioned, ``standard procedure'' in geometric PDE theory would
-be to intersect the realization of $A$ as a subalgebroid of $\bar J^2(TM)$ with $J^2(TM)$,
-to get a genuine PDE. Unfortunately, as one can show in conformal geometry, for example,
-essential information may be lost.
+Now in the scenario just mentioned, one can intersect the realization of $A$ as a
+subalgebroid of $\bar J^2(TM)$ with $J^2(TM)$, to get a genuine PDE. Unfortunately, as one
+can show in conformal geometry, for example, essential information may be lost.
 
-On the other hand, when a Cartan geometry is realized as a bundle of jets, certain
-ambiguities that arise in the choice of the connection and model data are ``resolved'', as
-we show in Proposition \ref{resolve}, which is an advantage.
+When a Cartan geometry is realized as a bundle of jets, certain ambiguities that arise in
+the choice of the connection and model data are ``resolved'', as we show in Proposition
+\ref{resolve}, which is admittedly an advantage of the jet formalism over the abstract
+point which will be our principal preoccupation.
 
 \subsection{The infinitesimal order of a Cartan connection}\label{infinitesimal_order}
 Let $E$ be a vector bundle over $M$. Between $J^2E$ and $J^1 J^1 E$ lies the bundle
 $\bar J^2(E)$ of {\df semi-holonomic} jets. To recall it's definition, let $\natural$
-denote a lowering of degree one in any jet bundle. So, for example,
+denote a lowering of the order in any jet bundle by one. So, for example,
 $\natural \colon J^2E \rightarrow J^1E$ is the restriction of the projection
 $\natural \colon J^1 J^1 E \rightarrow J^1 E$, etc. {\df Spencer's operator}
 ${\mathcal D} \colon (J^1E) \rightarrow \Gamma(T^*\!M \otimes E)$ is defined by
-${\mathcal D} X := X - J^1(\natural X)$, so that ${\mathcal D} X=0$ if and only if $X$ is
+${\mathcal D} X := X - J^1(\natural X)$ so that ${\mathcal D} X=0$ if and only if $X$ is
 holonomic. One then defines $\bar J^2E$ to be the kernel of
 \begin{gather*}
   \omega_1 \colon J^1 J^1 E \rightarrow T^*\!M \otimes E\\
 (\omega_1 \xi)V:={\mathcal D}_V(\natural \xi) - \natural {\mathcal D}_V \xi.
 \end{gather*}
-Here we are writing ${\mathcal D}_VX = ({\mathcal D} X)(V)$. One point of these
+Here we are writing ${\mathcal D}_VX = ({\mathcal D} X)(V)$ (and one has the Liebniz
+identity ${\mathcal D}_V(fX) = f {\mathcal D}_VX + df(V)\natural X$). A key point of these
 abstractions is the following fundamental characterization of $J^2E$ (see e.g.,
 \cite[\S8.1]{Blaom_12}):
 
@@ -1586,7 +1656,7 @@ $L \circ \phi \in T^*\!M \otimes F$.
   $X \in \Gamma(A)$.
 \end{proposition}
 \begin{proof}
-  Under our sign conventions, $s_\nabla X = J^1 X + \nabla X$ and, noting that
+  We have $s_\nabla X = J^1 X + \nabla X$ (see \eqrefs{hsd}{cspan}) and, noting that
   ${\mathcal D}_V\phi = \phi(V) $ for $\phi$ in the kernel of $\natural$, the proof
   proceeds in a straightforward fashion, the second part appealing to the lemma above.
 \end{proof}
@@ -1595,9 +1665,8 @@ Now, declaring $\bar J^0 E = E$ and $\bar J^1 E := J^1 E$, one inductively defin
 $k$th order semi-holonomic jet bundle
 $\bar J^k E \subset J^1 \bar J^{k-1} E \subset J^1 J^1 \bar J^{k-2} E$ as the kernel of a
 map $\omega_1 \colon J^1 J^1 \bar J^{k-2} E \rightarrow T^*\!M \otimes \bar J^{k-2}E$,
-defined in terms of the Spencer operator just as before, but now restricted to
-$J^1 \bar J^{k-1} E$.  We can then define
-$\#_\nabla^k \colon A \rightarrow J^1 \bar J^{k-1}(TM)$, by
+defined, as before, in terms of the Spencer operator on sections of $J^1 \bar J^{k-1} E$.
+We can then define $\#_\nabla^k \colon A \rightarrow J^1 \bar J^{k-1}(TM)$, by
 $J^1 \#_\nabla^{k-1} \circ s_\nabla$, arguing similarly that it's image lies in
 $\bar J^k(TM)$. We then declare the {\df infinitesimal order} of $\nabla$ to be the
 smallest integer $\nu \le \infty$ such that
@@ -1608,9 +1677,12 @@ Let ${\mathfrak a}^k(A, \nabla) := \kernel\#_\nabla^k \subset A$; in particular
 ${\mathfrak a}^0(A, \nabla):=\kernel\#$.  Because $\#_\nabla^k$ is a Lie algebroid
 morphism, ${\mathfrak a}^k(A, \nabla)$ is a bundle of Lie algebras, but it's rank may vary
 from point to point. We have
-$${\mathfrak a}^0(A, \nabla) \supset {\mathfrak a}^1(A, \nabla) \supset {\mathfrak a}^2(A,
-\nabla) \supset \cdots .$$ The infinitesimal order of $\nabla$ is evidently the smallest
-$\nu\le \infty$ such that ${\mathfrak a}^\nu(A, \nabla)=0$.
+\begin{equation*}
+  {\mathfrak a}^0(A, \nabla) \supset {\mathfrak a}^1(A, \nabla) \supset {\mathfrak a}^2(A,
+\nabla) \supset \cdots.
+\end{equation*}
+The infinitesimal order of $\nabla$ is evidently the smallest $\nu\le \infty$ such that
+${\mathfrak a}^\nu(A, \nabla)=0$.
 \begin{proposition}
   For each $j$, write ${\mathfrak a}^j:={\mathfrak a}^j(A, \nabla)$ and assume that
   ${\mathfrak a}^k$ has constant rank. Then at each $m \in M$,
@@ -1640,35 +1712,37 @@ Cartan geometry.
 
 Suppose ${\mathfrak g} $ is a finite-dimensional Lie algebra and
 ${\mathfrak h} \subset {\mathfrak g} $ a fixed subalgebra. Following
-\cite{Guillemin_Sternberg_64,Singer_Sternberg_65}, we will write
+\cite{Abadoglu_etal_08,Guillemin_Sternberg_64,Singer_Sternberg_65}, we will write
 ${\mathfrak a}^0({\mathfrak g}):={\mathfrak h} $ and inductively define
 $${\mathfrak a}^{k+1}({\mathfrak g}):=\{X \in {\mathfrak a}^k({\mathfrak g})\suchthat [{\mathfrak g},X] \subset
-{\mathfrak a}^k({\mathfrak g})\}.$$ The {\df infinitesimal order} of ${\mathfrak g}$ is
-the smallest $m\le\infty$ such that ${\mathfrak a}^\nu({\mathfrak g})=0$. Of course the
-spaces ${\mathfrak a}^k({\mathfrak g})$ and the order $\nu$ depend on the choice of
-subalgebra ${\mathfrak h} \subset {\mathfrak g} $, but we leave this implicit in the
-notation.
+{\mathfrak a}^k({\mathfrak g})\}.$$ The {\df infinitesimal order} of ${\mathfrak g}$ {\df
+  modulo ${\mathfrak h}$} is the smallest $\nu\le\infty$ such that
+${\mathfrak a}^\nu({\mathfrak g})=0$. While the spaces ${\mathfrak a}^k({\mathfrak g})$
+depend on the choice of ${\mathfrak h} \subset {\mathfrak g} $, we leave this implicit in
+the notation.
+
+Recall that if $G $ is a Lie group and $H \subset G$ a closed subgroup, then $G$ acts
+effectively on $G/H$ if and only if $\{1_G\}$ is the only normal subgroup of $G$ lying
+within $H$. A pair of Lie algebras $({\mathfrak g}, {\mathfrak h})$ with
+${\mathfrak h} \subset {\mathfrak g} $ is called {\df effective} if ${\mathfrak g} $ has
+no non-zero ideal lying within ${\mathfrak h} $.
 \begin{proposition}
-  If ${\mathfrak g} $ acts faithfully on ${\mathfrak g}/{\mathfrak h}$, then the
-  infinitesimal order of ${\mathfrak g} $ is finite.
+  The infinitesimal order of ${\mathfrak g} $ modulo ${\mathfrak h}$ is finite if and only
+  if $({\mathfrak g}, {\mathfrak h})$ is effective.
 \end{proposition}
 \noindent%
-Faithfullness is not a necessary condition here for, as we shall see later, the
-infinitesimal order of any reductive Lie algebra ${\mathfrak g} $, with respect to some
-parabolic subalgebra ${\mathfrak h}$, is always two (Proposition \ref{}) even if
-$Z({\mathfrak g})\ne 0$.
-
 
 \begin{proof}
-  For any $k$, ${\mathfrak a}^{k+1}({\mathfrak g}) \subset {\mathfrak a}^k({\mathfrak g})$
-  is an ideal, and if the sequence
+  $\Leftarrow$: By finite-dimenisonality of ${\mathfrak g} $, the sequence
   ${\mathfrak a}^0({\mathfrak g}) \supset {\mathfrak a}^1({\mathfrak g}) \supset
   {\mathfrak a}^2({\mathfrak g}) \supset \cdots $ stabilizes at some
-  ${\mathfrak a}^\nu({\mathfrak g})$, then
-  ${\mathfrak a}^\nu({\mathfrak g}) \subset {\mathfrak h} $ must be an ideal of
-  ${\mathfrak g}$. But by the lemma hypothesis, ${\mathfrak h} $ can have no ideal of
-  ${\mathfrak g} $ as a subalgebra, except the trivial one. So
-  ${\mathfrak a}^\nu({\mathfrak g})=0$.
+  ${\mathfrak a}^\nu({\mathfrak g})$, which will be an ideal of ${\mathfrak g} $ lying in
+  ${\mathfrak h} $.
+
+  $\Rightarrow$: Suppose $I$ is an ideal of ${\mathfrak g} $ lying in
+  ${\mathfrak h} = {\mathfrak a}^0({\mathfrak g})$. This anchors a simple induction
+  showing that $I \subset {\mathfrak a}^k({\mathfrak g})$ for all $k$. So if $I\ne 0$, the
+  infinitesimal order has to be infinite.
 \end{proof}
 
 Now suppose $(A, \nabla, \tau)$ is a transitive infinitesimal Cartan geometry over a
@@ -1679,36 +1753,36 @@ scheme fibre-wise. Furthermore, ${\mathfrak a}^\nu(A, \tau)=0$ if and only if
 ${\mathfrak a}^\nu({\mathfrak g}) = 0$, where ${\mathfrak g} $ is an arbitrary fibre of
 $(A, \tau)$ and the implicitly understood subalgebra ${\mathfrak h}$ is the corresponding
 fibre of the anchor kernel. In this case, we say $\tau $ {\df is modeled on
-  ${\mathfrak g}/{\mathfrak h}$}, and we prove:
+  ${\mathfrak g}$ with kernel ${\mathfrak h}$}, and we prove:
 
 \begin{theorem}
   Let $(A, \nabla, \tau)$ be a transitive infinitesimal Cartan geometry over a connected
   base $M$, and assume the spaces ${\mathfrak a}^k(A, \nabla)$ defined in
   \ref{infinitesimal_order} have constant rank. Then for all $k\ge 0$,
-  ${\mathfrak a}^k(A, \nabla)={\mathfrak a}^k(A, \tau)$. In particular: (i) If $\tau $ is
-  modeled on ${\mathfrak g}/{\mathfrak h}$, then the infinitesimal order $\nu$ of $\nabla $ is
-  the infinitesimal order of ${\mathfrak g} $; and (ii) If $\nu$ is finite, then
-  $\#_\nabla^\nu$ maps $A$ isomorphically onto a subalgebroid of $\bar J^\nu(TM)$.
+  ${\mathfrak a}^k(A, \nabla)={\mathfrak a}^k(A, \tau)$. In particular, if $\tau $ is
+  modeled on ${\mathfrak g}$ with kernel ${\mathfrak h}$, then the infinitesimal order
+  $\nu$ of $\nabla $ is the infinitesimal order of ${\mathfrak g} $ modulo
+  ${\mathfrak h}$.
 \end{theorem}
+\noindent%
+
 
 \begin{proof}
   The $X$ appearing in $\torsion \bar\nabla (A|_m, X)$ in the formula of Proposition
-  \ref{torsion_encodes} lies in the anchor kernel of $A$, which shows that
+  \ref{torsion_encodes}, applying under the rank hypothesis, lies in the anchor kernel of
+  $A$. This shows that
   $\torsion \bar\nabla (Y, X) = -\nabla_{\#Y}X + [Y, X] = -\bar\nabla_XY$, by the
-  definition of $\bar\nabla$, \eqrefs{hsd}{zero}. But, by the compatability condition
-  c2 (see \ref{preview}), this is the same as $-\tau(Y, X)$, and the result immediately
+  definition of $\bar\nabla$, \eqrefs{hsd}{zero}. But, by the compatability condition c2
+  (see \ref{preview}), this is the same as $-\tau(Y, X)$, and the result immediately
   follows.
 \end{proof}
 
-\subsection{Jets resolve amibguities in a geometry's specification}\label{resolve}
+\subsection{Jets resolve ambguities in a geometry's specification}\label{resolve}
 Later, when we consider parabolic geometry, we will construct ``normal'' model data
-$\tau $ (the corresponding Cartan connection is then determined uniquely by
-compatibility). However, the choice will only be unique up to so-called Weyl gauge
-transformations.
-
-The infinitesimal Weyl gauge transformations are special examples of Lie algebroid
-isomorphisms $q \colon A \rightarrow A$ covering the identity on $M$. For any such $q$ it
-is not hard to see that $\nabla'_VX=q \nabla_Vq^{-1}X $ and
+$\tau $, but the choice will only be unique up to so-called Weyl gauge transformations.
+These transformations are, in particular, Lie algebroid isomorphisms
+$q \colon A \rightarrow A$ covering the identity on $M$. For any such $q$, Proposition
+\ref{transform} (or a direct check) shows that $\nabla'_VX=q \nabla_Vq^{-1}X $ and
 $\tau'(X, Y) = q \tau(q^{-1}X, q^{-1}Y)$ define a new infinitesimal Cartan geometry
 $(A, \nabla', \tau')$, whenever $(A, \nabla, \tau)$ is a such a geometry, and these are
 generally distinct.  However, at the level of the representation as semi-holonomic jets,
@@ -1732,14 +1806,14 @@ there is no difference:
 \end{proposition}
 
 \begin{proof}
-  Both parts of proposition follow rather easily from the identity
+  Both parts of the proposition follow rather easily from the identity
   \begin{equation}
     \label{stoop}
-    \#_{\nabla'}^\nu \circ q = \#_\nabla^\nu.
+    \#_{\nabla'}^\nu \circ q = \#_\nabla^\nu,
   \end{equation}
-  Since $q$ covers the identity, \eqref{stoop} holds if $\nu=0$, which anchors a proof by
-  induction. For, assuming \eqref{stoop} holds for some $\nu=j$, we compute, with the help
-  of the formula $s_{\nabla'}X =J^1 X + \nabla' X$,
+  which we prove as follow. Since $q$ covers the identity, \eqref{stoop} holds if $\nu=0$,
+  which anchors a proof by induction. For, assuming \eqref{stoop} holds for some $\nu=j$,
+  we compute, with the help of the formula $s_{\nabla'}X =J^1 X + \nabla' X$,
   \begin{align*}
     \#_{\nabla'}^{j+1} (qX) &= (J^1\#_{\nabla'}^j)(J^1(qX) + \nabla'(qX)) \\
     &= J^1(\#_{\nabla'}^j(qX)) + \#_{\nabla'}^j \circ (q \circ \nabla X)\\
@@ -1750,22 +1824,20 @@ there is no difference:
   which shows \eqref{stoop} holds when $\nu=j+1$.
 \end{proof}
 
-
 \refreshpage
-\section{Parabolic geometries. Part I}\label{parabolic_summary}
-In this section we define parabolic geometries,
-certain reductions thereof, called Levi structures, and outline our main results about
-them. Proofs appear after various restatements given in Section \ref{parabolic_proofs}.
+\section{Parabolic geometries}\label{parabolic_summary}
+In this section we define parabolic geometries.
 
 \subsection{Parabolic subalgebras and parabolic filtrations}\label{canonical_filtrations_}
 Following \cite{Calderbank_Noppakaew_16}, we call a Lie subalgebra
 ${\mathfrak p} \subset {\mathfrak g} $ {\df parabolic} if it contains the normalizer of a
-maximal nil subalgebra. Two prototypical examples are the infinitesimal stabilizers of
-flags in ${\mathbb F}^n $, which are the parabolic subalgebras of $\gl({\mathbb F}, n)$
-(${\mathbb F}$ an algebraically closed field) and the infinitesimal stabilizers of
-isotropic flags in ${\mathbb R}^{2n +k}$, for some quadratic form of signature
-$(n + k, n)$, which are the parabolic subalgebras of $\so(n + k, n)$ ($n \ge 1$). (The Lie
-algebra $\so(k)$ has only itself as a parabolic subalgebra!)
+maximal nil subalgebra. Friendlier characterizations in the reductive case are offered
+shortly.  Frequently cited examples of parabolic Lie algebras are: (i) the infinitesimal
+stabilizers of flags in ${\mathbb F}^n $, which are the parabolic subalgebras of
+$\gl({\mathbb F}, n)$, ${\mathbb F}$ an algebraically closed field; and (ii) the
+infinitesimal stabilizers of isotropic flags in ${\mathbb R}^{2n +k}$, for some quadratic
+form of signature $(n + k, n)$, which are the parabolic subalgebras of $\so(n + k, n)$,
+$k \ge 1$. The Lie algebra $\so(n)$ has only itself as a parabolic subalgebra.
 
 Facts about parabolic subalgebras stated below without proof are detailed in Appendix
 \ref{lie_algebra_facts}. In this subsection, ${\mathfrak g} $ is always a
@@ -1773,7 +1845,7 @@ finite-dimensional Lie algebra over a field of characteristic zero, such as ${\m
 or ${\mathbb C} $.
 
 \begin{theorem}[Theorem \ref{parabolic_characterizations}] Suppose ${\mathfrak g} $ is
-  reductive and fix a non-degenerate trace-form, which always exists. Then
+  {\bfseries reductive} and fix a non-degenerate trace-form, which always exists. Then
   ${\mathfrak p} \subset {\mathfrak g} $ is parabolic if and only if its polar
   ${\mathfrak p}^\perp$, which does not depend on the choice of form, is nilpotent and
   lies in the semisimple part $[{\mathfrak g}, {\mathfrak g}]$ of ${\mathfrak g}$. In that
@@ -1784,14 +1856,14 @@ or ${\mathbb C} $.
 See \eqref{qq4} below and Theorem \ref{parabolic_characterizations} for other
 characterizations of parabolic subalgebras.
 \begin{remark}
-  In fact, ${\mathfrak p}^\perp$ will be the so-called nilpotent radical of
+  In fact, ${\mathfrak p}^\perp$ will be the nilpotent radical of
   ${\mathfrak p}$ (see \ref{nilpotency}), and ${\mathfrak p}/{\mathfrak p}^\perp$ is
   known as the {\df reductive Levi quotient} of ${\mathfrak p}$. We won't need this here,
   but it explains the name ``Levi structure'' introduced later.
 \end{remark}
 
-To connect parabolic subalgebras with filtrations and gradings, we recall a general method
-for constructing Lie algebra filtrations from more primitive data. For a subalgebra
+To connect parabolic subalgebras with filtrations, we recall a general method for
+constructing Lie algebra filtrations from more primitive data. For a subalgebra
 ${\mathfrak n} \subset {\mathfrak g} $, the map
 ${\mathfrak s} \mapsto \adjoint_{\mathfrak n}({\mathfrak s}):=[{\mathfrak n}, {\mathfrak
   s}]$ on subspaces ${\mathfrak s} \subset {\mathfrak g} $ has a right-inverse,
@@ -1823,54 +1895,82 @@ applies and we call the sequence
 $\cdots {\mathfrak g}^{-3} \supset {\mathfrak g}^{-2} \supset {\mathfrak g}^{-1} \supset
 {\mathfrak g}^0\supset{\mathfrak g}^1 \supset {\mathfrak g}^2\supset {\mathfrak g}^3
 \supset \cdots$ the {\df pre-filtration} associated with
-$({\mathfrak g}^0, {\mathfrak g}^1)$.
+$({\mathfrak g}^0, {\mathfrak g}^1)$. (According to Definition \ref{filtered}, it is not a
+Lie algebra filtration in our sense unlesss it additionally descends to $0$ and ascends to
+${\mathfrak g}$.)
 
-\begin{proposition}[Proposition \ref{can}, Corollary \ref{can}, Proposition \ref{in_terms_of_gradings}, Proposition \ref{separating_}]
+\begin{proposition}[Proposition \ref{can}, Corollary \ref{can}, Propositions
+  \ref{in_terms_of_gradings}, \ref{separating_}, \ref{parabolic_order}, Theorem
+  \ref{parabolic_order}]
   Fix a non-degenerate trace-form on a reductive Lie algebra ${\mathfrak g}$. Then:
   \begin{conditions}
   \item\label{qq1} For any parabolic subalgebra ${\mathfrak p} \subset {\mathfrak g} $,
     the pre-filtration of ${\mathfrak g} $ associated with
     $({\mathfrak p},{\mathfrak p}^\perp) $, which is independent of the choice of form, is
-    a bona fide Lie algebra filtration (i.e., it descends to $0$ and ascends to
-    ${\mathfrak g}$) with $|{\mathfrak g}| = m $ for some $m\ge 0$ (see Notation
+    a bona fide Lie algebra filtration with $|{\mathfrak g}| = m $ for some $m\ge 0$ (see Notation
     \ref{filtered}). This is the {\df canonical filtration} associated with
     ${\mathfrak p}$.
   \item\label{qq1b} The associated graded $\graded({\mathfrak g})$ admits a unique grading
     element $E \in [\graded({\mathfrak g}), \graded({\mathfrak g})]$. In particular,
     ${\mathfrak g} $ and $\graded({\mathfrak g}) $ are isomorphic Lie algebras (by
     arguments recalled in \ref{splittings}).
-  \item Every parabolic subalgebra ${\mathfrak p} $ of ${\mathfrak g}$ is separating (see
-    \ref{separating}) and contains $Z({\mathfrak g})$. With respect to ${\mathfrak p} $,
-    the infinitesimal order of ${\mathfrak g} $ is always two (see
-    \ref{from_algebraic}). \label{cando}
+  \item Modulo ${\mathfrak p} $, the infinitesimal order of ${\mathfrak g} $, in the sense
+    of \ref{from_algebraic}, is 2, assuming $\graded({\mathfrak g})$ contains no
+    non-zero ideals lying in $\graded({\mathfrak g})_0$. It is infinite otherwise.
+  \item \label{cando} Every parabolic subalgebra ${\mathfrak p} $ of ${\mathfrak g}$ is
+    separating, in the sense of \ref{separating}.
+  \item \label{candoz} Every parabolic subalgebra ${\mathfrak p} $ of ${\mathfrak g}$
+    contains $Z({\mathfrak g})$.
   \item\label{qq4} A subalgebra ${\mathfrak p} $ is parabolic if and only if there exists
     a grading of ${\mathfrak g} $ such that $Z({\mathfrak g}) \subset {\mathfrak g}_0$ and
     ${\mathfrak p} = \oplus_{j\ge 0} {\mathfrak g}_j$. In that case the corresponding
     filtration, defined by ${\mathfrak g}^j:=\oplus_{i\ge j}{\mathfrak g}_i$, is the
-    canonical filtration associated with ${\mathfrak p} $ if and only if ${\mathfrak g}_1$
-    generates ${\mathfrak g}^1$, or equivalently, if
-    ${\mathfrak g}^1 \supset {\mathfrak g}^2 \supset {\mathfrak g}^3 \supset \cdots $ is
-    the lower central series of ${\mathfrak g}^1$.
+    canonical filtration associated with ${\mathfrak p} $ if and only if one of the
+    following equivalent conditions hold:
+    \begin{itemize}
+    \item
+      ${\mathfrak g}^1 \supset {\mathfrak g}^2 \supset {\mathfrak g}^3 \supset \cdots $ is
+      the lower central series of ${\mathfrak g}^1$.
+    \item ${\mathfrak g}_1$ generates
+     $\oplus_{j\ge 1}{\mathfrak g}_j={\mathfrak g}^1$.
+    \item  ${\mathfrak g}_{-1}$ generates $\oplus_{j\le -1}{\mathfrak g}_j$.
+    \end{itemize}
+    For any parabolic ${\mathfrak p} \subset {\mathfrak g} $, a grading satisfying all
+    these conditions exists.
   \end{conditions}
 \end{proposition}
 \noindent%
-The condition $Z({\mathfrak g}) \subset {\mathfrak g}_0$ is necessary: Define a grading of
-${\mathfrak g} =\gl({\mathbb C}, 2)$ by declaring ${\mathfrak g}$ to have, as the
-non-trivial components, the one-dimensional subspaces ${\mathfrak g}_{-2}$,
-${\mathfrak g}_{-1}$, ${\mathfrak g}_0$ and ${\mathfrak g}_1$, spanned respectively by
-\begin{equation*}
- \begin{bmatrix} 1 & 0\\0 & 1\end{bmatrix}, \quad
- \begin{bmatrix} 0 & 0\\-1 & 0\end{bmatrix}, \quad
- \begin{bmatrix} 1 & 0\\0 & -1\end{bmatrix} \quad\text{and}\quad
- \begin{bmatrix} 0 & 1\\0 & 0\end{bmatrix}.
-\end{equation*}
-Then ${\mathfrak g}_0 \oplus {\mathfrak g}_1$ cannot be parabolic, because it does not
-contain the centre of $\gl({\mathbb C}, 2)$, violating \eqref{cando}.  In a filtered
-reductive (even semisimple) Lie algebra $\mathfrak g$, the subalgebra ${\mathfrak g}^0$
-need not be parabolic: Construct a filtration of
-${\mathfrak g}=\speciallinear(2, {\mathbb C})$ with $-1 \le {\mathfrak g} \le 1$ by
-defining ${\mathfrak g}^{-1}={\mathfrak g} $, ${\mathfrak g}^1=0$, and ${\mathfrak g}^0$
-to be the one-dimensional subalgebra of diagonal matrices.
+% The condition $Z({\mathfrak g}) \subset {\mathfrak g}_0$ is necessary: Define a grading of
+% ${\mathfrak g} =\gl({\mathbb C}, 2)$ by declaring ${\mathfrak g}$ to have, as the
+% non-trivial components, the one-dimensional subspaces ${\mathfrak g}_{-2}$,
+% ${\mathfrak g}_{-1}$, ${\mathfrak g}_0$ and ${\mathfrak g}_1$, spanned respectively by
+% \begin{equation*}
+%  \begin{bmatrix} 1 & 0\\0 & 1\end{bmatrix}, \quad
+%  \begin{bmatrix} 0 & 0\\-1 & 0\end{bmatrix}, \quad
+%  \begin{bmatrix} 1 & 0\\0 & -1\end{bmatrix} \quad\text{and}\quad
+%  \begin{bmatrix} 0 & 1\\0 & 0\end{bmatrix}.
+% \end{equation*}
+% Then ${\mathfrak g}_0 \oplus {\mathfrak g}_1$ cannot be parabolic, because it does not
+% contain the centre of $\gl({\mathbb C}, 2)$, violating \eqref{candoz}.
+
+In a filtered reductive Lie algebra $\mathfrak g$, the subalgebra ${\mathfrak g}^0$ need
+not be parabolic, even if $Z({\mathfrak g})$ is trivial (${\mathfrak g} $ is semisimple):
+Construct a filtration of ${\mathfrak g}=\speciallinear(2, {\mathbb C})$ with
+$-1 \le {\mathfrak g} \le 0$ by defining ${\mathfrak g}^{-1}={\mathfrak g} $, and letting
+${\mathfrak g}^0$ be the one-dimensional subalgebra of diagonal matrices (which cannot be
+parabolic, because it does not contain its Killing polar $({\mathfrak g}^0)^\perp$).
+
+There exist graded semisimple Lie algebras for which the associated filtration is not the
+canonical filtration associated with the necessarily parabolic subalgebra
+${\mathfrak p} = \oplus_{j\ge 0}{\mathfrak g}_j $. For let
+${\mathfrak g} =\speciallinear(2, {\mathbb C})$ and let
+$\{X_{-\alpha}, H_\alpha, X_\alpha\}$ be the standard basis. Then the grading of
+${\mathfrak g} $ by the eigenspaces of $\adjoint_{H_\alpha}$, with the corresponding
+eigenvalues $0, \pm 2$ defining the degrees, has the stated property.
+
+Property \eqref{candoz} implies that the infinitesimal order of ${\mathfrak g}$, modulo a
+parabolic subalgebra ${\mathfrak p}$, cannot be finite unless ${\mathfrak g} $ is
+semisimple (apply Proposition \ref{from_algebraic}).
 
 \begin{definition}
   An arbitrary filtration of a reductive Lie algebra ${\mathfrak g} $ will be called {\df
@@ -1884,7 +1984,8 @@ reductive Lie algebra by first fixing such a trace-form on the associated graded
 we need the following result.
 
 \begin{proposition} If ${\mathfrak g} $ is parabolically filtered, then each trace-form
-  $B$ has a {\df natural lift} $B^\wedge$ to a trace-form on ${\mathfrak g} $,
+  $B$ on $\graded({\mathfrak g})$ (or non-zero scalar multiple thereof) has a {\df natural
+    lift} $B^\wedge$ to a (scalar multiple of a) trace-form on ${\mathfrak g} $,
   non-degenerate if $B$ is non-degenerate. Here naturality means that for any
   filtration-preserving isomorphism $q \colon {\mathfrak g} \rightarrow {\mathfrak h} $
   between parabolically filtered reductive Lie algebras, we have
@@ -1902,28 +2003,27 @@ We will call a Lie groupoid ${\mathcal G} $ over $M$ {\df filtered} if its assoc
 algebroid $A$ is filtered. Now ${\mathcal G} $ acts on elements of the anchor kernel of
 $A$, and so on elements of $A^0$; if $A$ is firmly filtered then this action of
 $\mathcal G$, denoted $\Adjoint$, will {\em infinitesimally} preserve $A^0$ and its
-filtration, but need not do so globally. However, if it does, then $\mathcal G$ is said to
-be {\df firmly filtered}.
+filtration, but need not do so globally. However, if it does, then $\mathcal G$ itself is
+said to be {\df firmly filtered}.
 
 \subsection{Generalized flag manifolds}\label{parabolic_}
-Suppose that $G$ is a reductive Lie group and $P \subset G$ a parabolic subgroup. By
-definition, this means $P$ has a parabolic Lie algebra
-${\mathfrak p} \subset {\mathfrak g} $ and that the associated canonical filtration of
-${\mathfrak g} $ is $P$-invariant under $\Adjoint$ (it is automatically
+Suppose that $G$ is a Lie group with reductive Lie algebra $\mathfrak g$, and
+$P \subset G$ a parabolic subgroup. By definition, this means $P$ has a parabolic Lie
+algebra ${\mathfrak p} \subset {\mathfrak g} $ and that the associated canonical
+filtration of ${\mathfrak g} $ is $P$-invariant under $\Adjoint$ (it is automatically
 ${\mathfrak p} $-invariant under $\adjoint$). The quotient $M=G/P$ is known as a {\df
   generalized flag manifold}. The projective and conformal spheres are
 examples. Generalized flag manifolds constitute the flat models of parabolic geometries.
 
 The $P$-invariance of the canonical filtration leads to a firm filtering of the action
-algebroid $A := {\mathfrak g} \times M$, as described in \ref{eg2}. It is easy to see that
-the action groupoid ${\mathcal G} := G \times M $ is also firmly filtered.
+algebroid $A = {\mathfrak g} \times M$, as described in \ref{eg2}. It is easy to see that
+the action groupoid ${\mathcal G} = G \times M $ is also firmly filtered.
 
 \subsection{Parabolic geometries defined}\label{parabolic_defined}
 Suppose $A$ is a filtered Lie algebroid. Then model data $\tau$ on $A$ is {\df compatible}
 with the filtration if this is also a filtration with respect to $\tau$, i.e.,
 $\tau(X, Y) \in A^{j+k}$ whenever, $X \in A^j$ and $Y \in A^k$ have a common base
-point. An (infinitesimal) Cartan connection $D$ (resp., $\nabla)$ is {\df compatible} with
-the filtration if the filtration is $\bar D$-invariant (resp., $\bar\nabla$-invariant).
+point.
 
 A {\df parabolic geometry} is a transitive, firmly filtered, Lie groupoid ${\mathcal G} $
 over some smooth manifold $M$, with associated Lie algebroid denoted $A$, and
@@ -1937,34 +2037,39 @@ filtration-compatible model data $\tau $ on $A$, such that:
     \item[{\bf P4.}] There exists a Cartan connection $D$ on ${\mathcal G} $
       compatible with $\tau $.\label{parabolic4}
 \end{conditions}
-\noindent%
+%
+
+An (infinitesimal) Cartan connection $D$ (resp., $\nabla)$ is {\df compatible} with
+the filtration if the filtration is $\bar D$-invariant (resp., $\bar\nabla$-invariant).
 \begin{proposition}%
   \mbox{}
   \begin{conditions}
   \item Assuming $M$ is connected, it suffices to check P3 holds over
     a single point $m \in M$.\label{soot1}
   \item $D$ is necessarily compatible with the filtration of $A$.\label{soot3}
-  \item It suffices there exists a Cartan connection $D$ that is {\em weakly}
-    compatible with $D$.\label{soot2}
-  \item $D$ is unique. \label{soot4}
+  \item In P4, it suffices there exists a Cartan connection $D$ that is {\bfseries weakly}
+    compatible with $\tau$ (i.e., $\tau $ is $\bar\nabla $-invariant).\label{soot2}
+  \item $D$ is uniquely determined by $\tau$. \label{soot4}
   \end{conditions}
 \end{proposition}
 \begin{proof}
-  For \eqref{soot1}, see \ref{parabolic}, and for \eqref{soot3}, see Corollary A,
-  subsection \ref{all}. By P1, P2, and P3, and Proposition
-  \eqrefs{canonical_filtrations_}{cando}, the model data $\tau $ is separating. So
-  \eqref{soot2} and \eqref{soot4} follow from Proposition \ref{separating}.
+  For \eqref{soot1}, see \ref{parabolic}, and for \eqref{soot3}, see Corollary A of
+  \ref{all}. By P1, P2, and P3, and Proposition \eqrefs{canonical_filtrations_}{cando},
+  the model data $\tau $ is separating. So \eqref{soot2} and \eqref{soot4} follow from
+  Theorem \ref{separating}.
 \end{proof}
 
-Conclusion \eqref{soot4} means that a parabolic geometry is, in particular, unambiguously
-a Cartan geometry, in the sense of \ref{preview}.
+Conclusion \eqref{soot4} means that a parabolic geometry is unambiguously a Cartan
+geometry, in the sense of \ref{preview}.
 
 An {\df infinitesimal parabolic geometry} consists of a transitive, firmly filtered Lie
 algebroid $A$, and filtration-compatible model data $\tau $, satisfying the same
 conditions given above, but with the Cartan connection $D$ in P4 replaced with an
-infinitesimal Cartan connection $\nabla$. An analogue of the proposition holds except that
-for \eqref{soot1} we need to assume $A$ is integrable. Evidently, every parabolic geometry
-has a corresponding infinitesimalization.
+infinitesimal Cartan connection $\nabla$. An infinitesimal analogue of the proposition
+holds, except that for \eqref{soot1} we need to assume $A$ is integrable. Evidently, every
+parabolic geometry has a corresponding infinitesimalization.
+
+
 
 Parabolic geometries are generalized by {\df filtered Cartan geometries}, introduced in
 Section \ref{filtered_cartan}.
@@ -1984,14 +2089,20 @@ canonical model data associated with a generalized flag manifold, is regular (Pr
 
 A parabolic geometry is {\df regular} if the associated model data $\tau $ is regular.
 
-\subsection{Reduction}\label{reduction_}
-The concrete manifestations of parabolic geometries (their ``underlying geometric
-structures'') are typically obtained by a applying a reduction procedure.  Let
-$({\mathcal G}, \tau)$ be a parabolic geometry and $D$ the compatible Cartan connection.
+\refreshpage
+\section{Levi structures}\label{levisection}
+The concrete manifestations of parabolic geometries --- their ``underlying geometric
+structures'' --- are typically obtained by a applying a reduction procedure. Formally,
+reduction leads to the definition of Levi structures, several examples of which are given
+in this section.
 
-\begin{proposition}[Proposition \ref{subgroups}]
-  In a parabolic geometry $({\mathcal G}, \tau)$ let
-  ${\mathcal G}^1 \subset {\mathcal G} $ denote the source-connected subgroupoid
+\subsection{Reduction}\label{reduction_}
+Let $({\mathcal G}, \tau)$ be a parabolic geometry and $D$ the compatible Cartan
+connection. The proof of the following fact, given later in \ref{subgroups}, is
+elementary:
+
+\begin{proposition}
+  Let ${\mathcal G}^1 \subset {\mathcal G} $ denote the source-connected subgroupoid
   integrating $A^1$.  Then ${\mathcal G}^1 $ is a bundle of simply-connected nilpotent Lie
   groups; it is also a normal subgroupoid of ${\mathcal G}$, so that
   ${\mathcal G}/{\mathcal G}^1$ is a Lie groupoid, also transitive.
@@ -1999,16 +2110,33 @@ $({\mathcal G}, \tau)$ be a parabolic geometry and $D$ the compatible Cartan con
 
 \begin{remark}
   It follows from Remark \ref{canonical_filtrations_} that that $A^0/A^1$ is fibre-wise
-  reductive, so that ${\mathcal G}/{\mathcal G}^1$ has reductive vertex groups.
+  reductive, so that ${\mathcal G}/{\mathcal G}^1$ has reductive vertex groups, suitably
+  understood.
 \end{remark}
 
 Since we suppose ${\mathcal G} $ is firmly filtered, we have a grading-preserving
 representation, $\Adjoint$, of ${\mathcal G} $ on $\graded(A^0)$.  Moreover, it is easy to
 see that ${\mathcal G}^1$ acts trivially here (Proposition \eqrefs{weyl2}{xerox1}).  So
 $\Adjoint$ descends to a representation of ${\mathcal H} := {\mathcal G}/{\mathcal G}^1$
-on $\graded(A^0)$. This canonical representation extends to a representation of
-${\mathcal H}$ on $\graded(A)$, which we denote by $R^D$, induced by the
-filtration-preserving representation $\bar D$ of ${\mathcal G} $ on $A$.
+on $\graded(A^0)$. To see that this extends to a representation on $\graded(A)$, we first
+observe:
+
+\begin{lemma}
+  For any $ k \in {\mathcal G}^1$, $\bar D_k$ maps $A^j$ to $A^{j+1}$.
+\end{lemma}
+
+\begin{proof}
+  Since ${\mathcal G}^1$ has connected source fibres, it suffices to prove $\bar\nabla_Z$
+  maps $A^j$ to $A^{j+1}$, whenever $Z \in A^1$. This follows from compatibility condition
+  c2.
+\end{proof}
+
+Since $D$ is compatible with the filtration of $A$, the representation $\bar D$ of
+${\mathcal G} $ on $A$ descends to a grading-preserving representation of ${\mathcal G} $
+on $\graded(A)$, and by the lemma, ${\mathcal G}^1$ is acting trivially. So $\bar D$ drops
+to a representation of ${\mathcal H} $ on $\graded(A)$, denoted here by $R^D$. This
+representation extends the aforementioned representation of ${\mathcal H} $ on
+$\graded(A^0)$, because $D$ extends $\Adjoint$.
 
 The observations of the preceding paragraph carry over to the canonical, infinitesimal
 representation, $\adjoint$, of $A$ on $A^0$, delivering a canonical representation of
@@ -2036,7 +2164,7 @@ In summary, we have
 \begin{equation}
   \graded(A) \cong \graded(TM) \oplus B^0 \oplus \graded(T^*\!M),\label{soldering}
 \end{equation}
-supporting the reductive Lie algebra bundle structure $T$ (c.f.~Examples \ref{projective}
+supporting the reductive Lie algebra bundle structure $T$ (c.f. \ref{projective}
 and \ref{conformal}) and with ${\mathcal H}$ acting on each component.
 
 \begin{remark}
@@ -2045,8 +2173,9 @@ and \ref{conformal}) and with ${\mathcal H}$ acting on each component.
 \end{remark}
 
 \subsection{Levi structures}\label{levi_}
-A {\df Levi structure} consists of a filtered, transitive, Lie groupoid ${\mathcal H}$,
-whose Lie algebroid $B$ has anchor kernel $B^0$ and satisfies $B \le 0$ (see Notation
+A {\df Levi structure} is a certain triple $({\mathcal H}, T, R)$. Specifically, it
+consists of a filtered, transitive, Lie groupoid ${\mathcal H}$, whose filtered Lie
+algebroid $B$ has anchor kernel $B^0$ and satisfies $B \le 0$ (see Notation
 \ref{filtered}), together with a reductive Lie algebra bundle structure $T$ on
   \begin{equation}
     \graded(TM) \oplus B^0 \oplus \graded(T^*\!M)\label{fug_}
@@ -2063,29 +2192,33 @@ whose Lie algebroid $B$ has anchor kernel $B^0$ and satisfies $B \le 0$ (see Not
         $T(C, X) = dR_C X$ and $T(C, Z) = -(dR_C)^*Z$. Here $C, C' \in \Gamma(B^0)$,
         $X \in \Gamma(\graded(TM))$, and $Z\in \Gamma(\graded(T^*\!M))$.
 
-      \item The grading of \eqref{fug_} is compatible with $T$, and, under
-        iterations of the bracket $T$, $\graded(T^*\!M)$ is fibre-wise generated by
-        $\graded(T^*\!M)_1$.\label{levi6}
+      \item The grading of \eqref{fug_} is compatible with $T$, and, under iterations of
+        the bracket $T$, $\graded(TM)$ is fibre-wise generated by
+        $\graded(TM)_{-1}$.\label{levi6}
       \item The natural pairing of $\graded(TM)$ and $\graded(T^*\!M)$ coincides with that
         induced by some non-degenerate $R$-invariant trace-form form for
-        $T$.\label{killing_duality}
+        $T$, or some non-zero real multiple thereof.\label{killing_duality}
       \item\label{hust} With respect to $T$, the fibre-wise centre of \eqref{fug_} lies in
         $B^0$.
 \end{conditions}
-\noindent Notice that \eqref{hust} and Proposition \eqrefs{canonical_filtrations_}{qq4}
-ensure that $B^0 \oplus \graded(T^*\!M) $ is fibre-wise $T$-parabolic; \eqref{levi6}
-ensures that the filtration defined by the obvious grading of \eqref{fug_} is the
-associated canonical filtration associated with $B^0 \oplus \graded(T^*\!M) $. (By Remark
+
+Notice that \eqref{hust} and Proposition \eqrefs{canonical_filtrations_}{qq4} ensure that
+$B^0 \oplus \graded(T^*\!M) $ is fibre-wise $T$-parabolic; \eqref{levi6} ensures that the
+filtration defined by the obvious grading of \eqref{fug_} is the associated canonical
+filtration associated with $B^0 \oplus \graded(T^*\!M) $. (By Remark
 \ref{canonical_filtrations_}, $B^0$ is a fibre-wise reductive Levi subalgebra, and in
 particular, the vertex groups of ${\mathcal H} $ are necessarily reductive.)  By
 Proposition \eqrefs{canonical_filtrations_}{qq1b} there will be a unique fibre-wise
 grading section $E \in \Gamma(B^0)$; the uniqueness and \eqref{tai} ensure that $E$ is
-${\mathcal H}$-invariant.
+$R$-invariant.
 
 It is not required that $T$ restrict to the canonical Lie algebra bundle structure on
 $\graded(TM)$ (here $TM$ is getting the filtration pushed down by the anchor of
 $B$). However, if this restriction is the {\em negative} of the canonical one, then the
-geometry is {\df regular}.
+geometry is {\df regular}. In that case, one can replace $T$ in condition \eqref{levi6}
+with the canonical bracket, and a filtered manifold $M$ satisfying the condition is called
+{\df fundamental}. The structure of a fundamental filtered manifold is completely
+determined by the distribution ${\mathcal D}=T^{-1}M$.
 
 \begin{proposition}
   Let ${\mathcal {\mathcal H}}$, $T$ and $B$ assume the meanings of \ref{reduction_}, and
@@ -2096,140 +2229,190 @@ geometry is {\df regular}.
 \end{proposition}
 \begin{proof}
   Our observations under \ref{reduction_} establish everything that is not obvious, with
-  the exception of property \eqref{levi3_}, which follows from the strong
-  compatibility of $\tau $ and $D$.
+  the exception of property \eqref{levi3_}, which follows from compatability condition c2.
 \end{proof}
 
 If $B$ in the definition of a Levi structure is an arbitrary Lie algebroid (not
 necessarily integrated by some Lie groupoid ${\mathcal H} $) and $R$ now denotes some {\em
   infinitesimal} action of $B$ on \eqref{fug_}, and we replace $dR$ in \eqref{levi3_} with
 $R$, then the preceding conditions define an {\df infinitesimal Levi structure} and, as we
-will see later, the immediately preceding proposition has an infinitesimal analogue. We
-have already encountered simple examples of an infinitesimal Levi structures, namely for
-projective and conformal geometry. It is easy to see these examples
-globalize.\footnote{However, these two examples prove ultimately to be of different
-  character. The uniqueness Theorem \ref{uniqueness} stated later applies in the conformal
-  case but not in the projective case. This is reflected in the fact that the Levi
-  structure for projective geometry is the same {\em for every choice of projective
-    connection}.} For example we have:
-\begin{example}[Conformal structures]
-  Define $B \subset J^1 (TM) $ and $T$ as in \ref{conformal} and filter $B$ trivially (see
-  \ref{trivial}). If we let ${\mathcal H} \subset J^1 (M \times M)$ denote the Lie
-  groupoid of one-jets of local diffeomorphisms preserving the conformal structure to
-  first order,\footnote{${\mathcal H}$ is isomorphic to the groupoid of relative conformal
-    frames $\CO[TM]$ introuduced in \ref{firstfirst}.} which has $B$ as its Lie algebroid,
-  and let ${\mathcal H} $ act on $\graded(TM)=TM$ by restricted adjoint action, and extend
-  this to a grading-preserving action $R$ on \eqref{fug_} in the obvious way, then
-  $({\mathcal H}, T, R) $ becomes a Levi structure.
-\end{example}
-\noindent%
-In the next example the base manifold $M$ is non-trivially filtered:
-\begin{example}[$n$-plane fields with growth vector $(n, n(n +1)/2)$] Consider, on a
-  smooth manifold of dimension $n(n + 1)/2$, an $n$-plane field ${\mathcal D} \subset TM$
-  that is maximally non-integrable. That is, at every $m \in M$, local sections of
-  ${\mathcal D} $ and their iterated Jacobi-Lie brackets, generate $T_mM$. Unlike contact
-  structures, such an $n$-plane field is a geometric structure of finite type, admitting a
-  classical normalized Cartan connection, as Bryant already showed
-  when $n=3$ \cite{bryant_79,bryant_2006}.
-
-  The quotient $TM/{\mathcal D}$ and $\wedge^2 {\mathcal D}$ have the same rank, and, by
-  the assumption of maximal non-integrability, the morphism
-  $V_1\wedge V_2 \mapsto [V_1, V_2] \modulo {\mathcal D} \colon \wedge^2 {\mathcal D}
-  \rightarrow TM/{\mathcal D}$ is surjective, and whence an isomorphism.  Taking
-  $T^{-1}M = {\mathcal D} $ and $T^{-2}M=TM$, we make $TM$ into a filtered Lie algebroid
-  with $ -2 \le TM \le -1$ and, on account of the isomorphism, have the identification
-  $\graded(TM) \cong \wedge^2 {\mathcal D} \oplus {\mathcal D} $ with grading-compatible
-  bracket characterized by
+will see later, the immediately preceding proposition has an infinitesimal analogue.
+%
+\subsection{Conformal structures}\label{conformalaslevi} Let ${\mathcal E} [w]$ denote the line bundle of
+densities on $M$ of weight $-w/n$, $n =\dimension(M)$, and write
+$TM[w]=TM \otimes {\mathcal E}[w]$. Then we may view a conformal structure (of pure
+signature) as an inner product $\confmetric$ on the bundle $TM[-1]$, which induces the
+``index lowering/raising'' isomorphisms
+$X \mapsto X^\flat \colon TM[w] \rightarrow TM[w-2]$ and
+$Z \mapsto Z^\sharp \colon TM[w] \rightarrow TM[w + 2]$. We may extend $\confmetric$ to a
+real quadratic form $(\,\cdot\,,\,\cdot\,)$ on
+  $$W := {\mathcal E}[1] \oplus TM[-1] \oplus {\mathcal E}[-1]$$ of signature
+  $(n + 1, 1)$, by declaring ${\mathcal E}[1] \perp TM[-1] \perp {\mathcal E}[-1] $ and
+  $(Z, X) = \langle Z, X\rangle := Z(X)$, for $X \in \Gamma(TM)$ and
+  $Z \in \Gamma(T^*\!M)$.  Next, define a linear vector bundle isomorphism $\rho$, from
   \begin{equation}
-  [X_1, X_2] = X_1\wedge X_2;\qquad  X_1, X_2 \in \Gamma({\mathcal D}).\label{brillig}
+    \label{labconformal}
+     T^*\!M \oplus \co(TM) \oplus TM
   \end{equation}
+  onto $\so(W)$, the
+  $\so(n + 1, 1)$-bundle of fibre-wise isometries of $(\,\cdot\,,\,\cdot\,)$, by declaring
+  \begin{align*}
+    \rho(A + a\identity_{TM})(s, Y, t) &= \big(as, \hat AY, -at)\big)\\
+    \rho(X)(s, Y, t) & = \big(-\langle X^\flat, Y\rangle, tX, 0\big)\\
+    \rho(Z)(s, Y, t) &= \big(0, -sZ^\sharp, \langle Z, Y\rangle\big),
+  \end{align*}
+  for sections $A$, $a$, $X$ and $Z$ of $\so(TM)$, ${\mathbb R} \times M$, $TM$ and
+  $T^*\!M$ respectively. Here $\hat A(sX) := sA(X)$, for $sX \in \Gamma(TM[-1])$.  In
+  matrix notion we can write this as
+  \begin{equation*}
+    \rho(s, A + a\identity_{TM}, Z) =
+    \begin{bmatrix}
+      a & -X^\flat & 0 \\ -Z^\sharp & \hat A & X\\ 0 & Z & -a
+    \end{bmatrix}.
+  \end{equation*}
 
-  To construct a Levi structure from this data, equip
-  ${\mathcal D} \oplus ({\mathbb R} \times M) \oplus {\mathcal D}^*$ with a real quadratic
-  form $(\,\cdot\,,\,\cdot\,)$, of signature $(n+1, n)$, by declaring ${\mathcal D} $ and
-  ${\mathcal D}^*$ to be isotropic,
-  ${\mathcal D} \perp ({\mathbb R} \times M) \perp {\mathcal D}^*$, $(X, Z) = X(Z)$, and
-  $(f_1, f_2) = f_1f_2$; here $X$ lies in ${\mathcal D} $, $Z$ in ${\mathcal D}^*$ and
-  $f_1, f_2$ are smooth real functions. Next, define a linear  vector bundle isomorphism
-  $\rho$, from
-  \begin{equation}
+  We equip \eqref{labconformal} with the obvious grading, concentrated in degrees
+  $-1, 0, 1$, and, to make $\rho $ into a representation of \eqref{labconformal} on $W$,
+  we are led to define the grading-compatible bracket $T$ on \eqref{labconformal}
+  generated by the relations
+  \begin{gather*}
+    T(C, X) = CX, \qquad T(C, Z) = -C^*Z, \qquad T(C_1, C_2) = [C_1, C_2],\\
+    T(X, Z) = \langle Z, X\rangle \identity_{TM} + Z \otimes X - X^\flat \otimes Z^\sharp,
+  \end{gather*}
+  where, to view $X^\flat \otimes Z^\sharp$ as an endomorphism of $TM$, a contraction of
+  densitites is implied. This bracket and the one in \ref{conformal} are the same (we have
+  $\confmetric = \mathrm{g} \otimes s_{\mathrm{g}}^2$, where
+  $s_{\mathrm{g}} \in \Gamma({\mathcal E}[1])$ is the density taking value one on
+  ${\mathrm g}$-orthonormal bases) and makes vector bundle \eqref{labconformal} into an
+  $\so(n + 1, 1)$-bundle.
+
+  Since grading components of index $i$ and $j$ are necessarily $B_\rho$-orthogonal if
+  $i + j \ne 0$ (Proposition \eqrefs{par}{ira1}) the following readily computed formulas
+  sufficiently describe the trace-form $B_\rho $:
+  \begin{equation*}
+    B_\rho(C_1, C_2) = 2\trace(C_1C_2), \qquad  B_\rho(X, Z) = 2\langle Z, X \rangle.
+  \end{equation*}
+  This shows that $B_\rho$ is non-degenerate, and we satisfy \eqref{killing_duality}, by
+  adopting $B_\rho/2$ as our form.
+
+  We let ${\mathcal H} = \CO[TM]$, whose filtered Lie algebroid $B$ has already been
+  described in \ref{conformal}. Letting $R$ denote the obvious grading-preserving
+  representation of ${\mathcal H} $ on \eqref{labconformal}, we obtain a Levi structure
+  $({\mathcal H}, T, R)$.
+
+\vspace{\baselineskip}
+In the next example the base manifold $M$ is non-trivially filtered:
+
+\subsection{$n$-plane fields with growth vector $(n, n(n +1)/2)$}
+Consider, on a smooth manifold of dimension $n(n + 1)/2$, an $n$-plane field
+${\mathcal D} \subset TM$ that is maximally non-integrable. That is, at every $m \in M$,
+local sections of ${\mathcal D} $ and their iterated Jacobi-Lie brackets, generate
+$T_mM$. Unlike contact structures, such an $n$-plane field is a geometric structure of
+finite type, admitting a classical normalized Cartan connection, as Bryant already showed
+when $n=3$ \cite{bryant_79,bryant_2006}.
+
+The quotient $TM/{\mathcal D}$ and $\wedge^2 {\mathcal D}$ have the same rank, and, by the
+assumption of maximal non-integrability, the morphism
+$V_1\wedge V_2 \mapsto [V_1, V_2] \modulo {\mathcal D} \colon \wedge^2 {\mathcal D}
+\rightarrow TM/{\mathcal D}$ is surjective, and whence an isomorphism.  Taking
+$T^{-1}M = {\mathcal D} $ and $T^{-2}M=TM$, we make $TM$ into a filtered Lie algebroid
+with $ -2 \le TM \le -1$ and, on account of the isomorphism, have the identification
+$\graded(TM) \cong \wedge^2 {\mathcal D} \oplus {\mathcal D} $ with grading-compatible
+bracket characterized by
+\begin{equation}
+  [X_1, X_2] = X_1\wedge X_2;\qquad  X_1, X_2 \in \Gamma({\mathcal D}).\label{brillig}
+\end{equation}
+
+To construct a regular Levi structure from this data, equip
+$$W := {\mathcal D} \oplus ({\mathbb R} \times M) \oplus {\mathcal D}^*$$ with a real quadratic
+form $(\,\cdot\,,\,\cdot\,)$, of signature $(n+1, n)$, by declaring ${\mathcal D} $ and
+${\mathcal D}^*$ to be isotropic,
+${\mathcal D} \perp ({\mathbb R} \times M) \perp {\mathcal D}^*$, $(Z, X) = Z(X)$, and
+$(f_1, f_2) = f_1f_2$; here $X$ lies in ${\mathcal D} $, $Z$ in ${\mathcal D}^*$ and
+$f_1, f_2$ are smooth real functions. Next, define a linear vector bundle isomorphism
+$\rho$, from
+\begin{equation}
     \label{lab}
      \wedge^2 {\mathcal D} \oplus {\mathcal D} \oplus \gl({\mathcal D}) \oplus {\mathcal
-      D}^* \wedge^2 {\mathcal D}^* \cong \graded(TM) \oplus \gl({\mathcal D}) \oplus \graded
+      D}^* \oplus \wedge^2 {\mathcal D}^* \cong \graded(TM) \oplus \gl({\mathcal D}) \oplus \graded
       (T^*\!M)
-  \end{equation}
-  onto $\so({\mathcal D} \oplus ({\mathbb R} \times M) \oplus {\mathcal D}^*)$, the
-  $\so(n + 1, n)$-bundle of fibre-wise isometries of $(\,\cdot\,,\,\cdot\,)$, by declaring
-  \begin{align*}
+\end{equation}
+onto $\so(W)$, the $\so(n + 1, n)$-bundle of fibre-wise isometries of
+$(\,\cdot\,,\,\cdot\,)$, by declaring
+\begin{align*}
      \rho(C)(Y, f, W) &= \big(CY, 0, -C^*W\big)\\
      \rho(X)(Y, f, W) &= \big(fX, -W(X), 0\big)\\
      \rho(X_1\wedge X_2)(Y, f, W) &= \big(W(X_2)X_1-W(X_1)X_1, 0, 0\big)\\
      \rho(Z)(Y, f, W) &= \big(0, Z(Y), -fZ\big)\\
      \rho(Z_1\wedge Z_2)(Y, f, W) &= \big(0, 0, Z_1(Y)Z_2-Z_2(Y)Z_1\big).
-  \end{align*}
-  Here $C$ is a section of $\gl({\mathcal D})$, $X, X_1, X_2, Y$ are sections of
-  ${\mathcal D} $ and $Z, Z_1, Z_2, W$ are sections of ${\mathcal D}^*$.  In
-   matrix notion we can write this as
-  \begin{equation*}
+\end{align*}
+Here $C$ is a section of $\gl({\mathcal D})$, $X, X_1, X_2, Y$ are sections of
+${\mathcal D} $ and $Z, Z_1, Z_2, W$ are sections of ${\mathcal D}^*$.  In matrix notion
+we can write this as
+\begin{equation*}
     \rho(X_1\wedge X_2, X, C, Z, Z_1\wedge Z_2)=
     \begin{bmatrix}
       C & X & -X_1\wedge X_2\\ Z & 0 & -X^{**}\\ Z_1\wedge Z_2 & -Z^{**} & -C^*.
     \end{bmatrix},
-  \end{equation*}
-  where on the right, $X_1\wedge X_2$, $Z_1\wedge Z_2$, $X^{**}$ and $Z^{**}$ are
-  interpreted, in the obvious way, as sections of
-  $\homomorphism({\mathcal D}^*, {\mathcal D})$,
-  $\homomorphism({\mathcal D}, {\mathcal D}^*)$,
-  $\homomorphism({\mathcal D}^*, ({\mathbb R} \times M))$ and
-  $\homomorphism(({\mathbb R} \times M), {\mathcal D}^*)$ respectively.  We equip
-  \eqref{lab} with the obvious grading and, to make $\rho $ into a representation of
-  \eqref{lab} on ${\mathcal D} \oplus  ({\mathbb R} \times  M) \oplus {\mathcal D}^*$, we
-  are led to define the grading-compatible bracket $T$ on \eqref{lab} generated by the
-  relations
-  \begin{gather*}
-    T(X_1, X_2) = - X_1\wedge X_2, \qquad  T(C, X) = R_CX := CX,\\
-    T(C, X_1 \wedge X_2) = R_CX_1, \wedge X_2 + X_1 \wedge R_CX_2 = R_C(X_1 \wedge X_2), \\
-    T(Z_1, Z_2) = Z_1 \wedge Z_2, \qquad  T(C, Z) = R_CZ := -C^*Z,\\
-    T(C, Z_1 \wedge Z_2) = R_CZ_1 \wedge Z_2 + Z_1 \wedge R_C Z_2 = R_C(Z_1 \wedge Z_2),\\
-    T(X, Z) = Z \otimes X,\\
+\end{equation*}
+where on the right, $X_1\wedge X_2$, $Z_1\wedge Z_2$, $X^{**}$ and $Z^{**}$ are
+interpreted, in the obvious way, as sections of
+$\homomorphism({\mathcal D}^*, {\mathcal D})$,
+$\homomorphism({\mathcal D}, {\mathcal D}^*)$,
+$\homomorphism({\mathcal D}^*, ({\mathbb R} \times M))$ and
+$\homomorphism(({\mathbb R} \times M), {\mathcal D}^*)$ respectively.  We equip
+\eqref{lab} with the obvious grading, concentrated in degrees $-2, -1, 0, 1, 2$, and, to
+make $\rho $ into a representation of \eqref{lab} on $W$, we are led to define the
+grading-compatible bracket $T$ on \eqref{lab} generated by the relations
+\begin{gather*}
+    T(X_1, X_2) = - X_1\wedge X_2, \qquad  T(C, X) = CX,\\
+    T(C, X_1 \wedge X_2) = CX_1, \wedge X_2 + X_1 \wedge CX_2, \\
+    T(Z_1, Z_2) = Z_1 \wedge Z_2, \qquad  T(C, Z) = -C^*Z,\\
+    T(C, Z_1 \wedge Z_2) = -C^*Z_1 \wedge Z_2 - Z_1 \wedge C^*Z_2,\\
+    T(C_1, C_2) = [C_1, C_2], \qquad T(X, Z) = Z \otimes X,\\
     T(X_1 \wedge X_2, Z_1 \wedge Z_2) = Z_1(X_1)Z_2 \otimes X_2 + Z_2(X_2)Z_1\otimes X_1\\ -Z_2(X_1)Z_1 \otimes X_2 - Z_1(X_2)Z_2 \otimes X_1,\\
     T(X_1 \wedge X_2, Z) = Z(X_1)X_2 - Z(X_2)X_1, \enspace
     T(Z_1 \wedge Z_2, X) = Z_2(X)Z_1 - Z_1(X)Z_2.
-  \end{gather*}
-  This makes \eqref{lab} into a $\so(n + 1, n)$-bundle. In passing, we note that
-  $\gl({\mathcal D}) \oplus {\mathcal D}^* \oplus \wedge^2 {\mathcal D}^*$ is the
-  stabilizer of the maximally isotropic subbundle
-  ${\mathcal D}^* \subset {\mathcal D} \oplus ({\mathbb R} \times M) \oplus {\mathcal D}^*
-  $.
+\end{gather*}
+This makes \eqref{lab} into a $\so(n + 1, n)$-bundle. In passing, we note that
+$\gl({\mathcal D}) \oplus {\mathcal D}^* \oplus \wedge^2 {\mathcal D}^*$ is the stabilizer
+of the maximally isotropic subbundle ${\mathcal D}^* \subset W$.
 
-  Since grading components of index $i$ and $j$ are necessarily $B_\rho$-orthogonal if
-  $i + j \ne 0$ (Proposition \eqrefs{par}{ira1}) the following readily computed formulas
-  sufficiently describe the trace-form $B_\rho $:
-  \begin{align*}
+Since grading components of index $i$ and $j$ are necessarily $B_\rho$-orthogonal if
+$i + j \ne 0$ (Proposition \eqrefs{par}{ira1}) the following readily computed formulas
+sufficiently describe the trace-form $B_\rho $:
+\begin{align*}
     B_\rho(C_1, C_2) &= 2\trace(C_1C_2)\\
     B_\rho(Z, X) &= 2Z(X)\\
     B_\rho(Z_1 \wedge Z_2, X_1\wedge X_2) &= 2Z_1(X_1)Z_2(X_2) - 2Z_1(X_2)Z_2(X_1).
-  \end{align*}
-  This shows that $B_\rho$ is non-degenerate. To satsify \eqref{killing_duality}, we
-  instead adopt the trace-form $B_{\rho/\sqrt{2}}=B_\rho/2$.
+\end{align*}
+This shows that $B_\rho$ is non-degenerate, and we satisfy \eqref{killing_duality}, by
+adopting $B_\rho/2$ as our form.
 
-  The frame groupoid ${\mathcal H} $ of ${\mathcal D} $ acts on each summand in
-  \eqref{lab} in an obvious way, and hence on \eqref{lab} in a grading-preserving way ---
-  we denote this representation by $R$. The filtration of $TM$ pulls back, via anchor, to
-  a trivially firm filtration of the Lie algebroid $B$ of ${\mathcal H} $, with the
-  additional understanding that $B^0$ is the anchor kernel, and $B^j=0 $ for positive
-  $j$. The triple $({\mathcal H}, R, T)$ is now easily seen to be Levi structure. Note we
-  have made choices in the definition of $\rho$ that ensure the sign in the first relation
-  for $T$ is opposite to that in \eqref{brillig}, to ensure regularity.
-\end{example}
+The frame groupoid ${\mathcal H} $ of ${\mathcal D} $ acts on each summand in \eqref{lab}
+in an obvious way, and hence on \eqref{lab} in a grading-preserving way --- we denote this
+representation by $R$. The filtration of $TM$ pulls back, via anchor, to a trivially firm
+filtration of the Lie algebroid $B$ of ${\mathcal H} $, with the additional understanding
+that $B^0$ is the anchor kernel, and $B^j=0 $ for positive $j$. The triple
+$({\mathcal H}, R, T)$ is now easily seen to be Levi structure. Note we have made choices
+in the definition of $\rho$ that ensure the sign in the first relation for $T$ is opposite
+to that in \eqref{brillig}, to ensure regularity.
 
-Unfortunately for us, the analogue of a {\em global} Levi structure is called an
-``infinitesimal flag structure'' in \cite{Cap_Slovak_09}. Moreover, from the present point
-of view, ``infinitesimal flag structure'' seems a name more apt for the action algebroids
-described in \ref{eg2}, specialized to the parabolic case. To avoid confusion, we
-eschew the term altogether.
+\vspace{\baselineskip} Unfortunately for us, the analogue of a {\em global} Levi structure
+is called an ``infinitesimal flag structure'' in \cite{Cap_Slovak_09}. Moreover, from the
+present point of view, ``infinitesimal flag structure'' seems a name more apt for the
+action algebroids described in \ref{eg2}, specialized to the parabolic case. To avoid
+confusion, we eschew the term altogether.
 
-\subsection{Prolonging a Levi structure to a parabolic geometry}\label{existence}
+\refreshpage
+\section{Existence, uniqueness, and equivalence}\label{theoremsection}
+We now state the main theorems concerning the existence and uniqueness of parabolic
+geometries with given Levi reduction, which culminate in an equivalence between certain
+categories of parabolic geometries and Levi structures. Proofs of these results are taken
+up in subsequent sections, as indicated by references to later restatements.
+
+\subsection{Existence: prolonging a Levi structure to a parabolic
+  geometry}\label{existence}
 Our proof of the following basic existence theorem is new:
 \begin{theorem}[Theorem \ref{existence_}]
   Every Levi structure $({\mathcal H}, T, R)$ is, up to isomorphism, the reduction of some
@@ -2270,30 +2453,75 @@ filtered Cartan geometries. This result includes an explicit description of $\ta
 and a compatible Cartan connection $D$, in terms of the aforementioned Rho tensor
 ${\mathsf P}$ and splittings.
 
+\subsection{Weyl gauge transformations}\label{gauge}
+The ``inner'' automorphisms of an arbitrary Lie groupoid are those given by conjugation by
+bisections. When ${\mathcal G} $ is firmly filtered, a special role is played by those
+inner automorphisms generated by bisections of ${\mathcal G}^1 \subset {\mathcal G}$, the
+bundle of simply-connected nilpotent Lie groups integrating the totally intransitive Lie
+subalgebroid $A^1 \subset A$, where a bisection is the same thing as a section. We call
+such automorphisms {\df Weyl gauge transformations}, for reasons explained in
+\ref{gauge_transformations}. By Proposition \ref{reduction_}, there is, for each such
+transformation, some $Z \in \Gamma(A^1)$ such that each arrow $g \in {\mathcal G} $,
+beginning at some $m \in M$, is mapped to $\exp(Z(gm))g\exp(-Z(m))$. This conjugation has
+derivative
+$$X \mapsto e^{-\adjoint_Z}X:=X - [Z, X] + \frac{1}{2!}[Z, [Z, X]] - \cdots\enspace,$$
+and morphisms of a filtered Lie algebroid $A$ of this form will be called {\df
+  infinitesimal Weyl transformations}.\footnote{The minus sign enters here because of our
+  convention that right-invariant vector fields define the Lie bracket on the Lie algebra
+  of a Lie group.} Both global and infinitesimal Weyl gauge transformations cover the
+identity of the base $M$, and $e^{-\adjoint_Z}$ is filtration-preserving, by F1. The
+corresponding map $\graded_0(q)\colon \graded(A) \rightarrow \graded(A)$ is the
+identity. Evidently, in a global parabolic geometry, every infinitesimal Weyl
+transformation is integrated by a unique global Weyl gauge transformation.
+
+\begin{example}
+  Let $A$ be a filtered Lie algebroid with $|A| = 1$. Then the infinitesimal Weyl gauge
+  transformations have the form $X \mapsto X + [Z, X]$, for some $Z \in \Gamma(A^1)$.
+\end{example}
+
+\begin{proposition}
+  If $({\mathcal G}, \tau)$ is a (regular) parabolic geometry, and $\tau'$ the
+  push-forward of $\tau $ under a Weyl gauge transformation $Q$, then
+  $({\mathcal G}, \tau')$ is another (regular) parabolic geometry with the same Levi
+  reduction.
+\end{proposition}
+
+\begin{proof}
+  If $\tau $ is model data then $\tau'$ is model data, regular if $\tau'$ is. This is
+  elmentary. Since $\graded_0(q)=\identity$, we have $\graded_0(\tau')=\graded_0(\tau)$.
+  Suppose $D$ is the unique Cartan connection compatible with $\tau $. Then Proposition
+  \ref{transform} shows that the push-forward $D'$ of $D$ defined by formula
+  \eqrefs{transform}{tarragon2} is a Cartan connection compatible with $\tau'$, and so is
+  the unique such Cartan connection. From the formula, the general form of a Weyl gauge
+  transformation given above, and Lemma \ref{reduction_}, it is not too hard to see that
+  $R^{D'}=R^D$.
+\end{proof}
+
 \subsection{Normalization of curvature}\label{normalization}
-We now turn to the choice of model data $\tau $ in Theorem \ref{existence} when we regard
-the Levi structure $({\mathcal H}, R, T)$ as fixed. The idea is that we choose $\tau $ so
-as to ``normalize'' the model curvature $\kappa$.  This curvature, defined in
+We next address certain freedom in the choice of model data $\tau $ in Theorem
+\ref{existence}. We show that we can choose $\tau $ so as to ``normalize'' the model
+curvature $\kappa$, without changing the underlying Levi structure $({\mathcal H}, R, T)$,
+which we now regard as fixed. The model curvature $\kappa$, defined in
 \ref{model_curvature_general}, is a section of $\wedge^2 T^*\!M \otimes A$. However, to
-describe normalization, we need a different representation. To that end, we fix an
-$R$-invariant non-degenerate trace-form on
-$\graded(A) \cong \graded(TM)\oplus B \oplus \graded(T^*\!M)$ equipped with Lie algebra
-bundle structure $T=\graded_0(\tau)$. Such a trace-form exists by Axiom
-\eqrefs{levi_}{killing_duality}. Moreover, by the $R$-invariance and transitivity, this
-form is completely determined by its restriction to a single fibre of
-$\graded(A)$. Applying Proposition \ref{lift_}, this form has a natural lift to a
-trace-form $b^\tau$ on the Lie algebra bundle $(A, \tau)$, and the $R$-invariance of the
-trace-form on $\graded(A)$ translates to $\bar\nabla $-invariance of $b^\tau$, where
-$\nabla $ is the unique Cartan connection on $A$ compatible with $\tau$.
+describe normalization, we need a different representation of $\kappa$. To that end, we
+fix some convenient multiple of an $R$-invariant non-degenerate trace-form on
+$\graded(A) \cong \graded(TM)\oplus B \oplus \graded(T^*\!M)$. Such a form exists, by
+Axiom \eqrefs{levi_}{killing_duality}. Moreover, by the $R$-invariance and transitivity,
+this form is completely determined by its restriction to a single fibre of
+$\graded(A)$. Applying Proposition \ref{lift_}, our bilinear form has a natural lift to a
+a non-degenerate form $b^\tau$ on the Lie algebra bundle $(A, \tau)$, for any choice of
+$\tau $ with $\graded_0(\tau)=T$, and the $R$-invariance of the form on $\graded(A)$
+translates to $\bar D$-invariance of $b^\tau$ (and hence $\bar\nabla$-invariance) where
+$D $ is the unique Cartan connection on ${\mathcal G} $ compatible with $\tau$ (and
+$\nabla $ its infinitesimalization).
 
-On the other hand, since the filtration of $A$ is parabolic (Axiom P3), we have
-$A^1 = (A^0)^\perp$, where $\perp$ is with respect to any non-degenerate trace-form. So we
-may use $b^\tau$ to identify $(A/A^0)^*$ with $A^1$. But, by transitivity,
-$A/A^0\cong TM $, because $A^0$ is the anchor kernel (Axiom P2), and we conclude
-$T^*\!M \cong A^1$. In this way, we may view $\kappa$ as a section of
-$\wedge^2 A^1 \otimes A$.
+Since the filtration of $A$ is parabolic (Axiom P3), we have $A^1 = (A^0)^\perp$, where we
+may take $\perp$ with respect to $b^\tau$, and this leads to an identification $(A/A^0)^*$
+with $A^1$. But, by transitivity, $A/A^0\cong TM $, because $A^0$ is the anchor kernel
+(Axiom P2), and we conclude $T^*\!M \cong A^1$. In this way, we may view $\kappa$ as a
+section of $\wedge^2 A^1 \otimes A$.
 
-As the bracket $\tau $ makes the vector bundle $A$ into a representation of the Lie
+Now, as the bracket $\tau $ makes the vector bundle $A$ into a representation of the Lie
 algebra bundle $A^1$, $\wedge^2 A^1 \otimes A $ appears in a natural chain complex
 \begin{equation}
   \label{chain1_} 0 \leftpartial{\tau} A \leftpartial{\tau} A^1 \otimes A
@@ -2309,26 +2537,28 @@ further comment. By definition (c.f.,
 %
 \begin{multline}
   \label{form1}
-  \partial^\tau(Y_0 \wedge \cdots \wedge Y_n \otimes X) =
-  \sum_{i=0}^n(-1)^{i+1} Y_0 \wedge \cdots \wedge \widehat{Y_i} \wedge \cdots \wedge Y_n
-  \otimes \tau(Y_i,X)\\ +\sum_{i<j}(-1)^{i+j}\tau(Y_i,Y_j) \wedge Y_0 \wedge \cdots \wedge
-  \widehat{Y_i} \wedge \cdots \widehat{Y_j} \wedge \cdots \wedge Y_n \otimes X.
+  \partial^\tau(Y_1 \wedge \cdots \wedge Y_{n+1} \otimes X) =
+  \sum_{i=1}^{n+1}(-1)^i Y_1 \wedge \cdots \wedge \widehat{Y_i} \wedge \cdots \wedge Y_{n+1}
+  \otimes \tau(Y_i,X)\\ +\sum_{i<j}(-1)^{i+j}\tau(Y_i,Y_j) \wedge Y_1 \wedge \cdots \wedge
+  \widehat{Y_i} \wedge \cdots \widehat{Y_j} \wedge \cdots \wedge Y_{n+1} \otimes X,
 \end{multline}
 %
-For example,
-$\partial^\tau(Y_0\wedge Y_1 \otimes X) = Y_0 \otimes \tau(Y_1, X) - Y_1 \otimes \tau(Y_0,
-X) -\tau(Y_0, Y_1)\otimes X$. Incidentally, appealing to compatibility Axiom c2 (see
-\ref{preview}), we can express $\partial^\tau $ in terms of the representation $\bar\nabla$ instead,
+where hats indicate omission. For example,
+$\partial^\tau(Y_1\wedge Y_2 \otimes X) = Y_1 \otimes \tau(Y_2, X) - Y_2 \otimes \tau(Y_1,
+X) -\tau(Y_1, Y_2)\otimes X$. Incidentally, appealing to compatibility Axiom c2 (see
+\ref{preview}), we can express $\partial^\tau $ in terms of the representation
+$\bar\nabla$ instead,
 \begin{multline*} \partial^\tau(Y_0 \wedge \cdots \wedge Y_n \otimes X) =
-\sum_{i=0}^n(-1)^{i+1} Y_0 \wedge \cdots \wedge \widehat{Y_i} \wedge \cdots \wedge Y_n
-\otimes \bar\nabla_{Y_i}X\\ +\sum_{i<j}(-1)^{i+j}[Y_i,Y_j] \wedge Y_0 \wedge \cdots \wedge
-\widehat{Y_i} \wedge \cdots \widehat{Y_j} \wedge \cdots \wedge Y_n \otimes X,\label{form1}
+  \sum_{i=1}^{n+1}(-1)^{i+1} Y_1 \wedge \cdots \wedge \widehat{Y_i} \wedge \cdots \wedge
+  Y_{n+1} \otimes \bar\nabla_{Y_i}X\\ +\sum_{i<j}(-1)^{i+j}[Y_i,Y_j] \wedge Y_1 \wedge
+  \cdots \wedge \widehat{Y_i} \wedge \cdots \widehat{Y_j} \wedge \cdots \wedge Y_{n+1}
+  \otimes X,\label{form1}
 \end{multline*}
 but emphasize $\partial^\tau $ is not a differential operator, only an algebraic one.
 
 We say model data $\tau $ in a parabolic geometry is {\df normal} if
-$\partial^\tau \kappa =0$.  Our proof of the following is an adaption of that of
-\cite[Propositions 3.1.10, 3.1.13]{Cap_Slovak_09}:
+$\partial^\tau \kappa =0$, where $\kappa $ is the curvature of $\tau$.  Our proof of the
+following is an adaption of that of \cite[Propositions 3.1.10, 3.1.13]{Cap_Slovak_09}:
 
 \begin{theorem}[Theorem \ref{normalization_}]
   Let $({\mathcal G}, \tau)$ be a regular parabolic
@@ -2370,8 +2600,8 @@ p.~235]{Cap_Slovak_09}.
 
 We obtain the following by applying \eqref{poker3} inductively:
 \begin{corollary}[c.f.~Theorem 3.1.12, p.~265, \cite{Cap_Slovak_09}]
-  In a normal, regular parabolic geometry, $\kappa_{\mathrm H} =0$ implies $\kappa =0$
-  (and hence also $\curvature \nabla =0$).
+  In a normal, regular parabolic geometry, $\kappa_{\mathrm H} =0$ implies $\kappa =0$,
+  and hence also $\curvature \nabla =0$.
 \end{corollary}
 
 The harmonic curvature $\kappa_{\mathrm H}$ is a section of $H_2(A^1, A)$, which is a
@@ -2397,62 +2627,38 @@ version of Hodge theory in this setting \cite{Kostant_61} (see also Proposition
 $H_j({\mathfrak g}^1, {\mathfrak g}) \cong H^j({\mathfrak g}_-, {\mathfrak g})$, which
 does not depend on the choice of $\epsilon $, and the grading of the space on the right
 gives a filtration-compatible grading of the space on the left, corresponding exactly to
-the grading in \eqref{poker2} (but for which we will give a direct argument).  In the
-semisimple case, Kostant's theorem, restated in \cite[Theorem 3.3.5,
+the grading in \eqref{poker2} (but for which we will give a direct argument).
+
+In the semisimple case, Kostant's theorem, restated in \cite[Theorem 3.3.5,
 p.~351]{Cap_Slovak_09}, computes the cohomology $H^j({\mathfrak g}_-, {\mathfrak g})_l$,
 for each $l \in {\mathbb Z} $, for complex ${\mathfrak g} $; some additional arguments
 extend the result to the real case. We refer the reader to \cite{Cap_Slovak_09} for
-extensive details. It seems one ought to be able to generalize these results to the
-reductive case, but we have not attempted to do that here.
+details we do not reproduce here. It seems one ought to be able to generalize this
+computation to the reductive case, but we have not attempted this.
 
 \subsection{Uniqueness up to Weyl gauge transformations}\label{uniqueness}
-The inner automorphisms of an arbitrary Lie groupoid are those given by conjugation by
-bisections. When ${\mathcal G} $ is firmly filtered, a special role is played by those
-inner automorphisms generated by bisections of ${\mathcal G}^1 \subset {\mathcal G}$, the
-bundle of simply-connected nilpotent Lie groups integrating the totally intransitive Lie
-subalgebroid $A^1 \subset A$, where a bisection is the same thing as a section. We call
-such automorphisms {\df Weyl gauge transformations}, for reasons explained in
-\ref{gauge_transformations}. By Proposition \ref{reduction_}, there is, for each such
-transformation, some $Z \in \Gamma(A^1)$ such that each arrow $g \in {\mathcal G} $,
-beginning at some $m \in M$, is mapped to $\exp(Z(gm))g\exp(-Z(m))$. This conjugation has
-derivative
-$$X \mapsto e^{-\adjoint_Z}X:=X - [Z, X] + \frac{1}{2!}[Z, [Z, X]] - \cdots\enspace,$$
-and morphisms of a filtered Lie algebroid $A$ of this form will be called {\df
-  infinitesimal Weyl transformations}.\footnote{The minus sign enters here because of our
-  convention that right-invariant vector fields define the Lie bracket on the Lie algebra
-  of a Lie group.} Both global and infinitesimal Weyl gauge transformations cover the
-identity of the base $M$, and $e^{-\adjoint_Z}$ is filtration-preserving, by F1. The
-corresponiding map $\graded_0(q)\colon \graded(A) \rightarrow \graded(A)$ is the
-identity. Evidently, in a global parabolic geometry, every infinitesimal Weyl
-transformation is integrated by a unique global Weyl gauge transformation.
-
-\begin{example}
-  Let $A$ be a filtered Lie algebroid with $|A| = 1$. Then the infinitesimal Weyl gauge
-  transformations have the form $X \mapsto X + [Z, X]$, for some $Z \in \Gamma(A^1)$.
-\end{example}
-
-\begin{proposition}[Corollary of Proposition \ref{transform}]%
-  If $({\mathcal G}, \tau)$ is a (regular) parabolic geometry, and $\tau'$ the
-  push-forward of $\tau $ under a Weyl gauge transformation, then $({\mathcal G}, \tau')$
-  is another (regular) parabolic geometry with the same Levi reduction.
-\end{proposition}
-
 According to the next result, normal model data is uniquely determined, up to Weyl gauge
 transformations, provided a Lie cohomological condition is satisfied. Our proof of the
 following is an adaption of that of \cite[Proposition 3.1.14]{Cap_Slovak_09}:
 
 \begin{theorem}[Theorem \ref{un}] Let $({\mathcal G}, \tau)$ be a regular parabolic
-  geometry and let ${\mathfrak g} $ be Lie algebra model for $\tau $, identified with a
+  geometry and let ${\mathfrak g} $ be a Lie algebra model for $\tau $, identified with a
   graded reductive Lie algebra, as detailed at the end of \ref{harmonic}. Assume
   $H^1({\mathfrak g}_-, {\mathfrak g})^1=0$.  Then if $({\mathcal G}, \tau')$ is second
-  parabolic geometry with $\graded_0(\tau')=\graded_0(\tau)$, then if both $\tau $ and
-  $\tau'$ are normal, then $\tau' = q_*\tau$ for some infinitesimal Weyl gauge
-  transformation $q$.
+  parabolic geometry with $\graded_0(\tau')=\graded_0(\tau)$ and both $\tau $ and $\tau'$
+  are normal, then $\tau' = q_*\tau$ for some infinitesimal Weyl gauge transformation $q$.
 \end{theorem}
 \noindent%
 Here
 $H^1({\mathfrak g}_-, {\mathfrak g})^1=\oplus_{l \ge 1}H^1({\mathfrak g}_-, {\mathfrak
   g})_l$.
+
+\begin{remark}
+  The non-uniqueness is really an artifact of our abstract formalism (and the same holds
+  in the principal bundle approach). Passing to a representation of the Cartan geometry as
+  a bundle of semi-holonomic jets, the ambiguity in the choice of $\tau$ disappears
+  (Proposition \ref{resolve}).
+\end{remark}
 
 \subsection{The equivalence problem}\label{equivalence}
 The parabolic geometries over $M$ form a category if we define a morphism of parabolic
@@ -2462,7 +2668,7 @@ the identity, whose infinitesimalization $q=dQ \colon A \rightarrow \tilde A$ is
 filtration-preserving and pushes $\tau $ to $\tilde \tau$. One can similarly make the
 collection of Levi structures over $M$ into a category; for details see \ref{functor}.  As
 for parabolic geometries, we can similarly identify a graded reductive Lie algebra model
-${\mathfrak g} $ for the Lie algebra bundle structure $T$ of a Levi geometry
+${\mathfrak g} $ for the Lie algebra bundle structure $T$ of a Levi structure
 $({\mathcal H}, R, T)$. The Lie algebra ${\mathfrak g} $ we associate with a Levi
 reduction can be taken to be as the same Lie algebra ${\mathfrak g} $ we use for the
 parabolic geometry that we are reducing. In a parabolic geometry the condition
@@ -2473,9 +2679,9 @@ H^1({\mathfrak g}_-, {\mathfrak g})^1=0
 holds if and only if it holds for every geometry in the same isomorphism class, and the
 same is true for Levi structures.
 
-Combining Theorems \ref{existence}, \ref{normalization} and \ref{un}, and appealing to the
-fact that prolongation is a functor (Theorem \ref{functor}), we establish the following
-solution to the equivalence problem for certain Levi structures:
+Combining Theorems \ref{existence}, \ref{normalization} and \ref{uniqueness}, and
+appealing to the fact that prolongation is a functor (Theorem \ref{functor}), we establish
+the following solution to the equivalence problem for certain Levi structures:
 
 \begin{theorem}[Theorem \ref{equivalence_}]
   The map that sends a regular normal parabolic geometry over $M$
@@ -2495,7 +2701,8 @@ ${\mathfrak a^1} $ determined by $\epsilon $, under the adjoint representation. 
 suppress details, as we will provide them for the generalizations.
 
 \vspace{0.5\baselineskip} The groupoids and algebroids in this section are not required to
-be transitive and the only class of Lie groups or algebras playing any role are nilpotent ones.
+be transitive and the only class of Lie groups or algebras playing any special role are
+nilpotent ones. In particular, nothing here needs to be reductive or semisimple.
 
 \subsection{Splittings of a filtered Lie algebra}
 \label{splittings}
@@ -2591,11 +2798,11 @@ $A/A^1 \oplus_{\adjoint}\graded(A^1)$ the following filtration:
 $(A/A^1 \oplus_{\adjoint}\graded(A^1))^i= (A^i/A^0)
 \oplus_{\adjoint}(\oplus_{j\ge\max\{1,i\}}\graded(A)_j)$.
 
-\begin{example}[Projective geometry] In example \ref{projective} the Lie algebroid
-  $A \subset J^1 (TM)$ acts on $TM$ in the usual way, $\adjoint_{J^1 V}W = [V,W]$, which
-  gives us associated representations of $A$ on $\gl(TM)$ and $T^*\!M $. On each component
-  of $\graded(A^0)=\gl(TM)\oplus T^*\!M$ the infinitesimal adjoint action of $A$ is given
-  by these representations, which shows that
+\begin{example}[projective geometry] In example \ref{projective} the Lie algebroid
+  $A \subset J^2 (TM)$ acts on $TM$ by projecting onto $J^1 (TM)$ and applying the usual
+  adjoint action, $\adjoint_{J^1 V}W = [V,W]$. This gives us associated representations of
+  $A$ on $\gl(TM)$ and $T^*\!M $. On each component of $\graded(A^0)=\gl(TM)\oplus T^*\!M$
+  the canonical action of $A$ is given by these representations, which shows that
   $E = -\identity \in \gl(TM) \subset \graded(A^0)$ is $\adjoint$-invariant. Consequently,
   any lift $\epsilon $ of $-\identity$ through $A^0 \rightarrow A^0/A^1 = \gl(TM)$ is a
   Weyl gauge for $A$. According to the theorem, each such gauge defines an identification
@@ -2822,7 +3029,7 @@ Lie groupoid in a similar way, using Theorem \ref{weyl2}.
 
 \begin{theorem}
   The automorphisms of firmly filtered Lie algebroids and Lie groupoids described above
-  are precisely the Weyl gauge transformations (conjugations) defined in \ref{uniqueness}.
+  are precisely the Weyl gauge transformations (conjugations) defined in \ref{gauge}.
 \end{theorem}
 
 \begin{proof}[Proof of the {\bfseries infinitesimal case}]
@@ -2998,9 +3205,13 @@ Lie groupoid in a similar way, using Theorem \ref{weyl2}.
 \refreshpage
 
 \refreshpage
-\section{Model data}\label{modeldata}
-Model data, defined in \ref{md}, generalizes the trivial Lie algebra bundle
-structure of an action algebroid ${\mathfrak g} \times M$.
+\section{More on model data}\label{modeldata}
+In \ref{constructing} we establish a core technical result on constructing Cartan connections
+compatible with given model data $\tau$. Transitivity will be an essential assumption.
+
+When a Weyl gauge $\epsilon$ is compatible with model data in an appropriate sense, this
+leads to gradings of the underlying Lie algebroid $A$, and not just of $A^0$, which we
+describe in \ref{model_data_gradings}.
 
 \subsection{Constructing Cartan connections compatible with model data}\label{constructing}
 In Section \ref{filtered_cartan} we shall need the following important result, reducing,
@@ -3009,7 +3220,7 @@ with given model data, to the problem of constructing representations of a suita
 subalgebroid/subgroupoid.
 
 \begin{proposition}
-  {\em \bfseries Infinitesimal case.} Let $A$ be a transitive Lie algebroid that can be written as
+  {\em \bfseries\em Infinitesimal case.} Let $A$ be a transitive Lie algebroid that can be written as
   vector bundle sum $A = B \oplus A'$, where $B \subset A$ is a subalgebroid and
   $A' \subset A$ an ideal lying in the kernel of the anchor
   $\# \colon A \rightarrow TM$. Let $\tau $ be model data on $A$ and suppose
@@ -3035,8 +3246,8 @@ subalgebroid/subgroupoid.
   \end{equation}
   then $\tau $ is strongly compatible with $\nabla $.
 
-  {\em \bfseries Global case.} Suppose ${\mathcal G} $ is a Lie groupoid, with Lie algebroid $A$,
-  that can be written ${\mathcal G} = {\mathcal G}' {\mathcal H} $ with
+  {\em \bfseries\em Global case.} Suppose ${\mathcal G} $ is a Lie groupoid, with Lie
+  algebroid $A$, that can be written ${\mathcal G} = {\mathcal G}' {\mathcal H} $ with
   ${\mathcal G}'\cap {\mathcal H} = M$ (groupoid of identity elements), where
   ${\mathcal G}' \subset {\mathcal G} $ is a totally intransitive, normal, Lie subgroupoid
   with simply-connected fibres. Let $\tau $ be model data on $A$ and suppose there is a
@@ -3286,16 +3497,13 @@ fact that ${\mathcal H} $ fixes $\epsilon$.
 A Cartan geometry $({\mathcal G}, D, \tau)$ with Lie algebroid $A$ will be called a {\df
   filtered Cartan geometry} if ${\mathcal G} $ is firmly filtered, in the sense of
 \ref{filtered_groupoids}, and if ${\mathcal G}$ admits a Weyl gauge compatible with
-$\tau $. This last is equivalent to the existence of an $\Adjoint$-invariant, fibre-wise
-grading section of $\graded^T(A)$, where $T:=\graded_0(\tau)$ (Corollary
-\ref{weyl2}). There is no requirement that $\tau $ be reductive or semisimple, and such
-notions will play no role in the current section. However, Proposition \ref{all}, stated
-later, shows that every parabolic geometry is a filtered Cartan geometry.
+$\tau $ (\ref{model_data_gradings}).  There is no requirement that $\tau $ be reductive or
+semisimple, and such notions will play no role in the current section. However,
+Proposition \ref{all}, stated later, shows that every parabolic geometry is a filtered
+Cartan geometry.
 
 An infinitesimal Cartan geometry $(A, \nabla, \tau)$ is an {\df infinitesimal filtered
-  Cartan geometry} if $A$ is firmly filtered and admits a $\tau$-compatible Weyl gauge,
-i.e., admits an $\adjoint$-invariant fibre-wise grading section of $\graded^T(A)$,
-$T:=\graded_0(\tau)$ (Corollary \ref{weyl}).
+  Cartan geometry} if $A$ is firmly filtered and admits a $\tau$-compatible Weyl gauge.
 
 In this section, we provide a general, explicit, description of {\em transitive}, filtered
 Cartan geometries, by exploiting theorems on semi-direct product structure established in
@@ -3308,13 +3516,14 @@ emphasizes Weyl gauges as the essential actor in the resulting characterization.
 The reduction procedure described for parabolic geometries in \ref{reduction_} generalizes
 to transitive filtered Cartan geometries. We begin with the infinitesimal case.
 
-Let $(A, \nabla, \tau)$ be a transitive infinitesimal filtered Cartan geometry. Since $A$
-is firmly filtered, the canonical representation $\adjoint$ of $A$ on $A^0$, in which
-$A^1$ is acting trivially, descends to a representation $\adjoint$ of $B:=A/A^1$ on
-$\graded(A^0)$. This canonical representation is extended by a representation of $B$ on
-$\graded(A)$, induced by the representation $\bar\nabla $ of $A$ on itself, and we denote
-this by $R^\nabla$. If we write ${\mathfrak a}_j:=\graded(A)_j$ for $j>0$, then using the
-transitivity $\graded(A)$ can be identified with
+Let $(A, \nabla, \tau)$ be a transitive infinitesimal filtered Cartan geometry and assume
+$A^0$ is the anchor kernel. Since $A$ is firmly filtered, the canonical representation
+$\adjoint$ of $A$ on $A^0$, in which $A^1$ is acting trivially, descends to a
+representation $\adjoint$ of $B:=A/A^1$ on $\graded(A^0)$. This canonical representation
+is extended by a representation of $B$ on $\graded(A)$, induced by the representation
+$\bar\nabla $ of $A$ on itself, and we denote this by $R^\nabla$. If we write
+${\mathfrak a}_j:=\graded(A)_j$ for $j>0$, then using the transitivity, $\graded(A)$ can
+be identified with
 \begin{conditions}
   \item[{\bfseries S0.}]
   $\graded(TM)\oplus B^0 \oplus (\oplus_{j>0}{\mathfrak a}_j)$.
@@ -3330,8 +3539,8 @@ Axiom c2, shows that
 \end{equation}
 whenever $C,C'\in\Gamma(B^0)$, $V\in \Gamma(\graded(TM))$,
 $Z \in \Gamma(\oplus_{j>0} {\mathfrak a}_j)$. The last equation holds because $\tau$
-extends the canonical bracket on $A^0$. Note $R^\nabla Z$ does not actually depend on
-$\nabla $, because it is determined by the canonical representation of $A$ on $A^1$.
+extends the canonical bracket on $A^0$. Note $R^\nabla_C Z$ does not actually depend on
+$\nabla $, because it depends only on the canonical representation of $A$ on $A^1$.
 
 Motivated by the above, an {\df abstract infinitesimal Levi structure} will be a 4-tuple
 $(B, \oplus_{j>0} {\mathfrak a}_j, R, T)$, where:
@@ -3355,9 +3564,9 @@ $(B, \oplus_{j>0} {\mathfrak a}_j, R, T)$, where:
     necessarily of the form $(0, E, 0)$, for some $E \in \Gamma(B^0)$, where $E$ is required to
     commute with arbitrary sections of $B$.
 \end{conditions}
-\noindent Note that it is not required that $T$ restrict to the canonical Lie algebra
-bundle structure on $\graded(TM)$. If this restriction is the {\em negative} of the
-canonical one, then the Levi structure is {\df regular}.
+\noindent It is not required that $T$ restrict to the canonical Lie algebra bundle
+structure on $\graded(TM)$. If this restriction is the {\em negative} of the canonical
+one, then the Levi structure is {\df regular}.
 
 According to the immediately preceding observations, associated with every transitive
 infinitesimal filtered Cartan geometry is an infinitesimal Levi structure, called its {\df
@@ -3394,7 +3603,7 @@ regular.  %
 
 In analogy with our observations in \ref{inflevi}, we can associate with each transitive
 filtered Cartan geometry $({\mathcal G}, D, \tau)$ an abstract Levi structure
-$({\mathcal G}/{\mathcal G}^1, \graded(A^1), R^D, \graded_0(\tau))$ that we call its {\df
+$$({\mathcal G}/{\mathcal G}^1, \graded(A^1), R^D, \graded_0(\tau))$$ that we call its {\df
   Levi reduction}. It is regular if $({\mathcal G}, D, \tau)$ is. Here $R^D$ is the
 representation of ${\mathcal G}/{\mathcal G}^1$ induced by the representation $\bar D$ of
 ${\mathcal G} $ on the Lie algebroid $A$ of ${\mathcal G} $.
@@ -3423,11 +3632,12 @@ and $\tilde D $.
 
 A morphism of abstract infinitesimal Levi structures
 $$(B, \oplus_{j>0} {\mathfrak a}_j, R, T) \rightarrow
-(\tilde B, \oplus_{j>0} \tilde{\mathfrak a}_j, \tilde R, \tilde T)$$
-consists of a pair $(q, \omega)$, where $q \colon B \rightarrow \tilde B$ is morphism of
-filtered Lie algebroids, covering some smooth map $f \colon M \rightarrow \tilde M$, and
+(\tilde B, \oplus_{j>0} \tilde{\mathfrak a}_j, \tilde R, \tilde T)$$ consists of a pair
+$(q, \omega)$, where $q \colon B \rightarrow \tilde B$ is morphism of filtered Lie
+algebroids, covering some smooth map $f \colon M \rightarrow \tilde M$, and
 $\omega \colon \oplus_{j>0}{\mathfrak a}_j \rightarrow \oplus_{j>0}\tilde{\mathfrak a}_j$
-a morphism of graded vector bundles, such that induced morphisms of graded vector bundles
+a morphism of graded vector bundles, such that the induced morphisms of graded vector
+bundles
 \begin{gather*}
   (q, \omega)_* \colon \graded(TM)\oplus B^0 \oplus (\oplus_{j>0}{\mathfrak a}_j)
      \rightarrow \graded(TM)\oplus \tilde B^0 \oplus (\oplus_{j>0}\tilde{\mathfrak a}_j)\\
@@ -3494,7 +3704,7 @@ ${\mathfrak a}_k\cong\graded(A)_k \cong \graded(TM)_k$ for $k < 0$.
 The composite $\sigma=\#\circ\tilde\sigma $ satisfies
 \begin{equation*}
   \sigma(\graded(TM)_k) \subset T^kM\enspace\text{and}\enspace
-    \graded_k(\sigma (V)) = V \quad\text{for all $V \in \graded(TM)_k$, $k < 0$}.
+  \graded_k(\sigma (V)) = V \quad\text{for all $V \in \graded(TM)_k$, $k < 0$}.
 \end{equation*}
 We call such $\sigma \colon \graded(TM) \rightarrow TM $, which is necessarily an
 isomorphism, a {\df splitting} of the filtered manifold $M$. The composite
@@ -3596,7 +3806,7 @@ $A^i = B^i \oplus_R(\oplus_{j\ge\max\{1,i\}}{\mathfrak a}_j)$.
   \end{conditions}
 \end{theorem}
 \noindent%
-The section $\mathrm P$ is called the {\df Rho tensor}.
+The section $\mathrm P$ will be called the (abstract) {\df Rho tensor}.
 \begin{proof}
   It is a triviality that $\Phi $ is injective. A dimension count implies $\Phi$ must be an
   isomorphism. A substitution verifies the rest of \eqref{chh1}.
@@ -3753,16 +3963,15 @@ representation by $\Adjoint^T$.
   algebroid $B$ of ${\mathcal H} $ will satisfy $B^j=0$ for $j>0$ and, by our hypotheses
   on $A$, $B$ is transitive with $B^0$ being the anchor kernel.
 
-  Evidently, $A$ is identifiable with $B \oplus_{dR}(\oplus_{j>0}{\mathfrak a}_j)$,
-  which the infinitesimalization $\nabla $ of $D$ makes into a transitive, infinitesimal,
+  Evidently, $A$ is identifiable with $B \oplus_{dR}(\oplus_{j>0}{\mathfrak a}_j)$, which
+  the infinitesimalization $\nabla $ of $D$ makes into a transitive, infinitesimal,
   filtered Cartan geometry. Consequently, the analysis of \ref{consequences} applies, with
   $R$ in that analysis replaced with $dR$. Define ${\mathfrak a}'_j $, $j>0$, and $\Phi$
   as in that analysis. Then $\tau $ can be recovered from $T=\graded_0(\tau)$ according to
-  S2, and, according to Proposition
-  \eqrefs{model_data_gradings}{uu4}, the grading $A=\oplus_i {\mathfrak a}'_i$ (there
-  denoted $\oplus_i {\mathfrak a}_i$) is $\bar D_{(h,\identity)}$-invariant, for every
-  $h \in {\mathcal H} $. It follows that $\Phi $ intertwines some grading-preserving
-  representation $R$ of ${\mathcal H}$ on
+  S2, and, according to Proposition \eqrefs{model_data_gradings}{uu4}, the grading
+  $A=\oplus_i {\mathfrak a}'_i$ (there denoted $\oplus_i {\mathfrak a}_i$) is
+  $\bar D_{(h,\identity)}$-invariant, for every $h \in {\mathcal H} $. It follows that
+  $\Phi $ intertwines some grading-preserving representation $R$ of ${\mathcal H}$ on
   $\graded(A)=\graded(TM)\oplus B^0 \oplus (\oplus_{j>0}{\mathfrak a}_j)$ with the
   $\bar D$-representation of ${\mathcal H} \times \identity$ on $A$:
   \begin{equation}
@@ -3855,7 +4064,7 @@ representation by $\Adjoint^T$.
 % With these definitions, one readily establishes the following facts:
 % \begin{proposition}
 %   Abstract prolongation is a functor from the category of abstract infinitesimal or global
-%   Levi geometries to the category of firmly filtered Lie algebroids, resp., Lie
+%   Levi structure to the category of firmly filtered Lie algebroids, resp., Lie
 %   groupoids.
 % \end{proposition}
 
@@ -4216,17 +4425,25 @@ After introducing the operator $\partial$ in \ref{curv_deform}, we will be able 
   \end{align*}
 \end{proof}
 
-\section{Kostant's Hodge theory}
+\refreshpage
+\section{Curvature under $\psi$-deformations and Kostant-Hodge theory}
 We now study certain chain and cochain complexes associated with bundles of reductive Lie
-algebras, given a bundle of parabolic subalgebras, and relate these to deformations of
-model curvature under changes of model data in a parabolic geometry. This lays the
-foundation for the later normalization of this curvature.
+algebras, given a bundle of parabolic subalgebras. This will provide us with: (i) language
+for concisely expressing what happens to model curvature when we deform the model data and
+Cartan connection defining a filtered Cartan geometry (\ref{curv_deform}); and (ii) reduce
+obstructions to obtaining normalization of curvature to non-triviality of certain Lie
+algebra (co)homology (\ref{un}).
 
 \subsection{The Kostant codifferential}\label{homology}
-Let $A$ be a filtered Lie algebroid with filtration-compatible model data $\tau $. For the
-moment, the Lie algebra model for $\tau $ is arbitrary; it need not be reductive, and we
-need not suppose $A$ is transitive. However we will assume $A$ admits a $\tau$-compatible
-Weyl gauge.
+Let $A$ be any filtered Lie algebra bundle over $M$ and denote the bracket by $\tau $. The
+main examples we have in mind are: (i) ordinary filtered Lie algebras; and (ii) the Lie
+algebroid associated with any infinitesimal filtered Cartan geometry $(A, \nabla,
+\tau)$. For now, $A$ need not be reductive, but we assume $\graded(A)$ admits a fibre-wise
+grading section $E$, so that lifts $\epsilon \in \Gamma(A^0)$ of $E$ define splitting
+isomorphisms $\Phi_\epsilon \colon \graded(A) \rightarrow A$. We get this in case (i) if
+$A$ is reductive and $A^0$ parabolic (Corollary \ref{can}). In case (ii), we may take
+$\epsilon $ to be any Weyl gauge compatible with $\tau $ (\ref{model_data_gradings}),
+which we have by hypothesis.
 
 Recall from \ref{normalization} that we have a natural chain complex
 
@@ -4280,46 +4497,49 @@ vector bundle, and $H_n(\graded(A^1),\graded(A))$ as a graded vector bundle.
 Each term in the complex \eqref{chain1} is a representation of $A^1$, and $\partial^\tau $
 is equivariant with respect to these representations, so that $H_n(A^1, A)$ is a also an
 $A^1$-representation.  These integrate to representations of the bundle of
-simply-connected nilpotent Lie groups $\exp(A^1)$ integrating $A^1$.  In the case $A$ is
-integrated by some Lie groupoid ${\mathcal G} $ admitting a Weyl gauge, we may identify
-$\exp(A^1)$ with a normal subgroupoid ${\mathcal G}^1 \subset {\mathcal G} $, by
-Proposition \ref{weyl2}.
+simply-connected nilpotent Lie groups $\exp(A^1)$ integrating $A^1$.  If $A$ is a Lie
+algebroid integrating some Lie groupoid ${\mathcal G} $ admitting a Weyl gauge (case (ii)
+above), we may identify $\exp(A^1)$ with a normal subgroupoid
+${\mathcal G}^1 \subset {\mathcal G} $, by Proposition \ref{weyl2}.
 
 \begin{proposition}
-  Let $A$ be a filtered Lie algebroid and $\tau $ model data compatible with the
-  filtration. Then:
+  Let $A$ be a filtered Lie algebra bundle such that $\graded(A)$ admits a fibre-wise
+  grading section $E$. Then:
   \begin{conditions}
-  \item The actions of $A^1 $ and $\exp(A^1)$ on $H_n(A^1, A)$ are trivial. In particular,
-    if $\nabla $ is a Cartan connection on $A$ compatible with $\tau $, then the
-    representation $\bar\nabla $ of $A$ on itself makes $H_n(A^1,A)$ into an
-    $A/A^1$-representation. In the global case, if $D$ is a $\tau$-compatible Cartan
-    connection on ${\mathcal G} $, then the representation $\bar D $ of ${\mathcal G} $ on
-    $A$ makes $H_n(A^1,A)$ into ${\mathcal G}/{\mathcal G}^1$-representation. \label{hay1}
-  \item For each Weyl gauge $\epsilon$ compatible with $\tau $, the canonical isomorphism
-    associated with the splitting $\Phi_\epsilon \colon \graded(A) \rightarrow A$,
+  \item The actions of $A^1 $ and $\exp(A^1)$ on $H_n(A^1, A)$ are trivial.  \label{hay1}
+  \item For each lift $\epsilon \in \Gamma(A^0)$ of $E$, the corresponding splitting
+    isomorphism $\Phi_\epsilon \colon \graded(A) \rightarrow A$ induces a map
     $$\tilde \Phi_\epsilon \colon \wedge^n \graded(A^1) \otimes \graded(A) \rightarrow \wedge^n A^1 \otimes A$$
-    is a chain map between the complexes \eqref{chain2} and \eqref{chain1}.
+    that is a chain map between the complexes \eqref{chain2} and \eqref{chain1}.
     \label{hay2}
   \item The corresponding isomorphism in homology
     $$ (\tilde \Phi_\epsilon)_* \colon H_n(\graded(A^1), \graded(A)) \rightarrow H_n(A^1, A)$$
     is independent of the choice of $\epsilon$. In particular, the filtered vector bundle
-    $H_n(A^1, A)$ has a canonical splitting. \label{hay3}
+    $H_n(A^1, A)$ has a canonical splitting, i.e., is canonically graded. \label{hay3}
   \end{conditions}
 \end{proposition}
 
+\begin{remark}
+  If $(A, \nabla, \tau)$ is an infinitesimal filtered Cartan geometry, then by
+  \eqref{hay1}, the representation $\bar\nabla $ of $A$ on itself makes $H_n(A^1,A)$ into
+  an $A/A^1$-representation. If this is the infinitesimalization of a global filtered
+  Cartan geometry $({\mathcal G}, D, \tau)$, then the representation $\bar D $ of
+  ${\mathcal G} $ on $A$ makes $H_n(A^1,A)$ into
+  ${\mathcal G}/{\mathcal G}^1$-representation.
+\end{remark}
+
 \begin{lemma}
   Let $\Adjoint^\tau $ denote the representation of of $\exp(A^1)$ on $A$ and let
-  $\epsilon_1, \epsilon_2$ be two Weyl gauges compatible with $\tau $. Then there exists a smooth
-  section $k$ of $\exp(A^1)$ such that
+  $\epsilon_1, \epsilon_2$ be two lifts of $E$. Then there exist a section $k$ of
+  $\exp(A^1)$ such that
   $\Phi_{\epsilon_2}(\xi) = \Adjoint^\tau_{k(m)}\Phi_{\epsilon_1}(\xi)$, for any
-  $\xi \in \graded(A)|_{m}$.
+  $\xi \in \graded(A)|_{m}$, $m \in M$.
 \end{lemma}
 \begin{proof}
   Applying Lemma \eqrefs{splittings}{splittings1} fibre-wise, there is a unique section
   $k $ of the bundle of simply-connected nilpotent Lie groups $\exp(A^1)$ such that
-  $\epsilon_2(m) = \Adjoint^\tau_{k(m)} \epsilon_1(m)$. Since we suppose $\epsilon_1$ and
-  $\epsilon_2$ are smooth, $k$ must be also. The desired result now follows from the
-  fibre-wise application of \eqrefs{splittings}{splittings2}.
+  $\epsilon_2(m) = \Adjoint^\tau_{k(m)} \epsilon_1(m)$. The desired result now follows
+  from the fibre-wise application of \eqrefs{splittings}{splittings2}.
 \end{proof}
 
 \begin{proof}[Proof of proposition]
@@ -4371,12 +4591,13 @@ accordingly acts on $\graded(A)$.  Over each point $m \in M$, \eqref{chain5a} is
 classical cochain complex associated with the representation $\adjoint^T$ of
 $\graded(A)_{-}|_m$ on $\graded(A)|_m$. Here $\partial$ is defined by
 \begin{align*}
-  \partial \omega (V_0, \ldots, V_n) &=
-  \sum_{i=0}^{n}(-1)^iT(V_i, \omega(V_0, \ldots, \hat V_i, \ldots V_n))\\
-  &+ \sum_{i<j}(-1)^{i+j}\omega(T(V_i,V_j), V_0,\ldots, \hat V_i, \ldots \hat V_j, \ldots V_n),
+  \partial \omega (V_1, \ldots, V_{n+1}) &=
+  \sum_{i=1}^{n+1}(-1)^{i+1}T(V_i, \omega(V_1, \ldots, \hat V_i, \ldots V_{n+1}))\\
+  &+ \sum_{i<j}(-1)^{i+j}\omega(T(V_i,V_j), V_1,\ldots, \hat V_i, \ldots \hat V_j, \ldots V_{n+1}),
 \end{align*}
-where hats indicate omission. In the reductive case we will see in \ref{hodge} that
-\eqref{chain5a} can be viewed as the ``adjoint'' of \eqrefs{homology}{chain2}.
+where hats indicate omission. So, for example,
+$\partial \omega(V_1, V_2) = T(V_1, \omega(V_2)) - T(V_2, \omega(V_1)) - \omega(T(V_1,
+V_2))$.
 
 The formula shows that $\partial$ is grading-preserving if we equip
 $\wedge^n \graded(A)_{-}^*\otimes \graded(A)$ with the grading in which a section
@@ -4386,16 +4607,17 @@ $V_j \in \Gamma(\graded(A)_{i_j})$, for each $j \in \{1, \ldots n\}$.
 
 Our interest in the cochain complex \eqref{chain5a} is following:
 \begin{proposition}
-  Let $(A, \nabla, \tau)$ be an infinitesimal filtered Cartan geometry. Furthermore,
-  suppose that $A$ is transitive and that $A^0$ is the anchor kernel of $A$, so that
-  $\graded(A)_{-} \cong \graded(TM)$ and $\partial_n$ is a map
+  Let $(A, \nabla, \tau)$ be a transitive, infinitesimal, filtered Cartan geometry, and
+  suppose that that $A^0$ is the anchor kernel, so that $\graded(A)_{-} \cong \graded(TM)$
+  and $\partial_n$ is a map
   $$\partial_n \colon\wedge^n \graded(T^*\!M) \otimes \graded(A)\rightarrow
   \wedge^{n+1} \graded(T^*\!M) \otimes \graded(A).$$ For some
   $\psi \in \Gamma(T^*\!M \otimes A)$ that is homogeneous of degree $l \ge 1$, let
   $\nabla'$ and $\tau'$ be the $\psi$-deformations of $\nabla $ and $\tau $, as defined in
   \ref{deformations}, and let $\kappa $, $\kappa'$ denote the model curvatures of the
-  infinitesimal parabolic geometries $(A, \nabla, \tau)$ and $(A, \nabla', \tau')$. Then
-  $\kappa' - \kappa $ is homogeneous of degree $l$ with
+  infinitesimal filtered Cartan geometries $(A, \nabla, \tau)$ and $(A, \nabla', \tau')$,
+  viewed as sections of $\wedge^2 T^*\!M \otimes A$. Then $\kappa' - \kappa $ is
+  homogeneous of degree $l$ with
   $\graded_l(\kappa' - \kappa) = -\partial \graded_l(\psi)$.
 \end{proposition}
 \begin{proof}
@@ -4409,7 +4631,7 @@ Our interest in the cochain complex \eqref{chain5a} is following:
   \end{conditions}
 
   Let $X \in \Gamma(A^j)$ and $Y \in \Gamma(A^k)$ arbitrary sections, with $j, k <
-  0$. Here are some {\df Preliminary Observations:} Since $\psi$ is homogeneous of degree
+  0$. Here are some preliminary observations: Since $\psi$ is homogeneous of degree
   $l \ge 1$, $\psi_{TM} \colon TM \rightarrow TM $ is filtration-preserving, with
   $\graded_0(\psi_{TM})=\identity= \graded_0(\psi_{TM}^{-1})$; $\bar\nabla_X$ and
   $\bar\nabla_Y$ are also filtration-preserving, because $\nabla $ is required to be
@@ -4428,7 +4650,7 @@ Our interest in the cochain complex \eqref{chain5a} is following:
     \psi(\#\bar\nabla_XY) +
     \psi(\#\bar\nabla_X(\psi(\psi_{TM}^{-1}(\#Y)))).
   \end{equation*}
-  By our Preliminary Observations, the terms on the right-hand side lie in
+  By our preliminary observations, the terms on the right-hand side lie in
   $A^{k+l}$, $A^{k+l}$ and $A^{k + 2l}$, respectively, and accordingly,
   \begin{equation*}
     \bar\nabla'_XY - \bar\nabla_XY \in \Gamma(A^{j+k+l}) \ni
@@ -4445,7 +4667,7 @@ Our interest in the cochain complex \eqref{chain5a} is following:
     - \psi(\#\tau(\psi(\psi_{TM}^{-1}(\#X))), Y) - \psi(\#\tau(X, \psi(\psi_{TM}^{-1}(\#Y))))\\
     + \psi(\#(\psi(\psi_{TM}^{-1}(\#X)), \psi(\psi_{TM}^{-1}(\#Y)))).
   \end{multline}
-  By our Preliminary Observations, the terms on the second and fourth lines lie in
+  By our preliminary observations, the terms on the second and fourth lines lie in
   $A^{j+k+2l}$, while that on the last line lies in $A^{j+k+3l}$, which means both lie in
   $A^{j+k+l +1}$. The remaining terms lie in $A^{j+k+l}$, which shows that $r$ is indeed
   homogeneous of degree $l$, and
@@ -4467,14 +4689,22 @@ The next result will be used later to prove Theorem \eqrefs{harmonic}{poker3}.
 \end{proposition}
 \noindent%
 This result is the ``graded'' version of the Bianchi identity stated in
-\ref{section_bianchi_}.
+\ref{section_bianchi_}, repeated here for convenience:
+
+\begin{multline}
+  \label{bianchi_}
+  (\bar\nabla_{X_3}\kappa)(\#X_1, \#X_2) + \kappa (\kappa (\#X_1, \#X_2), \#X_3) \\
+  + \kappa(\# \tau(X_1, X_2), \#X_3) + \tau(\kappa(\#X_1, \#X_2), X_3) +
+  \text{terms cyclic in 1-2-3} = 0.
+ \end{multline}
+
 \begin{proof}
-   Suppose $X_1, X_2, X_3 \in \Gamma(A)$ (which are arbitrary
-   above) have {\em negative} filtration degrees, summing to $m$. Then, as $\bar\nabla $
-   is filtration-preserving, and as $\kappa $ is homogeneous of degree $l\ge 1$, it
-   follows that $(\bar\nabla_{X_3}\kappa)(\#X_1, \#X_2)$, and its cyclic permutations, have at
-   most degree $m + l + 1$. The second term in \eqref{bianchi} will have degree at most
-   $m + 2l$, which likewise, cannot exceed $ m + l + 1$. So,
+  Suppose $X_1, X_2, X_3 \in \Gamma(A)$ (which are arbitrary above) have {\em negative}
+  filtration degrees, summing to $m$. Then, as $\bar\nabla $ is filtration-preserving, and
+  as $\kappa $ is homogeneous of degree $l\ge 1$, it follows that
+  $(\bar\nabla_{X_3}\kappa)(\#X_1, \#X_2)$, and its cyclic permutations, have at most
+  degree $m + l + 1$. The second term in \eqref{bianchi_} will have degree at most
+  $m + 2l$, which likewise, cannot exceed $ m + l + 1$. So,
   \begin{equation*}
     \kappa(\# \tau(X_1, X_2), \#X_3) + \tau(\kappa(\#X_1, \#X_2), X_3) +
     \text{terms cyclic in 1-2-3} \equiv 0 \modulo A^{m + l + 1}.
@@ -4490,7 +4720,7 @@ We now assume $A$ is the Lie algebroid of a global parabolic geometry
 $({\mathcal G}, \tau)$, which, in particular, guarantees the existence of a
 $\bar D$-invariant, non-degenerate, fibre-wise trace form $B_\rho$ for $\tau$, determined
 uniquely by its value on a single fibre; see \ref{normalization}. Note that
-$T=\graded (\tau)$ will be reductive and that and $|A| \le k$ for some $k \in {\mathbb Z}$
+$T=\graded (\tau)$ will be reductive and that and $|A| \le m$ for some $m \in {\mathbb Z}$
 (Proposition \eqrefs{canonical_filtrations_}{qq1}). Furthermore, $(\graded(A), T))$,
 $T:=\graded_0(\tau)$, inherits a non-degenerate trace-form as follows: For each fibre
 $A|_m$, choose a grading element for the reductive Lie algebra $(A|_m, \tau)$ and use the
@@ -4501,11 +4731,11 @@ is independent of the choice of splitting. Moreover, for any Weyl gauge $\epsilo
 see that the corresponding identification $A \cong \graded(A)$ will be an isomorphism,
 with respect to these trace-forms.
 
-As we now explain, the existence of non-degenerate trace-forms means that $\partial^*$ and
-$\partial $ enjoy a relationship analogous to that between the differential and
-codifferential operators of classical Hodge theory \cite{Warner_83}. Here we are extending
-to reductive Lie algebra {\em bundles} observations about semisimple Lie {\em algebras}
-originating in Kostant \cite{Kostant_61}.
+As we now explain, the existence of non-degenerate trace-forms NO WE NEED HERMITIAN
+POSITIVE DEFINITE TRACE FORMS means that $\partial^*$ and $\partial $ enjoy a relationship
+analogous to that between the differential and codifferential operators of classical Hodge
+theory \cite{Warner_83}. Here we are extending to reductive Lie algebra {\em bundles}
+observations about semisimple Lie {\em algebras} originating in Kostant \cite{Kostant_61}.
 
 Using the trace-form for $T$, we may identify
 $\graded(A^1)=\graded(A)_1 \oplus \graded(A)_2 \oplus \cdots \graded(A)_k$ with
@@ -4672,9 +4902,8 @@ hold.  The proof of the second assertion is left to the reader.
 \end{proof}
 
 \refreshpage
-\section{Parabolic geometries. Part II}\label{parabolic_proofs}
-
-This section proves results only stated in Section \ref{parabolic_summary}.
+\section{Proofs of existence, uniqueness, and equivalence}\label{parabolic_proofs}
+This section proves results only stated in Section \ref{theoremsection}
 
 \subsection{All parabolic geometries admit compatible Weyl gauges}\label{all}
 Suppose $\tau $ is the model data associated with a parabolic geometry (global or
@@ -4792,7 +5021,7 @@ semi-direct products, now gives:
 \end{proposition}
 \begin{proof}
   The first result claim follows from Proposition \eqrefs{weyl2}{xerox2}, the second from
-  Theorem \eqrefs{weyl2}{pr1}.
+  Theorem \eqrefs{weyl2}{pr1} and the existence of Weyl gauges.
 \end{proof}
 
 \subsection{The existence of parabolic geometries with given Levi reduction}\label{existence_}
@@ -4807,9 +5036,7 @@ Corollary B above shows that that following result is a special case of Theorem
 \end{theorem}
 
 \subsection{Curvature under automorphisms}\label{transform_}
-Theorem \ref{uniquely_determined} shows that the model curvature is unambiguously defined
-by the model data alone, in the special case of a global or infinitesimal parabolic
-geometry.  As remarked in \ref{normalization}, we can use the Killing form to view model
+As remarked in \ref{normalization}, FIX ME we can use a multiple of a non-degenerate trace-form on $\graded(A)$ the Killing form to view model
 curvature as a section of $\wedge^2 A^1 \otimes A$, which appears in a natural chain
 complex with differential $\partial^\tau$ defined by
 \eqrefs{uniquely_determined}{form1}. This alternative representation of the curvature
@@ -5013,10 +5240,10 @@ vanishes (Corollary \ref{harmonic}). The proof of the this result rested on Theo
 \subsection{Uniqueness up to Weyl gauge transformations}\label{un}
 
 \begin{theorem}[Uniqueness] Let $({\mathcal G}, \tau)$ be a regular parabolic
-  geometry and let ${\mathfrak g} $ be Lie algebra model for $\tau $, identified with a
+  geometry and let ${\mathfrak g} $ be a Lie algebra model for $\tau $, identified with a
   graded reductive Lie algebra, as detailed at the end of \ref{harmonic}. Assume
   $H^1({\mathfrak g}_-, {\mathfrak g})^1=0$.  Then if $({\mathcal G}, \tau')$ is second
-  parabolic geometry with $\graded_0(\tau')=\graded_0(\tau)$, then if both $\tau $ and
+  parabolic geometry with $\graded_0(\tau')=\graded_0(\tau)$ and both $\tau $ and
   $\tau'$ are normal, then $\tau' = q_*\tau$ for some infinitesimal Weyl gauge
   transformation $q$.
 \end{theorem}
@@ -5128,7 +5355,7 @@ the morphism of firmly filtered Lie groupoids,
 With these definitions, one readily establishes the following facts:
 \begin{proposition}
   Abstract prolongation is a functor from the category of infinitesimal or global
-  Levi geometries to the category of firmly filtered Lie algebroids, resp., Lie
+  Levi structures to the category of firmly filtered Lie algebroids, resp., Lie
   groupoids.
 \end{proposition}
 
@@ -5197,10 +5424,11 @@ $H({\mathfrak g}_-, {\mathfrak g})^1$ depends only on the isomorphism class in e
 \appendix
 \refreshpage
 \section{Reductive Lie algebras and their parabolic subalgebras}\label{lie_algebra_facts}
-The material below is mostly adapted from \cite{Calderbank_Noppakaew_16}, to which the
-reader is referred for omitted proofs. The results there are established by rather direct
-methods the reader will not readily find in standard texts, which tend to emphasize
-semisimple Lie algebras and algebraically closed base fields.
+Sections \ref{nilpotency}--\ref{can} below are adapted from
+\cite{Calderbank_Noppakaew_16}, to which the reader is referred for omitted proofs. The
+results there are established by rather direct methods the reader will not readily find in
+standard texts, which tend to emphasize semisimple Lie algebras and algebraically closed
+base fields.
 
 In this appendix all Lie algebras are finite-dimensional over a field of characteristic
 zero.
@@ -5215,9 +5443,19 @@ largest nil subalgebra that is also an ideal of ${\mathfrak g} $. See
   {\em nilradical}, sometimes denoted $\nil({\mathfrak g})$ also, but it may be different
   more generally.}
 
+\begin{remark}
+  It can be shown that if ${\mathfrak g}=\gl(V)$, or ${\mathfrak g} $ is any perfect
+  (e.g., semisimple) subalgebra of $\gl(V)$, then $\rho(X)$ is nilpotent for any
+  representation of ${\mathfrak g} \ni X$ if and only if $X$ is nilpotent as an
+  automorphism of $V$. On the other hand, Engel's theorem shows that any subalgebra
+  ${\mathfrak g} \subset \gl(V)$ consisting of exclusively nilpotent automorphisms is a
+  Lie algebra of strictly upper triangular matrices in some basis. These facts are
+  frequently useful for identifying nil subalgebras in examples.
+\end{remark}
+
 \subsection{Reductive Lie algebras and gradings thereof}\label{par}
-Recall that a Lie algebra is {\df reductive} if it satisfies
-\eqref{gra3}, \eqref{gra1}, or \eqref{gra2} below.
+A Lie algebra is {\df reductive} if it satisfies \eqref{gra3}, \eqref{gra1}, or
+\eqref{gra2} below.
 
 \begin{proposition}[Theorem 2.20 of \cite{Calderbank_Noppakaew_16}]
   The following are equivalent:
@@ -5229,8 +5467,8 @@ Recall that a Lie algebra is {\df reductive} if it satisfies
     There exists a non-degenerate trace-form $B_\rho$ on ${\mathfrak g}$.
   \end{conditions}
   Moreover, for any Lie algebra ${\mathfrak g} $, the quotient
-  ${\mathfrak g}/\nil({\mathfrak g})$ is reductive, and called the {\df reductive Levi
-    quotient} of ${\mathfrak g} $.
+  ${\mathfrak g}/\nil({\mathfrak g})$ always satisfies these conditions, and is called the
+  {\df reductive Levi quotient} of ${\mathfrak g} $.
 
 \end{proposition}
 \noindent%
@@ -5258,14 +5496,14 @@ We will later need:
 
 \begin{lemma}
   Let ${\mathfrak g} $ be a graded reductive Lie algebra
-  and $B$ a trace-form. Then:
+  and $B$ any $\adjoint$-invariant symmetric bilinear form. Then:
   \begin{conditions}
   \item\label{ira1} With respect to $B$, we have ${\mathfrak g}_j \perp {\mathfrak g}_k$
     whenever $j+k \ne 0$.
   \item\label{ira2} If $B$ is the Killing-form, then its kernel ${\mathfrak g} ^\perp$ is
     exactly $Z({\mathfrak g})$.
   \end{conditions}
-  If $Z({\mathfrak g}) \subset {\mathfrak g}_0$, then:
+  If $Z({\mathfrak g}) \subset {\mathfrak g}_0$, then all of the following also hold:
  \begin{conditions}
   \item\label{ira0} There exists a unique grading element
     $E \in {\mathfrak g}_0\cap[{\mathfrak g}, {\mathfrak g}]$.
@@ -5280,6 +5518,9 @@ We will later need:
 \end{lemma}
 
 \begin{proof}
+    \eqref{ira1}: For any $X \in {\mathfrak g}_j$ and $Y \in {\mathfrak g}_k$, we have
+  $(j + k) B(X, Y) = B([E, X], Y) + B(X, [E, Y]) = 0$, by $\adjoint$-invariance of $B$.
+
   \eqref{ira2}: Suppose that $B$ is the Killing form. Then $\adjoint_X = 0$ for any
   $X \in Z({\mathfrak g})$, which shows $Z({\mathfrak g}) \subset {\mathfrak g}^\perp$. To
   prove the reverse inclusion, note that for any $X, Y \in {\mathfrak g}$, the derivations
@@ -5297,11 +5538,6 @@ We will later need:
   derivation vanishing on ${\mathfrak g}_0\supset Z({\mathfrak g})$. By \eqref{hra3},
   there exists a unique $E \in [{\mathfrak g}, {\mathfrak g}]$ such that $D(X) = [E, X]$,
   and $E \in {\mathfrak g}_0$ because $[E, E]=0$.
-
-  \eqref{ira1}: For any $X \in {\mathfrak g}_j$ and $Y \in {\mathfrak g}_k$, we have
-  $(j + k) B(X, Y) = B([E, X], Y) + B(X, [E, Y]) = 0$, by $\adjoint$-invariance of $B$.
-
-
 
   \eqref{ira3} \& \eqref{ira4}: Suppose
   ${\mathfrak g}^\perp \subset {\mathfrak g}_0$.  Let $X \in {\mathfrak g}_j$ and suppose
@@ -5323,7 +5559,7 @@ contains the normalizer of a maximial nil subalgebra \cite{Calderbank_Noppakaew_
   \item\label{par1} ${\mathfrak p} \subset {\mathfrak g} $ is parabolic.
   \item\label{par2} ${\mathfrak p}^\perp \subset [{\mathfrak g}, {\mathfrak g}]$ and
     ${\mathfrak g}^\perp$ is nilpotent.
-  \item\label{par3} ${\mathfrak g}^\perp$ is a nil subalgebra of ${\mathfrak g} $.
+  \item\label{par3} ${\mathfrak p}^\perp$ is a nil subalgebra of ${\mathfrak g} $.
   \item \label{par4} ${\mathfrak p}^\perp \subset {\mathfrak p} $ and
     $N_{\mathfrak g}({\mathfrak p}) = {\mathfrak p}$.
   \item\label{par5} ${\mathfrak p}^\perp=\nil({\mathfrak p})$.
@@ -5331,7 +5567,8 @@ contains the normalizer of a maximial nil subalgebra \cite{Calderbank_Noppakaew_
 \end{theorem}
 \noindent%
 In particular, \eqref{par5} shows that ${\mathfrak p}^\perp $ does not depend on the
-choice of trace-form.
+choice of trace-form. Evidentally, the theorem continues to hold if ``trace-form'' is
+replaced by ``non-zero scalar multiple of a trace-form''.
 
 Proposition \ref{in_terms_of_gradings} characterizes parabolics in terms of gradings.
 
@@ -5484,10 +5721,11 @@ ${\mathfrak g}^0$ is a parabolic subalgebra and the filtration is the associated
 filtration.
 
 \begin{proposition} If ${\mathfrak g} $ is parabolically filtered, then each trace-form
-  $B$ has a {\df natural lift} $B^\wedge$ to a trace-form on ${\mathfrak g} $, non-degenerate if
-  $B$ is non-degenerate. Here naturality means that for any filtration-preserving
-  isomorphism $q \colon {\mathfrak g} \rightarrow {\mathfrak h} $ between parabolically
-  filtered reductive Lie algebras, we have
+  $B$ on $\graded ({\mathfrak g})$ (or non-zero scalar multiple thereof) has a {\df
+    natural lift} $B^\wedge$ to a (scalar multiple of a) trace-form on ${\mathfrak g} $,
+  non-degenerate if $B$ is non-degenerate. Here naturality means that for any
+  filtration-preserving isomorphism $q \colon {\mathfrak g} \rightarrow {\mathfrak h} $
+  between parabolically filtered reductive Lie algebras, we have
 \begin{equation}
   \label{liftb}
   q_*(B^\wedge) = (\graded_0(q)_*B)^\wedge,
@@ -5505,8 +5743,8 @@ where $q_*b(X,Y) := b(q^{-1}X, q^{-1}Y)$.
   use the $\Adjoint$-invariance of $B^\wedge$ under the representation of
   $G^1=\exp({\mathfrak g}^1)$, which follows from the $\adjoint$-invariance of $B^\wedge$.
   If $B = B_\rho$, then it is not hard to see
-  $B^\wedge = B_{\rho \circ \Phi_\epsilon^{-1}}$, which shows that $B^\wedge$ is a
-  trace-form.
+  $B^\wedge = B_{\rho \circ \Phi_\epsilon^{-1}}$, so trace-forms are lifted to
+  trace-forms. The general case of scalar multiples is a trivial extension.
 
   Since $\graded_0(q) \colon \graded({\mathfrak g}) \rightarrow \graded({\mathfrak h})$ is
   a Lie algebra isomorphism, $\graded_0(q)(E)$ is evidently the unique grading element of
@@ -5514,7 +5752,7 @@ where $q_*b(X,Y) := b(q^{-1}X, q^{-1}Y)$.
   which has $q(\epsilon)$ as a lift. So, by definition, we have
   \begin{equation}
     \label{liftc}
-  (\graded(q)_*B)^\wedge = (\Phi_{q(\epsilon)})_*(\graded(q)_*B).
+  (\graded_0(q)_*B)^\wedge = (\Phi_{q(\epsilon)})_*(\graded_0(q)_*B).
   \end{equation}
   To prove \eqref{liftb} it suffices to show it holds when evaluated on aribtary pairs
   $X \in {\mathfrak g}_j$ and $Y \in {\mathfrak g}_k$, where we grade ${\mathfrak g} $
@@ -5523,20 +5761,96 @@ where $q_*b(X,Y) := b(q^{-1}X, q^{-1}Y)$.
 \end{proof}
 
 
+% \subsection{Graded reductive Lie algebras}\label{gradings_reductive}
+% Given a reductive Lie algebra ${\mathfrak g} $, when we pass to the associated graded Lie
+% algebra corresponding to the the canonical filtration of some parabolic subalgebra, we
+% obtain a graded reductive Lie algebra ${\mathfrak g} $ for which
+% $Z({\mathfrak g}) \subset {\mathfrak g}_0$ (Theorem \ref{can}). Any such Lie algebra, and
+% in particular all graded semisimple Lie algebras, are {\df left-right symmetric}, in the
+% sense that $\dimension {\mathfrak g}_j=\dimension {\mathfrak g}_{-j}$ for all $j$ (Lemma
+% \eqrefs{par}{ira3}).
+
+% \begin{lemmaA}
+%   Let ${\mathfrak g} $ be a graded reductive Lie algebra with
+%   $Z({\mathfrak g}) \subset {\mathfrak g}_0$. Then every ideal $I \subset {\mathfrak g} $
+%   is of the form $I = \oplus_{j \in {\mathbb Z}} I_j$, where $I_j=I \cap {\mathfrak
+%     g}_j$. In particular, every such ideal inherits a grading from ${\mathfrak g} $, with
+%   respect to which it is left-right symmetric.
+% \end{lemmaA}
+
+% \begin{proof}
+%   We give a simple extension of \cite[Proposition 3.1.2(2), p.~214]{Cap_Slovak_09} to the
+%   reductive case. Since $Z({\mathfrak g}) \subset {\mathfrak g}_0$, there exists a grading
+%   element $E$ (Lemma \eqrefs{par}{ira0}), so that the filtration is just the decomposition
+%   of ${\mathfrak g} $ by eigenspaces of $\adjoint_E$. It follows that the projection onto
+%   any one component ${\mathfrak g}_j$, $j \in {\mathbb Z}$, can be expressed as a
+%   polynomial in $\adjoint_E$. But any such polynomial maps any ideal into itself. So,
+%   decomposing an arbibrary element $X \in I$ as a sum of homogeneous components,
+%   $X = X_m + \cdots + X_m$, each component $X_j$, being a projection of $X$ onto
+%   ${\mathfrak g}_j$, is also in $I$. The first claim is established.
+
+%   Since ${\mathfrak g} $ is reductive, every ideal is a direct sum of some subalgebra of
+%   $Z({\mathfrak g})$, left-right symmetric because
+%   $Z({\mathfrak g}) \subset {\mathfrak g}_0$, and a semisimple ideal of ${\mathfrak g} $,
+%   necessarily left-right symmetric, as already noted above.
+% \end{proof}
+
+% \begin{lemmaB}
+%   Let ${\mathfrak g} $ be a graded reductive Lie algebra with
+%   $Z({\mathfrak g}) \subset {\mathfrak g}_0$. Then ${\mathfrak g}_{-1}$ generates
+%   ${\mathfrak g}_{-}=\oplus_{j\le -1}{\mathfrak g}_j$ if and only if ${\mathfrak g}_1$
+%   generates ${\mathfrak g}_+=\oplus_{j \ge 1} {\mathfrak g}$.
+% \end{lemmaB}
+% \begin{proof}
+%   It suffices, by Theorem \ref{par}, to suppose that ${\mathfrak g} $ is semisimple. Then
+%   ${\mathfrak g} $ is the direct sum of its simple ideals. From the lemma, it follows that
+%   every ideal of ${\mathfrak g} $ is of the form
+%   $\oplus_{j \in {\mathbb Z}} \oplus_{I \in S}I_j$, where $S$ is a subset of simple ideals
+%   of ${\mathfrak g} $ and $I_j = I \cap {\mathfrak g}_j$. In particular, we evidently
+%   obtain the smallest ideal of ${\mathfrak g} $ containing ${\mathfrak g}_1$ by taking $S$
+%   to be the set of simple ideals $I$ for which $I_1=0$. In particular, denoting this ideal
+%   by $I^+$, we see that $(I^+)_1:={\mathfrak g}_1$.
+
+%   By symmetric arguments, the smallest ideal $I^-$ containing ${\mathfrak g}_{-1}$
+%   satisfies $(I^-)_{-1} = {\mathfrak g}_{-1}$. However, since ${\mathfrak g} $ and its
+%   ideals are left-right symmetric, we have $(I^-)_1 = {\mathfrak g}_1$, so that minimality
+%   of this ideal forces $I^- \subset I^+$, and so, by a symmetric argument, $I^-=I^+$. Now
+%   suppose ${\mathfrak g}_{1}$ generates ${\mathfrak g}_{+}$. Then $I^+$, and whence $I^-$,
+%   must contain ${\mathfrak g}_+$, and by left-right symmetry, also ${\mathfrak g}_-$.
+% \end{proof}
 
 \subsection{Parabolics in terms of gradings}\label{in_terms_of_gradings}
+According to the following, if $Z({\mathfrak g}) \subset {\mathfrak g}_0$, then any
+grading of reductive ${\mathfrak g} $ immediately defines a parabolic subalgebra. However,
+the filtration corresponding to the grading need not be the canonical one defined by the
+parabolic:
 \begin{proposition}
   Suppose ${\mathfrak g}$ is reductive. Then a subalgebra ${\mathfrak p} $ is parabolic if
-  and only if there exists a grading of ${\mathfrak g} $ such that
-  $Z({\mathfrak g}) \subset {\mathfrak g}_0$ and
-  ${\mathfrak p} = \oplus_{j\ge 0} {\mathfrak g}_j$. In that case the corresponding
-    filtration, defined by ${\mathfrak g}^j:=\oplus_{i\ge j}{\mathfrak g}_i$, is the
-    canonical filtration associated with ${\mathfrak p} $ if and only if ${\mathfrak g}_1$
-    generates ${\mathfrak g}^1$, or equivalently, if
-    ${\mathfrak g}^1 \supset {\mathfrak g}^2 \supset {\mathfrak g}^3 \supset \cdots $ is
-    the lower central series of ${\mathfrak g}^1$.
+  and only if there exists a grading of ${\mathfrak g} $ such that:
+  \begin{conditions}
+    \item\label{star} $Z({\mathfrak g}) \subset {\mathfrak g}_0$ and
+  ${\mathfrak p} = \oplus_{j\ge 0} {\mathfrak g}_j$.
+  \end{conditions}
+   In that case the corresponding
+   filtration, defined by ${\mathfrak g}^j:=\oplus_{i\ge j}{\mathfrak g}_i$, is the
+   canonical filtration associated with ${\mathfrak p} $ if and only if one of the following   equivalent conditions holds:
+   \begin{conditions}
+   \item\label{star2}
+     ${\mathfrak g}^1 \supset {\mathfrak g}^2 \supset {\mathfrak g}^3 \supset \cdots $ is
+     the lower central series of ${\mathfrak g}^1$.
+   \item \label{star2b} ${\mathfrak g}_1$ generates
+     $\oplus_{j\ge 1}{\mathfrak g}_j={\mathfrak g}^1$.
+   \item \label{star2c} ${\mathfrak g}_{-1}$ generates $\oplus_{j\le -1}{\mathfrak g}_j$.
+   \end{conditions}
+   For any parabolic ${\mathfrak p} \subset {\mathfrak g} $, a grading satisfying
+   \eqref{star}--\eqref{star2c} exists.
 \end{proposition}
 \begin{proof}
+  The equivalence of \eqref{star2} and \eqref{star2b} is not hard to see. When the ground
+  field is ${\mathbb C} $, the equivalence of \eqref{star2b} and \eqref{star2c} is a known
+  consequence of structure theory in that case (not developed here) but I don't have a
+  more direct, field-agnostic proof yet.
+
   Suppose ${\mathfrak p} $ is parabolic and we filter ${\mathfrak g} $ with the canonical
   filtration defined by ${\mathfrak p}$. Then Corollary \ref{can} allows us to identify
   ${\mathfrak g} $ with the associated graded $\graded({\mathfrak g})$ using some lift of
@@ -5549,7 +5863,7 @@ where $q_*b(X,Y) := b(q^{-1}X, q^{-1}Y)$.
   $Z({\mathfrak g}) \subset {\mathfrak g}_0$ and define
   ${\mathfrak p}:=\oplus_{j\ge 0}{\mathfrak g}_j$. Fix an arbitrary non-degenerate
   trace-form. Then, to show that ${\mathfrak p} $ is parabolic, it suffices, according to
-  Theorem \ref{parabolic_characterizations}, to show that ${\mathfrak p}^\perp $ is
+  Theorem \ref{parabolic_characterizations}, to show that ${\mathfrak p}^\perp$ is
   nilpotent and ${\mathfrak p}^\perp\subset [{\mathfrak g}, {\mathfrak g}]$. Now suppose
   $j + k =1$. Then, writing ${\mathfrak g}^j := \oplus_{j'\ge j}{\mathfrak g}_{j'}$, we
   claim
@@ -5570,12 +5884,11 @@ where $q_*b(X,Y) := b(q^{-1}X, q^{-1}Y)$.
   [{\mathfrak g}, {\mathfrak g}]$, by Theorem \eqrefs{par}{hra1}.
 
   It remains to show the filtration defined by the grading is the canonical filtration
-  associated with ${\mathfrak p} $, under the additional assumption that ${\mathfrak g}_1$
-  generates ${\mathfrak g}^1$. We leave it to the reader to establish the characterization
-  of this condition in terms of the lower central series. As the canonical filtration also
-  satisfies \eqref{gluck} for $j + k = 1$ (Proposition \eqrefs{can}{hosp2}) it suffices to
-  show the filtration components of degree $j$ coincide, for $j\ge 0$. For $j=0$, this is
-  tautological, and we just established the $j=1$ case. For the canonical filtration,
+  associated with ${\mathfrak p} $, under the additional assumption \eqref{star2}
+  (say). As the canonical filtration also satisfies \eqref{gluck} for $j + k = 1$
+  (Proposition \eqrefs{can}{hosp2}) it suffices to show the filtration components of
+  degree $j$ coincide, for $j\ge 0$. For $j=0$, this is tautological, and we just
+  established the $j=1$ case. For the canonical filtration,
   ${\mathfrak g}^1 \supset {\mathfrak g}^2 \supset {\mathfrak g}^3 \supset \cdots $ is the
   lower central series, by definition, which finishes the proof.
 \end{proof}
@@ -5587,12 +5900,12 @@ ${\mathfrak p} \subset {\mathfrak g} $ has been introduced in \ref{separating}.
   Every parabolic subalgebra ${\mathfrak p} $ of a reductive Lie algebra $\mathfrak g$ is
   separating, and hence also infinitesimally separating.
 \end{proposition}
-A proof of this result was obtained after David Calderbank pointed a proof for the
+A proof of this result was obtained after David Calderbank pointed out a proof for the
 infinitesimal case, which is an immediate corollary.
 \begin{proof}
   Suppose $\phi \in \automorphism({\mathfrak g})$ fixes elements of ${\mathfrak p}$. By
-  Theorem \ref{can} and its corollary, we may as well suppose ${\mathfrak g} $ is graded
-  with ${\mathfrak p} =\oplus_{j\ge0}{\mathfrak g}_j$ and
+  Propostion \ref{in_terms_of_gradings}, we may suppose ${\mathfrak g} $ is graded with
+  ${\mathfrak p} =\oplus_{j\ge0}{\mathfrak g}_j$ and
   $Z({\mathfrak g}) \subset {\mathfrak g}_0$.  Supposing $j \ge 1$, it suffices to show
   $\phi$ fixes elements of ${\mathfrak g}_{-j}$. By uniqueness of the grading element $E$,
   we must have $\phi(E) = E$, which already shows that $\phi $ must map
@@ -5602,6 +5915,229 @@ infinitesimal case, which is an immediate corollary.
   fixes elements of ${\mathfrak g}_j$, as $j\ge 1$. So, by Lemma \eqrefs{par}{ira3}, we
   conclude that $\phi X = X$.
 \end{proof}
+
+\subsection{The infinitesimal order of a parabolic subalgebra}\label{parabolic_order}
+In \ref{from_algebraic} we defined the {\df infinitesimal order} of Lie algebra modulo a
+subalgebra. This section is dedicated to the proof of the following:
+\begin{theorem}
+  Let ${\mathfrak g} $ be a reductive Lie algebra and ${\mathfrak p}\subset {\mathfrak g}$
+  parabolic. Equip ${\mathfrak g} $ with the canonical filtration corresponding to
+  ${\mathfrak p} $. If a non-zero ideal of $\graded({\mathfrak g})$ lies in
+  $\graded({\mathfrak g})_0$, then the infinitesimal order of ${\mathfrak g} $ modulo
+  ${\mathfrak p} $ is $\infty$. Otherwise it is 2.
+\end{theorem}
+\noindent%
+So the order is 2, provided it is finite, but it cannot be finite unless ${\mathfrak g} $
+is semisimple and ${\mathfrak g} \ne {\mathfrak p}$. It is always finite if
+${\mathfrak g}\ne {\mathfrak p}$ is simple. All this follows immediately, because
+${\mathfrak g} \cong \graded({\mathfrak g})$ (Corollary \ref{can}).
+
+
+\begin{example}[a semisimple Lie algebra with infinite order]
+  Let ${\mathfrak g}$ be the direct sum
+  $\speciallinear(2, {\mathbb R})\oplus \speciallinear(2, {\mathbb R})$ with standard
+  basis $\{H_\alpha, X_\alpha, X_{-\alpha}, H_\beta, X_\beta, X_{-\beta}\}$ and give
+  ${\mathfrak g} $ the filtration whose non-zero components are
+  ${\mathfrak g}_{-1}=\langle X_{-\alpha}\rangle$,
+  ${\mathfrak g}_0=\langle X_{-\beta},H_\alpha,H_\beta,X_{-\beta}\rangle$, and
+  ${\mathfrak g}_1=\langle X_\alpha\rangle$. Then as $|{\mathfrak g}| = 1$, the filtration
+  is the canonical filtration associated with
+  ${\mathfrak p} = {\mathfrak g}_0 \oplus {\mathfrak g}_1$ (Proposition
+  \ref{in_terms_of_gradings}) and $0 \oplus \speciallinear(2, {\mathbb C})$ is an ideal of
+  ${\mathfrak g} $ lying in ${\mathfrak g}_0$.
+\end{example}
+
+Proving the theorem will require some preparations. Call a graded Lie algebra
+${\mathfrak g}$ {\df left-right symmetric} if
+$\dimension {\mathfrak g}_j=\dimension {\mathfrak g}_{-j}$ for all $j$. A graded {\em
+  reductive} Lie algebra is always left-right symmetric, provided
+$Z({\mathfrak g}) \subset {\mathfrak g}_0$ (Lemma \eqrefs{par}{ira3}), which holds in
+particular if ${\mathfrak g} $ is semisimple.
+
+\begin{lemmaA}
+  Let ${\mathfrak g} $ be a graded reductive Lie algebra with
+  $Z({\mathfrak g}) \subset {\mathfrak g}_0$. Then every ideal $I \subset {\mathfrak g} $
+  is of the form $I = \oplus_{j \in {\mathbb Z}} I_j$, where $I_j=I \cap {\mathfrak
+    g}_j$. In particular, every such ideal inherits a grading from ${\mathfrak g} $, with
+  respect to which it is left-right symmetric.
+\end{lemmaA}
+
+\begin{proof}
+  We give a simple extension of \cite[Proposition 3.1.2(2), p.~214]{Cap_Slovak_09} to the
+  reductive case. Since $Z({\mathfrak g}) \subset {\mathfrak g}_0$, there exists a grading
+  element $E$ (Lemma \eqrefs{par}{ira0}), so that the filtration is just the decomposition
+  of ${\mathfrak g} $ by eigenspaces of $\adjoint_E$. It follows that the projection onto
+  any one component ${\mathfrak g}_j$, $j \in {\mathbb Z}$, can be expressed as a
+  polynomial in $\adjoint_E$. But any such polynomial maps any ideal into itself. So,
+  decomposing an arbibrary element $X \in I$ as a sum of homogeneous components,
+  $X = X_m + \cdots + X_m$, each component $X_j$, being a projection of $X$ onto
+  ${\mathfrak g}_j$, is also in $I$. The first claim is established.
+
+  Since ${\mathfrak g} $ is reductive, every ideal is a direct sum of some subalgebra of
+  $Z({\mathfrak g})$, left-right symmetric because
+  $Z({\mathfrak g}) \subset {\mathfrak g}_0$, and a semisimple ideal of ${\mathfrak g} $,
+  necessarily left-right symmetric, as already noted above.
+\end{proof}
+
+\begin{lemmaB}
+  Let ${\mathfrak g} $ be a reductive Lie algebra and
+  ${\mathfrak p} \subset {\mathfrak g} $ a parabolic subalgebra, and give ${\mathfrak g} $
+  the canonical filtration associated with ${\mathfrak p} $. Then the pair
+  $({\mathfrak g}, {\mathfrak p})$ is effective, in the sense of \ref{from_algebraic}, if
+  and only if $\graded({\mathfrak g})$ contains no non-zero ideals lying in
+  $\graded({\mathfrak g})_0$.
+\end{lemmaB}
+
+\begin{proof}[Proof of lemma]
+  Identify ${\mathfrak g}$ with $\graded({\mathfrak g})$ using the canonical filtration
+  defined by ${\mathfrak p}$ (Corollary \ref{can}). Let $I \subset {\mathfrak g} $ be an
+  ideal lying in ${\mathfrak p}\cong \oplus_{j\ge 0} {\mathfrak g}_j$. By Lemma A, $I$ is
+  left-right symmetric with respect to a filtration compatible with that of
+  ${\mathfrak g} $, so that only $I \subset {\mathfrak g}_0$ is possible. The claim now
+  follows from the definition of effectiveness.
+\end{proof}
+
+Applying Proposition \ref{from_algebraic}, we conclude that the Lie algebra
+${\mathfrak g} $ in the theorem has finite infinitesimal order modulo ${\mathfrak p} $ if
+and only if $\graded({\mathfrak g})$ contains no non-zero ideals lying in
+$\graded({\mathfrak g})_0$. To compute the order in this case, where ${\mathfrak g} $ is
+necessarily semisimple, requires further preparations.
+
+\begin{proposition}
+  Let ${\mathfrak g} $ be a graded semisimple Lie algebra such that:
+  \begin{conditions}
+  \item\label{assumption1} ${\mathfrak g}_1$ generates $\oplus_{j\ge 1}{\mathfrak g}_j$,
+    or one of the equivalent conditions in Proposition \ref{in_terms_of_gradings} holds.
+  \item\label{assumption2} ${\mathfrak g}$ contains no non-zero ideals lying in
+    ${\mathfrak g}_0$.
+  \end{conditions}
+  Then $[{\mathfrak g}_j, {\mathfrak g}_{\pm 1}]={\mathfrak g}_{j\pm 1}$ whenever
+  $|j| \le |{\mathfrak g}|$.
+\end{proposition}
+\begin{proof}
+  To prove the special case $[{\mathfrak g}_{-1}, {\mathfrak g}_1]={\mathfrak g}_0$ we
+  follow \cite[p.~214]{Cap_Slovak_09}. Let
+  $I := [{\mathfrak g}_{-1}, {\mathfrak g}_1]\oplus_{j\ne 0}{\mathfrak g}_j$, which we
+  claim is an ideal. Indeed, it suffices to show
+  $[{\mathfrak g}_{-j}, {\mathfrak g}_j] \subset [{\mathfrak g}_{-1}, {\mathfrak g}_1]$
+  for any $j\ge 0$. But, we can get this by induction, for supposing this holds for some
+  specific $j$, we have ${\mathfrak g}_{j+1} = [{\mathfrak g}_j, {\mathfrak g}_1]$, by
+  \eqref{assumption1}, and compute
+  \begin{align*}
+    [{\mathfrak g}_{-j-1}, {\mathfrak g}_{j+1}] =
+    [{\mathfrak g}_{-j-1}, [{\mathfrak g}_j, {\mathfrak g}_1]] &\subset
+    [{\mathfrak g}_j, [{\mathfrak g}_{-j-1}, {\mathfrak g}_1]] + [{\mathfrak g}_1, [{\mathfrak g}_j, {\mathfrak g}_{-j-1}]]\\
+    &\subset [{\mathfrak g}_j, {\mathfrak g}_{-j}] + [{\mathfrak g}_1, {\mathfrak g}_{-1}] \subset
+    [{\mathfrak g}_1, {\mathfrak g}_{-1}].
+  \end{align*}
+  Since ${\mathfrak g} $ is semisimple, $I$ has a complemetary ideal, which by Lemma A,
+  lies in ${\mathfrak g}_0$, and is accordingly trivial, by \eqref{assumption2}. Therefore
+  $[{\mathfrak g}_{-1}, {\mathfrak g}_1]={\mathfrak g}_0$.
+
+  To prove the general case, we adapt a proof for simple ${\mathfrak g}$ given in
+  \cite[Lemma 3.2, p.~437]{Yamaguchi_93}. We prove only that
+  $[{\mathfrak g}_j, {\mathfrak g}_1] = {\mathfrak g}_{j+1}$, as
+  $[{\mathfrak g}_j, {\mathfrak g}_{-1}]={\mathfrak g}_{j-1}$ will follow from symmetry,
+  as ${\mathfrak g}_1$ generates $\oplus_{j\ge 1}{\mathfrak g}_j$ if and only if
+  ${\mathfrak g}_{-1}$ generates $\oplus_{j\le -1}{\mathfrak g}_j$.
+
+  First, we suppose that ${\mathfrak g}$ is simple. Let $m = |{\mathfrak g}|$ and define
+  ${\mathfrak a}_{-m}={\mathfrak g}_{-m}$ and, inductively,
+  ${\mathfrak a}_{j+1} = [{\mathfrak g}_1,{\mathfrak a}_j]$, $j\ge -m$. A simple induction
+  using Jacobi's identity shows that ${\mathfrak a}_j$ is
+  $\adjoint({\mathfrak g}_0)$-invariant for all $j \ge -m$. Armed with this and the
+  previously established result $[{\mathfrak g}_{-1}, {\mathfrak g}_1]={\mathfrak g}_0$, a
+  similar inductive argument shows that
+  $[{\mathfrak g}_{-1}, {\mathfrak a}_j] \subset {\mathfrak a}_{j-1}$. It follows that
+  ${\mathfrak a}:=\oplus_{|j|\le m}{\mathfrak a}_j$ is invariant under elements of
+  $\adjoint({\mathfrak g}_0)$, $\adjoint({\mathfrak g}_{-1})$, and
+  $\adjoint({\mathfrak g}_1)$ (this last, by construction). Since ${\mathfrak g}_1$
+  generates $\oplus_{j\ge 1}{\mathfrak g}_j$ (by assumption) and ${\mathfrak g}_{-1}$
+  generates $\oplus_{j\le -1}{\mathfrak g}_j$ (by Proposition \ref{in_terms_of_gradings}),
+  it follows that ${\mathfrak a} $ is an ideal, and so ${\mathfrak a} = {\mathfrak g} $,
+  by simplicity. Therefore $[{\mathfrak g}_j, {\mathfrak g}_1]={\mathfrak g}_{j+1}$ for
+  all $j\ge -m$.
+
+  In the semisimple case, we can write ${\mathfrak g} = \oplus_{I \in {\mathcal I}}I$, for
+  some finite set ${\mathcal I} $ of simple ideals. Each simple ideal gets a filtration
+  compatible with that of ${\mathfrak g}$ (Lemma A) and by the result just established,
+  $[I_j, I_1]=I_{j+1}$, $j\ge m$. Since elements from distinct simple ideals commute,
+  $[{\mathfrak g}_j, {\mathfrak g}_1]=[\oplus_{I \in {\mathcal I}}I_j, \oplus_{I \in
+    {\mathcal I}}I_1]=\oplus_{I \in {\mathcal I}}[I_j, I_1]=\oplus_{I \in {\mathcal
+      I}}I_{j+1}={\mathfrak g}_{j+1}$.
+\end{proof}
+
+Frequently cited but weaker forms of the following corollary do not suffice for current
+purposes.
+
+\begin{corollary}
+  Let ${\mathfrak g} $ be a graded semisimple Lie algebra satisfying the conditions of the
+  proposition, and let $i, j$ be integers such that:
+  \begin{conditions}
+  \item $i$, $j$ and $i + j$ are all less than or equal to $|{\mathfrak g}|$ in absolute
+    value.
+      \item $i$ or $i+j$ lies in $\{-1, +1\}$.
+  \end{conditions}
+  Then the only $X \in {\mathfrak g}_j$ for which $[{\mathfrak g}_i, X] = 0$ is $0$.
+\end{corollary}
+
+\begin{remark}
+  In particular, taking $i=-1$ and $0 \le j \le |{\mathfrak g}|$, we see that
+  $\adjoint \colon {\mathfrak p} \rightarrow \gl({\mathfrak g}_{-1})$ will be a faithful
+  representation of the parabolic subalgebra
+  ${\mathfrak p} = \oplus_{j\ge 0}{\mathfrak g}_j$.
+\end{remark}
+\begin{proof}
+  Let $B$ be any non-degenerate trace-form (e.g., the Killing form). Then, under the
+  stated hypothesis,
+  \begin{align*}
+    [{\mathfrak g}_i, X] =0 &\Rightarrow B([{\mathfrak g}_i, X], {\mathfrak g}_{-i-j}) = 0
+                              \Rightarrow B(X, [{\mathfrak g}_i, {\mathfrak g}_{-i-j}]) = 0\\
+                            &\Rightarrow B(X, {\mathfrak g}_{-j})=0
+                              \Rightarrow X = 0.
+  \end{align*}
+  The third implication follows from the proposition, while the last from $B$-duality of
+  ${\mathfrak g}_j$ and ${\mathfrak g}_{-j}$ (Lemma \eqrefs{par}{ira4}).
+\end{proof}
+
+To finish the proof of the theorem, suppose ${\mathfrak g} $ is semisimple and that
+${\mathfrak g}$ contains no non-zero ideal lying in $\graded({\mathfrak g})_0$, under the
+canonical filtration associated with ${\mathfrak p}$. Then $m:=|{\mathfrak g}|\ge 1$, for
+otherwise $\graded({\mathfrak g})$ is an ideal of itself lying in
+$\graded({\mathfrak g})_0=\graded({\mathfrak g})$. Identifying ${\mathfrak g} $ with
+$\graded({\mathfrak g})$ using Corollary \ref{can}, ${\mathfrak g} $ satisfies the
+hypotheses of the above proposition. We will need the following special cases of its
+corollary:
+\begin{conditions}
+\item\label{fickle1} Whenever $0 \le i \le m - 1$ and $X \in {\mathfrak g}_i$,
+  $[{\mathfrak g}_{-i-1}, X]=0 \Rightarrow X =0$.
+\item\label{fickle2} Whenever
+  $X \in {\mathfrak g}_m$, $[{\mathfrak g}_{-m+1}, X] =0 \Rightarrow X =0$.
+\item\label{fickle3} If $X \in {\mathfrak g}_1$ and $[{\mathfrak g}_{-1}, X]=0$, then
+  $X=0$.
+\end{conditions}
+
+In the notation of \ref{from_algebraic}, with ${\mathfrak h}:= {\mathfrak p}$, we have
+${\mathfrak a}^1({\mathfrak g}):=\{X \in {\mathfrak p}\suchthat [{\mathfrak g},X] \subset
+{\mathfrak p} \}$. If $X \in {\mathfrak a}^1({\mathfrak g})$, we may write
+$X = X_0 + X_1 + \ldots + X_m$, for some $X_j \in {\mathfrak g}_j$. If
+$0 \le i \le m - 1$, then
+$[{\mathfrak g}_{-i-1}, X] \cap {\mathfrak g}_{-1} = [{\mathfrak g}_{-i-1}, X_i]$, which
+must accordingly vanish, as ${\mathfrak g}_{-1}\cap {\mathfrak p} =0$. So, in fact,
+$X_i=0$, by \eqref{fickle1}. Since $0 \le i \le m - 1$ is arbitrary, this shows
+${\mathfrak a}^1({\mathfrak g}) \subset {\mathfrak g}_m$. The reverse inclusion is
+trivial.
+
+From the above, we have
+${\mathfrak a}^2({\mathfrak g}):=\{X \in {\mathfrak g}_m\suchthat [{\mathfrak g},X]
+\subset {\mathfrak g}_m \}$. Let $X \in {\mathfrak g}_m$. Then
+$[{\mathfrak g}_{-m +1}, X_m]$ lies in ${\mathfrak g}_1$ and must accordingly vanish, as
+${\mathfrak g}_1\cap {\mathfrak g}_m=0$, if we additionally suppose $m \ge 2$. In that
+case, $X=0$, by \eqref{fickle2}. On the other hand, if $m=1$, $[{\mathfrak g}_{-1}, X]$
+lies in ${\mathfrak g}_0$, and so must vanish, as
+${\mathfrak g}_0 \cap {\mathfrak g}_m = 0$ in that case. By \eqref{fickle3}, we still
+conclude $X=0$. So in any event, ${\mathfrak a}^2({\mathfrak g})=0$, and whence the
+infinitesimal order is 2.
 
 \refreshpage
 \section{The space of splittings of a filtered Lie algebra}
@@ -5737,8 +6273,6 @@ $S$ is uniquely determined by requirement \eqref{kr3}.
 \bibliography{dynamics2}
 
 \end{document}
-
-
 
 %%% Local Variables:
 %%% mode: latex
